@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Home } from './Pages/Home/Home';
 
-export class App extends Component {
+class App extends Component {
   render()
   {
     return (
@@ -13,3 +13,5 @@ export class App extends Component {
     )
   }
 }
+
+export default App;
