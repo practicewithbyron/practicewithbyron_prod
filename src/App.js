@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Home } from './Pages/Home/Home';
 
 export class App extends Component {
   render()
