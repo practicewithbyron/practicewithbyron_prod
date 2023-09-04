@@ -1,18 +1,20 @@
 import './App.css';
 import { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Router
+
 import { Home } from './Pages/Home/Home';
 import { TestPage } from './Pages/TestPage';
 
 class App extends Component {
-  render()
-  {
+  render() {
     return (
-      <Routes>
-        <Route exact path="/" element={<Home/>}></Route>
-        <Route exact path="/test" element={<TestPage/>}></Route>
-      </Routes>
-    )
+      <Router> {/* Wrap your entire app in a Router */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/test" element={<TestPage />} />
+        </Routes>
+      </Router>
+    );
   }
 }
 
