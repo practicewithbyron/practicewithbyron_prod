@@ -5,11 +5,35 @@
         "serve": "/index.html"
       },
       {
-        "route": "/test",
+        "route": "/login",
         "serve": "/index.html"
       },
       {
-        "route": "/test2",
+        "route": "/dashboard",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/catalog",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/admin",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/practice",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/passwordreset",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/stats",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/payment",
         "serve": "/index.html"
       }
     ],
