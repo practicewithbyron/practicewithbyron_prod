@@ -35,6 +35,10 @@
       {
         "route": "/payment",
         "serve": "/index.html"
+      },
+      {
+        "route": "./Home.css",
+        "serve": "../src/pages/Home/Home.css"
       }
     ],
     "navigationFallback": {
