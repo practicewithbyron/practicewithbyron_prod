@@ -1,0 +1,16 @@
+{
+    "routes": [
+      {
+        "route": "/",
+        "serve": "/index.html"
+      },
+      {
+        "route": "/test",
+        "serve": "/index.html"
+      }
+    ],
+    "navigationFallback": {
+      "rewrite": "/index.html",
+      "exclude": ["/api"]
+    }
+  }
