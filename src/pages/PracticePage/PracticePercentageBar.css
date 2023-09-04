@@ -1,0 +1,29 @@
+.practiceBar-container{
+    min-height: 20px;
+    width: 700px;
+}
+
+.practiceBar-element{
+    text-align: center;
+    font-size: 11px;
+    margin: 10px 0;
+}
+
+.correct{
+    background: rgba(75, 192, 192, 0.2);
+    border: 1px solid rgba(75, 192, 192, 1);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.incorrect{
+    background: rgba(255, 99, 132, 0.2);
+    border: 1px solid rgba(255, 99, 132, 1);
+}
+
+.skipped{
+    background: rgba(255, 206, 86, 0.2);
+    border: 1px solid rgba(255, 206, 86, 1);
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}

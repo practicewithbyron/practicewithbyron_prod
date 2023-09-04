@@ -1,0 +1,75 @@
+.title{
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.question-container{
+    background-color: white;
+    margin: 0 20px;
+    padding: 15px 20px;
+    border-radius: 15px;
+}
+
+.question{
+    margin-bottom: 20px;
+}
+
+.description {
+    margin: 30px 0;
+}
+
+.button-container{
+    margin: 0 10px;
+    min-width: 150px;
+}
+
+.start-button {
+    padding: 10px 15px;
+    background-color: var(--dark-text);
+    color: var(--light-text);
+    border: 0;
+}
+
+.practiceInput-container{
+    padding: 10px;
+    min-width: 500px;
+    border-top: 1px solid rgb(224, 224, 224);
+    font-family: 'Poppins', sans-serif;
+}
+
+.practiceInput-container:hover{
+    cursor: pointer;
+}
+
+.practiceInputContainer-selected{
+    background-color: var(--primary-color);
+    color: white !important;
+}
+
+.practiceIntro-container{
+    background-color: white;
+    padding: 0 70px 50px 70px;
+    border-radius: 5px;
+}
+
+.practiceDescription-container{
+    max-width: 700px;
+}
+
+.practiceStat-container{
+    margin: 20px 0;  
+}
+
+.practiceButton-container{
+    width: 200px;
+    margin-right: 20px; 
+}
+
+.practiceQuestion-container{
+    margin-bottom: 30px;
+    width: 800px;
+}
+
+.timer-container{
+    font-family: 'Poppins', sans-serif;
+}

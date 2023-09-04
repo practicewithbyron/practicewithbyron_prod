@@ -1,0 +1,8 @@
+.activeNavigationItem{
+    background: var(--primary-color);
+    color: var(--light-text);
+}
+
+.navigationItem{
+    padding: 15px;
+}

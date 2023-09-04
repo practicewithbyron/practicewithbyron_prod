@@ -1,0 +1,19 @@
+.catalogWidget-container {
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    padding: 7px 100px;
+
+    background-color: var(--primary-color);
+
+    margin: 9px 10px;
+
+    transition: all 0.15s linear;
+}
+
+.catalogWidget-text{
+    color: var(--light-text);
+}
+
+.catalogWidget-container:hover {
+    scale: 1.01;
+}

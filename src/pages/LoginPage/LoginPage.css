@@ -1,0 +1,113 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 50px 40px;
+
+    margin: auto;
+    margin-top: 80px;
+
+    background-color: white;
+
+    border-radius: 3px;
+}
+
+.login-container{
+    width: 400px
+}
+
+.loginForm-container{
+    height: 560px;
+}
+
+.loginTitle-text{
+    margin-bottom: 70px;
+    margin-top: 20px;
+}
+
+.login-button{
+    min-width: 375px;
+    margin: 10px 0;
+
+    background-color: #4285F4;
+    padding: 15px 0;
+    border-radius: 5px;
+
+    transition: all 0.5s linear;
+}
+
+.loginButton-text{
+    text-align: center;
+    font-weight: 400;
+    color: white;
+    vertical-align: middle;
+    margin: auto;
+
+    white-space: nowrap;
+}
+
+.loginInput-title{
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.loginInput-subtitle{
+    text-align: left;
+    font-size: 17px;
+    margin: 7px;
+}
+
+.login-input{
+    padding: 15px 10px;
+    border: 0;
+    background-color: rgb(230, 248, 255);
+
+    font-size: 17px;
+
+    margin: 10px;
+
+    min-width: 400px;
+}
+
+.forgotPassword-form{
+    height: 350px
+}
+
+.form-title{
+    margin-bottom: 20px;
+}
+
+.register-form{
+    height: 570px;
+}
+
+.message-text{
+    font-size: 20px;
+    color: var(--dark-text);
+}
+
+.errorMessage-text{
+    font-size: 20px;
+    color: var(--error-text);
+}
+
+.message__animation{
+    opacity: 1;
+
+    animation: bounceInLeft linear 1s;
+    animation-delay: 0s;
+}
+
+.message__fadeout{
+    animation: fadeOut linear 1s;
+}
+
+@keyframes fadeOut{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}

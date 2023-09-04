@@ -1,0 +1,11 @@
+.text{
+    white-space: nowrap;
+}
+
+.pass-text{
+    color: rgba(75, 192, 192, 1);
+}
+
+.fail-text{
+    color: rgba(255, 99, 132, 1);
+}

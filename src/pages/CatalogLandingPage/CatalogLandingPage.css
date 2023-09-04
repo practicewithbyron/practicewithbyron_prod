@@ -1,0 +1,52 @@
+.catalogLanding-page{
+    margin-top: 57px;
+}
+
+.catalogLandingHead-container{
+    padding: 25px 0;
+    background-image: linear-gradient(var(--primary-color), var(--secondary-color));
+}
+
+.catalogLanding-title{
+    color: var(--light-text);
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.catalogLanding-subtitle{
+    color: var(--light-text);
+    font-weight: 600;
+}
+
+.catalogLanding-button{
+    font-family: 'Poppins', sans-serif;
+    color: var(--light-text);
+    background: #0060fb;
+
+    padding: 10px 20px;
+    border-radius: 20px;
+
+    margin: 40px auto 20px auto;
+}
+
+.catalogLandingContent-container{
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+.catalogLandingDesc-container{
+    width: 60%
+}
+
+.catalogLandingStats-container{
+    width: 40%
+}
+
+.catalogLandingPageStatItem-container{
+    margin: 15px 50px;
+}
+
+.catalogLandingPageStatItem-icon{
+    font-size: 20px;
+    margin-right: 10px;
+}

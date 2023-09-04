@@ -1,0 +1,15 @@
+.login-button:hover{
+    scale: 1.02;
+    cursor: pointer;
+}
+
+.login-button{
+    min-width: -webkit-fill-available;
+    margin: 10px 0;
+
+    background-color: #4285F4;
+    padding: 15px 0;
+    border-radius: 5px;
+
+    transition: all 0.5s linear;
+}
