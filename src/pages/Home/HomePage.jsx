@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ReadAllCatalogs } from "../../db/Read/ReadAllCatalogs";
 import { Header } from "./Header/Header";
 
-import "./Home.css";
+import "./HomePage.css";
 import "../../App.css";
 
 export const Home = () => {
