@@ -7,6 +7,10 @@
       {
         "route": "/test",
         "serve": "/index.html"
+      },
+      {
+        "route": "/test2",
+        "serve": "/index.html"
       }
     ],
     "navigationFallback": {
