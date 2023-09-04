@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Im
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { DashboardPage } from "./pages/DashboardPage/DashboardPage";
 import { CatalogPage } from './pages/CatalogPage/CatalogPage.jsx';
-// import { NavigationBar } from './components/NavigationBar/NavigationBar';
+import { NavigationBar } from './components/NavigationBar/NavigationBar';
 import { AdminPage } from './pages/Admin/AdminPage';
 import { PracticePage } from './pages/PracticePage/PracticePage';
 import { CatalogLandingPage } from './pages/CatalogLandingPage/CatalogLandingPage';
