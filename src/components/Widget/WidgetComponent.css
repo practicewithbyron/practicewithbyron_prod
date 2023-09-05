@@ -25,13 +25,13 @@
     border-top-left-radius: 8.5px;
     border-top-right-radius: 8.5px;
 
-    width: fill;
+    width: stretch;
     height: fit-content;
 }
 
 .widgetComponentText-container{
     height: 50%;
-    width: fill;
+    width: stretch;
     padding: 20px 10px;
 }
 
