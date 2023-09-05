@@ -30,14 +30,6 @@ export function MyChart({correct, incorrect, skipped, passPercentage, setReviewQ
         ],
     };
 
-    
-    const options = {
-        plugins: {
-        legend: {
-            display: false,
-        },
-        },
-    };
     const percentageAcheived = (correct / (incorrect + skipped + correct)).toFixed(2) * 100;
     return(
         <div className='flex-row' style={{ width: '300px', height: '300px' }}>

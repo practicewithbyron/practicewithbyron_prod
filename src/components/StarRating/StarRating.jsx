@@ -21,7 +21,7 @@ export const StarRating = ({num}) => {
 
     useEffect(() => {
         setStarRating(GetRating(num));
-    }, [])
+    }, [num])
 
     console.log(starRating);
     return(

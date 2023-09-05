@@ -10,7 +10,7 @@ export const QuestionNavigator = ({noOfQuestions, setQuestionNo, questionNo}) =>
                 {Array.from({ length: noOfQuestions }).map((_, index) => (
                     <div
                     key={index} // Add a unique key for each element
-                    className={`questionNavigator-button ${questionNo == index + 1 ? "questionNavigatorButton-selected" : ""}`}
+                    className={`questionNavigator-button ${questionNo === index + 1 ? "questionNavigatorButton-selected" : ""}`}
                     onClick={() => setQuestionNo(index + 1)} // Pass a function reference
                     >
                     {index+1} {/* Display the index */}

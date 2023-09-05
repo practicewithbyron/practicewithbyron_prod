@@ -1,4 +1,3 @@
-import React from "react";
 import { Post } from './post.jsx';
 
 export const Register = (userEmail, userPassword) => {

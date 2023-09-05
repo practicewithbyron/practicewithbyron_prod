@@ -4,13 +4,14 @@ import { Loading } from "../Loading/loading";
 import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
 import { Error } from "../Error/Error";
 import { Link } from "react-router-dom";
+import { Button } from "../../components/Button/Button";
 
 import Cookies from "js-cookie";
 
 import "./DashboardPage.css";
 import "../../App.css";
 import "../LoginPage/LoginPage.css";
-import { Button } from "../../components/Button/Button";
+
 
 export const DashboardPage = () => {
     const [isFetching, setIsFetching] = useState(true);
@@ -26,7 +27,7 @@ export const DashboardPage = () => {
                 el.toLowerCase().startsWith(input.toLowerCase())
             )
         }))
-    }, [input])
+    }, [input, data])
 
 
     if(isFetching){
@@ -54,7 +55,7 @@ export const DashboardPage = () => {
     }
     else if(error){
         // Unauthorized (jwt expires) or jwt missing (not logged in)
-        if(error.request.status == 401 || error.request.status == 422){
+        if(error.request.status === 401 || error.request.status === 422){
             window.location.href = "/login"
         }
         else{
@@ -63,7 +64,7 @@ export const DashboardPage = () => {
             )
         }
     }
-    else if(data.detail.length == 0){
+    else if(data.detail.length === 0){
         return (
             <div id="dashboardpage-entry" className="flex-column center-content full-height">
                 <div id="dashboard-form" className="dashboard-form center-content">
@@ -91,7 +92,7 @@ export const DashboardPage = () => {
     
                     <div className="flex-row flex-wrap dashboardWidget-container">
                         {
-                            input == "" ?
+                            input === "" ?
                             (
                                 data.detail.map(el => {
                                     return(

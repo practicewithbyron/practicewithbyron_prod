@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ErrorMessage } from "./ErrorMessage";
 import { Register } from "../../db/register.jsx";
 
@@ -6,7 +6,6 @@ import { Register } from "../../db/register.jsx";
 import { PasswordValidation } from '../../validation/passwordValidation';
 import { IsEmailValid } from './../../validation/emailValidation';
 import { CheckInputIsntEmpty } from './../../validation/inputValidation';
-import { NotificationMessage } from './NotifcationMessage';
 import { Button } from '../../components/Button/Button';
 
 export const RegisterForm = () => {
@@ -36,7 +35,7 @@ export const RegisterForm = () => {
                         ErrorMessage("registerForm-content", "Please enter a valid email")
                     }
                     //Password validation
-                    else if (PasswordValidation(pass1.value).length != 0)
+                    else if (PasswordValidation(pass1.value).length !== 0)
                     {
                         const errorMessage = "Invalid Password";
                         ErrorMessage("registerForm-content", errorMessage);
@@ -47,7 +46,7 @@ export const RegisterForm = () => {
                         .then(res => {
                             console.log(res);
                             //Check if user already exists
-                            if(res.data.detail.Error != undefined)
+                            if(res.data.detail.Error !== undefined)
                             {
                                 ErrorMessage("registerForm-content", "Account already exists with that email");
                             }

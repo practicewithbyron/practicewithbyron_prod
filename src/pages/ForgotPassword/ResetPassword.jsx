@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { Loading } from "../Loading/loading";
 import { Error } from "../Error/Error";

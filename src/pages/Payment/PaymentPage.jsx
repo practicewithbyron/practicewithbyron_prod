@@ -62,7 +62,7 @@ export const PaymentPage = () => {
                 </div>
                 <div className="paymentPage-partition">
                     <h1 className="paymentPage-title">Provide A Coupon Code</h1>
-                    <PaymentPageInput/>
+                    <PaymentPageInput setCouponDiscount={setCouponDiscount}/>
 
                 </div>
 

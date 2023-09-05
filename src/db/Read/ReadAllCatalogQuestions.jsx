@@ -1,5 +1,3 @@
-import React from "react";
-import { Post } from "../post";
 import axios from "axios";
 
 export const ReadAllCatalogQuestions = (catalogName, jwt) => {

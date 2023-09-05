@@ -19,7 +19,7 @@ export const NavigationBar = () => {
         if(tokenFromCookie || JWTValidation(tokenFromCookie)){
             setLoggedIn(true);
         }
-    }, [])
+    }, [tokenFromCookie])
 
     //If logged in 
     if(loggedIn){

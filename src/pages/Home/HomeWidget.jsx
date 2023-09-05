@@ -16,7 +16,7 @@ export const HomeWidget = ({subtext, title, paragraph, img}) => {
                 </p>
             </div>
             <div className="widgetImg-container">
-                <img className="widget-img" src={require(`../../imgs/${img}`)}></img>
+                <img className="widget-img" src={require(`../../imgs/${img}`)} alt=""></img>
             </div>
         </div>
     )

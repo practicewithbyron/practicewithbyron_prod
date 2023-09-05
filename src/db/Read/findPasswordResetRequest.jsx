@@ -1,4 +1,3 @@
-import React from "react";
 import { Post } from "../post";
 
 // Finds the password reset request for the given token

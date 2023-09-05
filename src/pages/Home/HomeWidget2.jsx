@@ -4,7 +4,7 @@ export const HomeWidget2 = ({subtext, title, paragraph, img}) => {
     return(
         <div className="widget-container flex-row" style={{textAlign: "left"}}>
             <div className="widgetImg-container">
-                <img className="widget-img" src={require(`../../imgs/${img}`)}></img>
+                <img className="widget-img" src={require(`../../imgs/${img}`)} alt=""></img>
             </div>
             <div className="widgetText-container">
                 <div className="color-text">

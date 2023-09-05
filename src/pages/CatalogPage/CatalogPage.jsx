@@ -35,13 +35,13 @@ export const CatalogPage = () => {
         console.log(filteredArray);
         var temp = []
         data?.detail?.forEach(el => {
-            if(el.catagory == filter)
+            if(el.catagory === filter)
             {
                 temp.push(el);
             }
         })
         setFilteredArray(temp);
-    }, [filter, data])
+    }, [filter, data, filteredArray])
 
     if(error){
         console.log("error");

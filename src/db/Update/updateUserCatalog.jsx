@@ -1,4 +1,3 @@
-import React from "react";
 import { Put } from "../put";
 
 export const UpdateUserCatalog = (userId, catalogToAdd) => {

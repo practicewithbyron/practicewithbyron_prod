@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Loading } from "../Loading/loading";
-import { UpdateUserCatalog } from "../../db/Update/updateUserCatalog";
-import { UpdateUserPassword } from "../../db/Update/updateUserPassword";
-import { CreateIncorrectQuestions } from "../../db/Create/createIncorrectQuestions";
-import { FindIncorrectQuestionsByUser } from "../../db/Read/findIncorrectQuestionsByUser";
-import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
+// import { UpdateUserCatalog } from "../../db/Update/updateUserCatalog";
+// import { UpdateUserPassword } from "../../db/Update/updateUserPassword";
+// import { CreateIncorrectQuestions } from "../../db/Create/createIncorrectQuestions";
+// import { FindIncorrectQuestionsByUser } from "../../db/Read/findIncorrectQuestionsByUser";
+// import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
 import { ReadAllCatalogQuestions } from "../../db/Read/ReadAllCatalogQuestions";
 
 export const AdminPage = () => {

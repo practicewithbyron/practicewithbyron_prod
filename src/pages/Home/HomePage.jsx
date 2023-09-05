@@ -86,17 +86,29 @@ export const Home = () => {
                     Top-Selling Practice Exams
                 </h1>
                 <div className="flex-row ">
-                    {
-                        data?.detail.map(el => {
-                            console.log(el);
-                            return(
-                                <div style={{margin: "10px 10px"}}>
-                                    <Link to={`/catalog/${el.name}`}>
-                                        <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription}/>
-                                    </Link>
-                                </div>
-                            )  
-                        })
+                    {   
+                        error ? (
+                            <h1>
+                                Error
+                            </h1>
+                        ) : (
+                            !isFetching ? (
+                                data?.detail.map(el => {
+                                    console.log(el);
+                                    return(
+                                        <div style={{margin: "10px 10px"}}>
+                                            <Link to={`/catalog/${el.name}`}>
+                                                <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription}/>
+                                            </Link>
+                                        </div>
+                                    )  
+                                })
+                            ) : (
+                                <h1>Fetching</h1>
+                            )
+                        )
+
+
                     }
                 </div>
                 <NavLink to="/catalog">

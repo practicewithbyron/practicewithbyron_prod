@@ -1,4 +1,3 @@
-import React from "react";
 import { Post } from "./post";
 
 // Creates a password reset request with the given email

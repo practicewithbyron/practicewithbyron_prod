@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTable } from 'react-table';
 
 import "./StatsPage.css";
 import "../../App.css";

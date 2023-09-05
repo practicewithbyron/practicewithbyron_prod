@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loading } from "../Loading/loading";
 import { ReadAllCatalogQuestions } from "../../db/Read/ReadAllCatalogQuestions";
@@ -21,7 +21,7 @@ function toHoursAndMinutes(totalMinutes) {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
     if(minutes){
-        return `${hours} hour${hours == 1 ? "" : "s"} and ${minutes} minutes`;
+        return `${hours} hour${hours === 1 ? "" : "s"} and ${minutes} minutes`;
     }
     else{
         return `${hours} Hours`;
@@ -82,13 +82,15 @@ export const PracticePage = () => {
             {
                 setSkipped(skipped => [...skipped, el]);
             }
-            else if(el.answer == el.correctAnswer)
+            else if(el.answer === el.correctAnswer)
             {
                 setCorrect(correct => [...correct, el]);
             }
             else{
                 setIncorrect(incorrect => [...incorrect, el]);
             }
+
+            return
         })
         setKnowledgeAreas(knowledgeAreas);
     }
@@ -241,10 +243,10 @@ export const PracticePage = () => {
                                     <div style={{margin: "10px 0"}}>
                                         <h3>Question {index + 1}</h3>
                                         <h3>{el.question}</h3>
-                                        <DisabledInput answer={el.answerOne} selected={el.answerOne == el.answer} isCorrect={el.answerOne == el.correctAnswer}/>
-                                        <DisabledInput answer={el.answerTwo} selected={el.answerTwo == el.answer} isCorrect={el.answerTwo == el.correctAnswer}/>
-                                        <DisabledInput answer={el.answerThree} selected={el.answerThree == el.answer} isCorrect={el.answerThree == el.correctAnswer}/>
-                                        <DisabledInput answer={el.answerFour} selected={el.answerFour == el.answer} isCorrect={el.answerFour == el.correctAnswer}/>
+                                        <DisabledInput answer={el.answerOne} selected={el.answerOne === el.answer} isCorrect={el.answerOne === el.correctAnswer}/>
+                                        <DisabledInput answer={el.answerTwo} selected={el.answerTwo === el.answer} isCorrect={el.answerTwo === el.correctAnswer}/>
+                                        <DisabledInput answer={el.answerThree} selected={el.answerThree === el.answer} isCorrect={el.answerThree === el.correctAnswer}/>
+                                        <DisabledInput answer={el.answerFour} selected={el.answerFour === el.answer} isCorrect={el.answerFour === el.correctAnswer}/>
                                         <h3>
                                             Explanation
                                         </h3>
