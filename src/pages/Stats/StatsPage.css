@@ -30,10 +30,6 @@
     flex-grow: 4;
 }
 
-/* .stats-table{
-    min-width: stretch;
-} */
-
 .statsGraph-container{
     flex-grow: 1;
     min-height: max-content;
