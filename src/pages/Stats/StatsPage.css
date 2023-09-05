@@ -30,9 +30,9 @@
     flex-grow: 4;
 }
 
-.stats-table{
+/* .stats-table{
     min-width: stretch;
-}
+} */
 
 .statsGraph-container{
     flex-grow: 1;
