@@ -31,7 +31,7 @@
 }
 
 .stats-table{
-    min-width: -webkit-fill-available;
+    min-width: stretch;
 }
 
 .statsGraph-container{
@@ -54,7 +54,7 @@
 
     margin: 10px;
 
-    height: -webkit-fill-available;
+    height: stretch;
 }
 
 .statsItem-header{

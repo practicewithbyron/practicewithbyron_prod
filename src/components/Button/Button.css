@@ -4,7 +4,7 @@
 }
 
 .login-button{
-    min-width: -webkit-fill-available;
+    min-width: stretch;
     margin: 10px 0;
 
     background-color: #4285F4;
