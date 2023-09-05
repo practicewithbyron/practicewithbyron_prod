@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 import { MyChart} from "./PracticeChart";
 import { PracticePercentageBar } from "./PracticePercentageBar";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import Cookies from "js-cookie";
-
-import "../../App.css";
-import "./PracticePage.css";
 import { DisabledInput } from "./DisabledInput";
 import { QuestionNavigator } from "./QuestionNavigator";
 import { Button } from './../../components/Button/Button';
 import { PracticePageQuestion } from "./PracticePageQuestion";
+
+import Cookies from "js-cookie";
+
+import "../../App.css";
+import "./PracticePage.css";
 
 function toHoursAndMinutes(totalMinutes) {
     const hours = Math.floor(totalMinutes / 60);
@@ -77,7 +78,6 @@ export const PracticePage = () => {
             knowledgeAreas.add(el.knowledgeArea);
             //Sort questions
 
-            console.log(el.answer);
             if(!el.answer)
             {
                 setSkipped(skipped => [...skipped, el]);
@@ -90,7 +90,7 @@ export const PracticePage = () => {
                 setIncorrect(incorrect => [...incorrect, el]);
             }
 
-            return
+            return el.answer
         })
         setKnowledgeAreas(knowledgeAreas);
     }
@@ -154,7 +154,7 @@ export const PracticePage = () => {
 
                                         <div className="flex-row" style={{marginTop: "10px"}}>
                                             {
-                                                questionNo != 1 ? (
+                                                questionNo !== 1 ? (
                                                     <div className="practiceButton-container">
                                                         <Button text={"Back"} func={() => {   
                                                             setQuestionNo(questionNo-1);
@@ -168,7 +168,7 @@ export const PracticePage = () => {
                                                 )
                                             }
                                             {
-                                                questionNo != data.detail.length ? (
+                                                questionNo !== data.detail.length ? (
                                                     <div className="practiceButton-container">
                                                         <Button text={"Next"} func={() => {   
                                                             setQuestionNo(questionNo+1);
@@ -179,8 +179,7 @@ export const PracticePage = () => {
                                                 ) : (
                                                     <div className="practiceButton-container">
                                                         <Button text={"Finish"} func={() => {   
-                                                            setFinished(true);
-                                                            console.log("reached");
+                                                            setFinished(true);;
                                                             CalculateResult();
                                                         }}
                                                         />
