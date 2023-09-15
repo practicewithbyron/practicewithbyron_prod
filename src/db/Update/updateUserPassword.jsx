@@ -2,7 +2,7 @@ import { Put } from "../put";
 
 export const UpdateUserPassword = (userId, password) => {
     return(
-        Put("http://127.0.0.1:8000/api/updateUserPassword", {
+        Put("https://practicewithbyron-python.azurewebsites.net/api/updateUserPassword", {
             userId : userId,
             password : password
         })

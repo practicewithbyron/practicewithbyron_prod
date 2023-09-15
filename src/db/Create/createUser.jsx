@@ -8,7 +8,7 @@ export const CreateUser = (userEmail, userPassword) => {
     console.log(userEmail, userPassword);
   
     useEffect(() => {
-      axios.post('http://127.0.0.1:8000/api/createUser', {
+      axios.post('https://practicewithbyron-python.azurewebsites.net/api/createUser', {
         email: userEmail,
         password: userPassword
       }).then(response => {

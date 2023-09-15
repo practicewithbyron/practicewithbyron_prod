@@ -1,0 +1,20 @@
+.learningPlanPageIntro-container{
+    display: flex;
+
+    background-color: var(--widget-grey);
+
+    max-width: 500px;
+    min-width: 500px;
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.learningPlanPage-text{
+    color: black;
+    padding: 5px;
+}
+
+.learningPlanGoal-container{
+    
+}

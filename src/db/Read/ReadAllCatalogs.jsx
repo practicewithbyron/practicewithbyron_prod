@@ -1,5 +1,5 @@
 import { Post } from '../post';
 
 export const ReadAllCatalogs = () => {
-    return(Post("http://127.0.0.1:8000/api/readAllCatalogs", {}))
+    return(Post("https://practicewithbyron-python.azurewebsites.net/api/readAllCatalogs", {}))
 }

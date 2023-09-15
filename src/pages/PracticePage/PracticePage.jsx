@@ -39,6 +39,8 @@ export const PracticePage = () => {
     const [finished, setFinished] = useState(false);
     const [reviewQuestions, setReviewQuestions] = useState(false);
 
+    //
+
     //ReadAllCatalogQuestions
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState(null);
@@ -283,11 +285,15 @@ export const PracticePage = () => {
                         <div className="flex-row">
                             <div className="button-container">
                                 <Button text={"Start exam"} func={() => {setStarted(true)}}/>
-            
                             </div>
                             <div className="button-container">
                                 <Link to={"/stats/" + name}>
                                     <Button text={"View Stats"} func={() => {}}/>
+                                </Link>
+                            </div>
+                            <div className="button-container">
+                                <Link to={"/training"}>
+                                    <Button text={"Practice for Exam"} func={() => {}}/>
                                 </Link>
                             </div>
                         </div>

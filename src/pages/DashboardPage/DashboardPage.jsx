@@ -12,6 +12,9 @@ import "./DashboardPage.css";
 import "../../App.css";
 import "../LoginPage/LoginPage.css";
 
+function LearningPathRelocate(){
+    window.location.href = "/learningpath"
+}
 
 export const DashboardPage = () => {
     const [isFetching, setIsFetching] = useState(true);
@@ -75,7 +78,7 @@ export const DashboardPage = () => {
                         Get started by heading to the <a href="/catalog">catalog page</a> and getting a course! <br/> All your courses will be displayed here.
                     </h2>
                     <Button text="Start Preparing" func={() => {
-                        window.location.href = "/catalog";
+                        LearningPathRelocate();
                     }}/>
                 </div>
             </div>
@@ -111,6 +114,7 @@ export const DashboardPage = () => {
                             )
                         }
                     </div>
+                    <Button text={"Go to your learning plan"} func={() => {LearningPathRelocate();}}/>
                 </div>
             </div>
         )

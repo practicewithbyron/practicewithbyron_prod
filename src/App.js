@@ -12,6 +12,8 @@ import { ResetPassword } from './pages/ForgotPassword/ResetPassword';
 import { StatsPage } from './pages/Stats/StatsPage';
 import { PaymentPage } from './pages/Payment/PaymentPage';
 import { Home } from './pages/Home/HomePage';
+import { LearningPlanPage } from './pages/LearningPlan/LearningPlanPage';
+import { TrainingPage } from './pages/TrainingPage/TrainingPage';
 
 class App extends Component {
   render() {
@@ -31,6 +33,8 @@ class App extends Component {
               <Route exact path="/passwordreset/:token" element={<ResetPassword/>}/>
               <Route exact path="/stats/:exam" element={<StatsPage/>}/>
               <Route exact path="/payment/:name" element={<PaymentPage/>}/>
+              <Route exact path="/learningpath" element={<LearningPlanPage/>}/>
+              <Route exact path="/training" element={<TrainingPage/>}/>
             </Routes>
           </div>
         </div>

@@ -1,44 +1,31 @@
 {
     "routes": [
       {
-        "route": "/",
-        "serve": "/index.html"
+        "route": "/"
       },
       {
-        "route": "/login",
-        "serve": "/index.html"
+        "route": "/login"
       },
       {
-        "route": "/dashboard",
-        "serve": "/index.html"
+        "route": "/dashboard"
       },
       {
-        "route": "/catalog",
-        "serve": "/index.html"
+        "route": "/catalog"
       },
       {
-        "route": "/admin",
-        "serve": "/index.html"
+        "route": "/admin"
       },
       {
-        "route": "/practice",
-        "serve": "/index.html"
+        "route": "/practice"
       },
       {
-        "route": "/passwordreset",
-        "serve": "/index.html"
+        "route": "/passwordreset"
       },
       {
-        "route": "/stats",
-        "serve": "/index.html"
+        "route": "/stats"
       },
       {
-        "route": "/payment",
-        "serve": "/index.html"
-      },
-      {
-        "route": "./Home.css",
-        "serve": "../src/pages/Home/Home.css"
+        "route": "/payment"
       }
     ],
     "navigationFallback": {

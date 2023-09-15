@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Loading } from "../Loading/loading";
 import { HomeWidget } from "./HomeWidget";
 import { HomeWidget2 } from "./HomeWidget2";
 import { WidgetComponent } from '../../components/Widget/WidgetComponent';
@@ -10,6 +10,7 @@ import { Header } from "./Header/Header";
 
 import "./HomePage.css";
 import "../../App.css";
+import ErrorFace from "../Error/ErrorFace";
 
 export const Home = () => {
     const [isFetching, setIsFetching] = useState(true);
@@ -88,9 +89,18 @@ export const Home = () => {
                 <div className="flex-row ">
                     {   
                         error ? (
-                            <h1>
-                                Error
-                            </h1>
+                            <div className="flex-column center-text ">
+                                <ErrorFace/>
+                                <div className="homePageErrorMessage-container">
+                                    <h2 className="paragraph">
+                                        Sorry, there seems to be a problem.
+                                    </h2>
+                                    <h2 className="paragraph">
+                                        Please check your internet connection
+                                    </h2>
+                                </div>
+
+                            </div>
                         ) : (
                             !isFetching ? (
                                 data?.detail.map(el => {
@@ -104,18 +114,23 @@ export const Home = () => {
                                     )  
                                 })
                             ) : (
-                                <h1>Fetching</h1>
+                                <Loading/>
                             )
                         )
 
 
                     }
                 </div>
-                <NavLink to="/catalog">
-                    <div className="button">
-                        See more
-                    </div>
-                </NavLink>
+                {
+                    !error ? (
+                        <NavLink to="/catalog">
+                            <div className="button">
+                                See more
+                            </div>
+                        </NavLink>
+                    ) : (<></>)
+                }
+
             </div>
         </>
     )
