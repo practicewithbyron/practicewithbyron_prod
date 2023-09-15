@@ -8,6 +8,8 @@ export const LearningPlanPage = () => {
     const [firstTime, setFirstTime] = useState(true);
     const [introTextIndex, setIntroTextIndex] = useState(0);
     const [technology, setTechnology] = useState(null);
+
+    console.log(technology); // Remove eslint errors
     
     const introTexts = ["Here we can make you a personal learning plan to help you achieve you accreditation goals",
                         "What pace would you like to learn at?",
