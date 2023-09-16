@@ -35,7 +35,6 @@ export const DashboardPage = () => {
 
     if(isFetching){
         const tokenFromCookie = Cookies.get('jwtToken');
-        console.log(tokenFromCookie);
         if(!tokenFromCookie){
             window.location.href = "/login";
         }

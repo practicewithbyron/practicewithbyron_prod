@@ -104,7 +104,6 @@ export const Home = () => {
                         ) : (
                             !isFetching ? (
                                 data?.detail.map(el => {
-                                    console.log(el);
                                     return(
                                         <div style={{margin: "10px 10px"}}>
                                             <Link to={`/catalog/${el.name}`}>

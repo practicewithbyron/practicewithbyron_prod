@@ -9,16 +9,13 @@ export const Put = (url, body) => {
   
     useEffect(() => {
       axios.put(url, body).then(response => {
-        console.log(response.data.detail);
         setData(response.data.detail);
       }).catch(error => {
-        console.log(error?.response?.data);
         setError(error);
       }).finally(() => {
         setIsFetching(false);
       });
     }, [url, body]);
     
-    console.log({ data, isFetching, error });
     return { data, isFetching, error };
 }

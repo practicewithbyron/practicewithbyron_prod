@@ -4,7 +4,6 @@ import "./Error.css";
 import ErrorFace from "./ErrorFace";
 
 export const Error = ({title, message}) => {
-    console.log(message);
     return (
         <div className="center-content full-height flex-column" style={{width: "fit-content", margin: "auto"}}>
             <ErrorFace/>

@@ -20,7 +20,6 @@ export const AdminPage = () => {
     console.log(data);
 
     if(error){
-        console.log("error");
         return <h1>Error</h1>
     }
     else if(isFetching){

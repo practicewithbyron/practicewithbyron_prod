@@ -23,7 +23,6 @@ export const StarRating = ({num}) => {
         setStarRating(GetRating(num));
     }, [num])
 
-    console.log(starRating);
     return(
         <div className="starRating-container">
             {Array.from({ length: starRating?.num }, (_, i) => (

@@ -32,7 +32,6 @@ export const CatalogPage = () => {
 
     useEffect(() => {
         setFilteredArray([]);
-        console.log(filteredArray);
         var temp = []
         data?.detail?.forEach(el => {
             if(el.catagory === filter)
@@ -44,7 +43,6 @@ export const CatalogPage = () => {
     }, [filter, data, filteredArray])
 
     if(error){
-        console.log("error");
         return <Error title="Internal Server Error" message={error.message}/>
     }
     else if(isFetching){
@@ -65,7 +63,6 @@ export const CatalogPage = () => {
                         {
                             filteredArray?.map(el => 
                             {
-                                console.log(filteredArray);
                                 return(
                                     <Link to={`/catalog/${el.name}`}>
                                         <WidgetComponent text={el.name} img={el.name+".png"} desc={el.description}/>

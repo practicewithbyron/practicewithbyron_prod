@@ -43,7 +43,6 @@ export const ResetPassword = () => {
         )
     }
     else{
-        console.log(data);
         return (
             <div id="resetPassword-entry" className="center-content" style={{marginTop: "50px"}}>
                 <div id="resetPassword-content" className="loginForm">
@@ -52,7 +51,6 @@ export const ResetPassword = () => {
                     <input id="resetPassword" className="login-input" type="password"></input>
                     <Button text="Change Password" func={() => {
                         const newPassword = document.getElementById("resetPassword");
-                        console.log("button click");
                         ChangePassword(data.detail.email, newPassword.value)
                         .then(res => {
                             NotificationMessage("resetPassword-content", "Password changed!");

@@ -31,7 +31,6 @@ export const ForgotPasswordForm = () => {
                         PasswordResetRequest(email.value)
                         .then(res => {
                             console.log(res);
-    
                             NotificationMessage("forgotPassword-content", "Email sent!");                 
                         })
                         .catch(err => {

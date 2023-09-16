@@ -22,8 +22,6 @@ export const PaymentPage = () => {
 
     const {name} = useParams(); 
 
-    console.log(name);
-
     if(isFetching){
         ReadCatalog(name)
         .then(res => {

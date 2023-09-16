@@ -8,9 +8,6 @@ export const ErrorMessage = (containerId, messageText) => {
     message.innerHTML = messageText;
     message.classList.add("message__animation");
 
-    console.log(message);
-    console.log(containerId);
-
     container.appendChild(message);
 
     //Animation for popup message

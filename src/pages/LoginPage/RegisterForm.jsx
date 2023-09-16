@@ -44,7 +44,6 @@ export const RegisterForm = () => {
                     {
                         Register(email.value, pass1.value)
                         .then(res => {
-                            console.log(res);
                             //Check if user already exists
                             if(res.data.detail.Error !== undefined)
                             {

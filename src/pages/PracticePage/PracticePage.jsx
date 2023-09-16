@@ -100,7 +100,6 @@ export const PracticePage = () => {
     
     if(isFetching){
         const tokenFromCookie = Cookies.get('jwtToken');
-        console.log(tokenFromCookie);
         if(!tokenFromCookie){
             window.location.href = "/login"
         }
@@ -130,7 +129,6 @@ export const PracticePage = () => {
     }
         
     if(error || error2){
-        console.log("error");
         return <h1>Error</h1>
     }
     else if(isFetching || isFetching2){
