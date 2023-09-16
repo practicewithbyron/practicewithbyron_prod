@@ -1,8 +1,16 @@
-import { Post } from './post.jsx';
+import axios from "axios";
 
 export const Login = (userEmail, userPassword) => {
-  return(Post("https://practicewithbyron-python.azurewebsites.net/api/login", {
-    "email": userEmail,
-    "password": userPassword
-  }))
+  return (
+    axios.post("https://practicewithbyron-python.azurewebsites.net/PracticeWithByron-python/v1.0.0/api/login", {
+      "email": userEmail,
+      "password": userPassword
+    }, 
+    {
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*"
+        },
+    })
+)
 }
