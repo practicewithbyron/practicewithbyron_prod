@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const Post = (url, body) => {
   return(
-    axios.post(url, body,     {
+    axios.post(url, body, {
       headers: {
           'Content-Type': 'application/json',
           "Access-Control-Allow-Origin": "*",
