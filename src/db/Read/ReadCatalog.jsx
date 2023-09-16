@@ -2,7 +2,7 @@ import { Post } from '../post';
 
 export const ReadCatalog = (catalogName) => {
     return(
-        Post("https://practicewithbyron-python.azurewebsites.net/api/readCatalog", {
+        Post(getURL() + "readCatalog", {
             catalogName: catalogName
         })
     )
