@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const Login = (userEmail, userPassword) => {
   return (
-    axios.post("https://practicewithbyron-python.azurewebsites.net/PracticeWithByron-python/v1.0.0/login", {
+    axios.post("https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/login", {
       "email": userEmail,
       "password": userPassword
     }, 
