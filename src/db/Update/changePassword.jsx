@@ -1,4 +1,5 @@
 import { Post } from "../post";
+import { getURL } from "../getURL";
 
 export const ChangePassword = (email, password) => {
     return(

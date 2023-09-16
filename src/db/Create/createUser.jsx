@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getURL } from "../getURL";
 import axios from "axios";
 
 export const CreateUser = (userEmail, userPassword) => {
@@ -8,7 +9,7 @@ export const CreateUser = (userEmail, userPassword) => {
     console.log(userEmail, userPassword);
   
     useEffect(() => {
-      axios.post('https://practicewithbyron-python.azurewebsites.net/api/createUser', {
+      axios.post(getURL() + 'createUser', {
         email: userEmail,
         password: userPassword
       }).then(response => {

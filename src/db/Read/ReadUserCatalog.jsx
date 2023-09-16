@@ -1,8 +1,7 @@
 import axios from "axios";
-
+import { getURL } from "../getURL";
 
 export const ReadUserCatalog = (jwt) => {
-    console.log(typeof(jwt));
     return(
         axios.post(getURL() + "readUserCatalog", null, {
             headers: {
