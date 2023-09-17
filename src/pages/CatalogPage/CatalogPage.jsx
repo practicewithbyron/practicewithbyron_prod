@@ -17,30 +17,28 @@ export const CatalogPage = () => {
     const [filter, setFilter] = useState("Java");
     const [filteredArray, setFilteredArray] = useState([]);
 
-    if(isFetching){
-        ReadAllCatalogs()
-        .then(res => {
-            setData(res.data);
-        })
-        .catch(err => {
-            setError(err)
-        })
-        .finally(() => {
-            setIsFetching(false)
-        });  
-    }
-
     useEffect(() => {
-        setFilteredArray([]);
-        var temp = []
-        data?.detail?.forEach(el => {
-            if(el.catagory === filter)
-            {
-                temp.push(el);
-            }
-        })
-        setFilteredArray(temp);
-    }, [filter, data, filteredArray])
+        if (isFetching) {
+          ReadAllCatalogs()
+            .then((res) => {
+              setData(res.data);
+            })
+            .catch((err) => {
+              setError(err);
+            })
+            .finally(() => {
+              setIsFetching(false);
+            });
+        }
+      }, [isFetching]);
+      
+      useEffect(() => {
+        // Only filter and update filteredArray if filter or data change
+        if (filter && data) {
+          const temp = data.detail.filter((el) => el.catagory === filter);
+          setFilteredArray(temp);
+        }
+      }, [filter, data]);
 
     if(error){
         return <Error title="Internal Server Error" message={error.message}/>

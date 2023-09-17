@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Loading } from "../Loading/loading";
 import { HomeWidget } from "./HomeWidget";
 import { HomeWidget2 } from "./HomeWidget2";
@@ -17,7 +17,7 @@ export const Home = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
 
-    if(isFetching){
+    useEffect(() => {
         ReadAllCatalogs()
         .then(res => {
             setData(res.data);
@@ -27,8 +27,9 @@ export const Home = () => {
         })
         .finally(() => {
             setIsFetching(false)
-        });  
-    }
+        });
+    }, [])
+  
 
     return(
         <>
