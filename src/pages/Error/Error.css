@@ -19,3 +19,9 @@
 .d {
   fill: #f06880;
 }
+
+.errorTitle-text{
+  font-size: 40px;
+  width: fit-content;
+  margin: 10px auto;
+}
