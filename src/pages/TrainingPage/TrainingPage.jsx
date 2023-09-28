@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./TrainingPage.css";
 import "../../App.css";
 import { Button } from './../../components/Button/Button';
-import { QuestionPage } from "../QuestionsPage/QuestionPage";
 
 export const TrainingPage = () => {
 
@@ -62,7 +61,6 @@ export const TrainingPage = () => {
                     </div>
                 ) : (
                     <>
-                        <QuestionPage data={data}/>
                     </>
                 )
             }
