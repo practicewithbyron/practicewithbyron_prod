@@ -12,7 +12,6 @@ import { DisabledInput } from "./DisabledInput";
 import { QuestionNavigator } from "./QuestionNavigator";
 import { Button } from './../../components/Button/Button';
 import { PracticePageQuestion } from "./PracticePageQuestion";
-// import { QuestionPage } from "../QuestionsPage/QuestionPage";
 
 import Cookies from "js-cookie";
 
@@ -90,7 +89,7 @@ export const PracticePage = () => {
                 setSkipped(skipped => [...skipped, el]);
             }
             //Selected answer is equal to the correct answer
-            else if(foundElement.answerX == el.correctAnswer)
+            else if(foundElement.answerX === el.correctAnswer)
             {
                 setCorrect(correct => [...correct, el]);
             }

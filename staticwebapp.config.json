@@ -26,6 +26,12 @@
       },
       {
         "route": "/payment"
+      },
+      {
+        "route": "/learningpath"
+      },
+      {
+        "route": "/training"
       }
     ],
     "navigationFallback": {
