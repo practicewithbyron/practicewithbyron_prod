@@ -1,10 +1,17 @@
 import React from "react";
 
-export const DisabledInput = ({answer, isCorrect, selected}) => {
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
+import SyntaxHighlighter from 'react-syntax-highlighter';
+
+import "./DisabledInput.css";
+
+export const DisabledInput = ({answer, isCorrect, selected, language}) => {
     return(
-        <div className="flex-row fit-content practiceInputContainer" style={{background: isCorrect ? "rgba(75, 192, 192, 0.2)" : (isCorrect !== selected ? "rgba(255, 99, 132, 1)" : "")}}>
-            <input type="radio" className="radio-button" disabled={true} checked={selected}/>
-            <h4 style={{marginLeft: "5px"}}>{answer}</h4> 
+        <div className="flex-row fit-content disabledInput-container" style={{backgroundColor: isCorrect ? "rgb(78 255 58)" : (isCorrect !== selected ? "rgba(255, 99, 132, 1)" : "")}}>
+            <SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
+                {answer}
+            </SyntaxHighlighter>
         </div>
     )
 }

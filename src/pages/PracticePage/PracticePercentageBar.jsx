@@ -3,7 +3,7 @@ import "./PracticePercentageBar.css";
 
 export const PracticePercentageBar = ({correct, incorrect, skipped}) => {
     return(
-        <div className="flex-row practiceBar-container title">
+        <div className="flex-row practiceBar-container">
             <div className="flex-row practiceBar-element correct" style={{flexGrow: correct}}>
                 <h4 style={{margin: "auto"}}>{(correct / (incorrect + skipped + correct)).toFixed(2) * 100}%</h4>
             </div>

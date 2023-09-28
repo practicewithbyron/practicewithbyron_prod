@@ -61,7 +61,7 @@ export const StatsPage = () => {
                             </li>
                         </ul>
                         <Link to={"/practice/" + exam}>
-                            <Button text="Do exam"/>
+                            <Button text="Do exam" func={() => {}}/>
                         </Link>
                     </div>
                 </div>

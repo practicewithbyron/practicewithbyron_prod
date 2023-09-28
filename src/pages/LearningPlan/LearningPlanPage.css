@@ -12,9 +12,15 @@
 
 .learningPlanPage-text{
     color: black;
-    padding: 5px;
+    padding: 10px;
 }
 
 .learningPlanGoal-container{
     
+}
+
+.learningPlan-select{
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
 }

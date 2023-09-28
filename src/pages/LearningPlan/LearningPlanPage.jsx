@@ -34,7 +34,7 @@ export const LearningPlanPage = () => {
     */
 
     return (
-        <div className="center-text center-content flex-column introduction">
+        <div className="center-text center-content flex-column full-height">
             {
                 firstTime ? (
                     <>
@@ -44,14 +44,14 @@ export const LearningPlanPage = () => {
                                     <h1 className="learningPlanPage-text">Welcome to your learning plan</h1>
                                 ) : (            
                                     introTextIndex === 1 ? (
-                                        <select name="learningPace" id="learningPaceID">
+                                        <select name="learningPace" id="learningPaceID" className="learningPlan-select">
                                             <option value="easy">Slow (1 - 2 hours a week)</option>
                                             <option value="medium">Medium (2 - 4 hours a week)</option>
                                             <option value="hard">Fast (6+ hours a week)</option>
                                         </select>
                                     ) : (
                                         introTextIndex === 2 ? (
-                                            <select name="technologyGoal" id="technologyGoalID" onSelect={() => {
+                                            <select name="technologyGoal" id="technologyGoalID" className="learningPlan-select" onSelect={() => {
                                                 setTechnology(document.getElementById("technologyGoalID").value);
                                             }}>
                                                 <option value="Python">Python</option>
@@ -66,7 +66,7 @@ export const LearningPlanPage = () => {
                                 
                                 )
                             }
-                            <h2 className="learningPlanPage-text">{introTexts[introTextIndex]}</h2>
+                            <p className="learningPlanPage-text">{introTexts[introTextIndex]}</p>
                             <Button text="Next" func={() => {setIntroTextIndex(introTextIndex + 1)}}/>
                         </div>
 

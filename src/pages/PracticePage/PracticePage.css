@@ -73,3 +73,17 @@
 .timer-container{
     font-family: 'Poppins', sans-serif;
 }
+
+.practicePageButton-container{
+    min-width: fit-content;
+}
+
+.practicePageKnowledgeArea-title{
+    text-align: center;
+    margin: 10px 0;
+}
+
+.practicePage-title{
+    margin-bottom: 20px;
+    font-weight: 400;
+}

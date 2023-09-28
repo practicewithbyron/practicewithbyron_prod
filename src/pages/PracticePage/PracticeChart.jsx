@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import "../../App.css";
 import "./PracticeChart.css";
 import "./PracticePage.css";
+import { Button } from '../../components/Button/Button';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -41,9 +42,9 @@ export function MyChart({correct, incorrect, skipped, passPercentage, setReviewQ
                 }
                 <h1>{percentageAcheived}%</h1>      
                 <h4 style={{whiteSpace: "nowrap"}}>correct {correct} / {(incorrect + skipped + correct)}</h4>
-                <button className='start-button' style={{marginTop: "10px"}} onClick={() => {
+                <Button text="Review questions" func={() => {
                     setReviewQuestions(true);
-                }}>Review questions</button>
+                }}/>
             </div>
 
         </div>
