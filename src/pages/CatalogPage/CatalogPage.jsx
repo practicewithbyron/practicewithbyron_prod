@@ -5,7 +5,10 @@ import { Loading } from "../Loading/loading";
 import { CatalogWidget } from "../../components/CatalogWidget/CatalogWidget";
 import { WidgetComponent } from "../../components/Widget/WidgetComponent";
 import { ReadAllCatalogs } from "../../db/Read/ReadAllCatalogs";
+import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
 import { Error } from "../Error/Error";
+
+import Cookies from "js-cookie";
 
 import "../../App.css"
 import "./CatalogPage.css";
@@ -16,6 +19,9 @@ export const CatalogPage = () => {
     const [data, setData] = useState(null);
     const [filter, setFilter] = useState("Java");
     const [filteredArray, setFilteredArray] = useState([]);
+
+    const [isFetchingUser, setIsFetchingUser] = useState(true);
+    const [dataUser, setDataUser] = useState(null);
 
     useEffect(() => {
         if (isFetching) {
@@ -29,6 +35,20 @@ export const CatalogPage = () => {
             .finally(() => {
               setIsFetching(false);
             });
+        }
+
+        if(isFetchingUser){
+            const tokenFromCookie = Cookies.get('jwtToken');
+            if(tokenFromCookie){
+                ReadUserCatalog(Cookies.get('jwtToken'))
+                .then(res => {
+                    setDataUser(res.data.detail);
+                    console.log(dataUser);
+                })
+                .finally(() => {
+                    setIsFetchingUser(false)
+                });  
+            }
         }
       }, [isFetching]);
       
@@ -48,6 +68,7 @@ export const CatalogPage = () => {
             <Loading/>
         )
     }else if(filteredArray){
+
         return (
             <div className="flex-column complete-center full-height page-margin" style={{marginLeft:"60px"}}>
                 <h1 style={{padding: "15px"}}>Catalog</h1>
@@ -61,11 +82,14 @@ export const CatalogPage = () => {
                         {
                             filteredArray?.map(el => 
                             {
-                                return(
-                                    <Link to={`/catalog/${el.name}`}>
-                                        <WidgetComponent text={el.name} img={el.name+".png"} desc={el.description}/>
-                                    </Link>
-                                )
+                                if(!dataUser.includes(el.name)){
+                                    return(
+                                        <Link to={`/catalog/${el.name}`}>
+                                            <WidgetComponent text={el.name} img={el.name+".png"} desc={el.description}/>
+                                        </Link>
+                                    )
+                                }
+
                             })
                         }
                     </div>
