@@ -20,21 +20,21 @@ export const ForgotPasswordForm = () => {
                 <input id="forgotPasswordInput" className="login-input" type="text"></input>
                 <Button text="Send Email" func={() => {
                     const email = document.getElementById("forgotPasswordInput");
-
-                    if(!CheckInputIsntEmpty(email.value)){
+                    const isEmailEmpty = CheckInputIsntEmpty(email.value);
+                    if(isEmailEmpty){
                         ErrorMessage("forgotPassword-content", "Please enter your email")
                     }
                     else if(!IsEmailValid(email.value)){
                         ErrorMessage("forgotPassword-content", "Please enter a valid email")
                     }
                     else{
-                        PasswordResetRequest(email.value)
+                        PasswordResetRequest(email.value, `${window.location.origin}/passwordreset`)
                         .then(res => {
                             console.log(res);
                             NotificationMessage("forgotPassword-content", "Email sent!");                 
                         })
                         .catch(err => {
-                            console.log(err);
+                            ErrorMessage("forgotPassword-content", err.message);
                         })
                     }   
                 }}/>

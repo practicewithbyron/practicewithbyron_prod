@@ -48,7 +48,6 @@ export const LoginPage = () => {
                         <Button text="Register" func={() => {
                            setRegister(true);
                         }}/>
-
                     </div>
                 </div>
             </>
