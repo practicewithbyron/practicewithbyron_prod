@@ -57,7 +57,6 @@ export const NavigationBar = () => {
      
 
     if(windowWidth < 700){
-        console.log(windowWidth);
         if(loggedIn){
             return (
                 <div className="flex-row navigationBar-container navigationBurgerBar-container">
