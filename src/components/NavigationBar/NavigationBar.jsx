@@ -55,10 +55,12 @@ export const NavigationBar = () => {
         }
     }, [tokenFromCookie])
      
+
     if(windowWidth < 700){
+        console.log(windowWidth);
         if(loggedIn){
             return (
-                <div className="flex-row navigationBar-container">
+                <div className="flex-row navigationBar-container navigationBurgerBar-container">
                     <div className="flex-row navigationBarLinks-container burgerMenuIcon-container">
                         <BurgerMenuIcon setBurgerMenuOpen={setBurgerMenuOpen} burgerMenuOpen={burgerMenuOpen}/>
                     </div>
@@ -88,7 +90,7 @@ export const NavigationBar = () => {
         }
         else{
             return (
-                <div className="flex-column navigationBar-container">
+                <div className="flex-column navigationBar-container navigationBurgerBar-container">
                     <div className="flex-row">
                         <div className="flex-row navigationBarLinks-container burgerMenuIcon-container">
                             <BurgerMenuIcon setBurgerMenuOpen={setBurgerMenuOpen} burgerMenuOpen={burgerMenuOpen}/>

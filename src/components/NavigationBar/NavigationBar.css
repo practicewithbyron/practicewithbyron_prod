@@ -15,6 +15,10 @@
     background: var(--light-text);
 }
 
+.navigationBurgerBar-container{
+    background: var(--primary-color) !important;   
+}
+
 .navigationBar-title{
     margin-right: auto;
     font-weight: 400;
@@ -38,10 +42,4 @@
     margin-right: 25px;
     margin-left: auto;
     min-height: 55px;
-}
-
-@media screen and (max-width: 699px){
-    .navigationBar-container{
-        background: var(--primary-color);
-    }
 }
