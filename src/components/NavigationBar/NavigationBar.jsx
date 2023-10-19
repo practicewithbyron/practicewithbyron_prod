@@ -7,6 +7,24 @@ import Cookies from "js-cookie";
 
 import "./NavigationBar.css";
 import "../../App.css";
+import BurgerMenuIcon from "./burgerMenuIcon.jsx";
+
+const defaultNavLinks = () => {
+    return (
+        <>
+            <NavigationBarItem text="Dashboard" link="/dashboard"/>
+            <NavigationBarItem text="Catalog" link="/catalog"/>
+        </>
+    )
+}
+
+const PWBTitle = () => {
+    return (
+        <NavLink className="navigationBar-title" to="/">
+            <h3 style={{color: "var(--light-text)"}}>Practice With Byron</h3>
+        </NavLink>
+    )
+}
 
 export const NavigationBar = () => {
 
@@ -14,48 +32,128 @@ export const NavigationBar = () => {
 
     const tokenFromCookie = Cookies.get('jwtToken');
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const [burgerMenuOpen, setBurgerMenuOpen] = useState(false);
+
+    useEffect(() => {
+        const handleWindowResize = () => {
+            setWindowWidth(window.outerWidth);
+        };
+    
+        window.addEventListener('resize', handleWindowResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleWindowResize);
+        };
+      }, []);
+
     //Prevent infinite re-renders
     useEffect(() => {
         if(tokenFromCookie || JWTValidation(tokenFromCookie)){
             setLoggedIn(true);
         }
     }, [tokenFromCookie])
-
-    //If logged in 
-    if(loggedIn){
-        return (
-            <div className="flex-row" style={{position: "fixed", minWidth: "100vw", zIndex: "99", background: "var(--light-text)"}}>
-                <NavLink to="/" style={{marginRight: "auto",fontWeight: "400", marginLeft: "0 !important", padding: "15px 30px", background:"var(--primary-color)"}}>
-                    <h3 style={{color: "var(--light-text)"}}>Practice With Byron</h3>
-                </NavLink>
-                <div className="flex-row" style={{marginRight: "10px"}}>
-                    <NavigationBarItem text="Dashboard" link="/dashboard"/>
-                    <NavigationBarItem text="Catalog" link="/catalog"/>
-                    <NavLink exact="true" to={"/login"} activeClassName={"activeNavigationItem"} className="navigationItem" onClick={() => {
-                        setLoggedIn(false);
-                        Cookies.remove("jwtToken");
-
-                    }}>
-                        Logout
-                    </NavLink>
+     
+    if(windowWidth < 700){
+        if(loggedIn){
+            return (
+                <div className="flex-row navigationBar-container">
+                    <div className="flex-row navigationBarLinks-container burgerMenuIcon-container">
+                        <BurgerMenuIcon setBurgerMenuOpen={setBurgerMenuOpen} burgerMenuOpen={burgerMenuOpen}/>
+                    </div>
+                    {
+                        burgerMenuOpen ? (
+                            <div className="flex-column burgerMenu-container" onClick={() => {
+                                setBurgerMenuOpen(false);
+                            }}>
+                                <NavigationBarItem text="Home" link="/"/>
+                                {
+                                    defaultNavLinks()
+                                }
+                                <NavLink exact="true" to={"/login"} activeClassName={"activeNavigationItem"} className="navigationItem" onClick={() => {
+                                    setLoggedIn(false);
+                                    Cookies.remove("jwtToken");
+                                }}>
+                                    Logout
+                                </NavLink>
+                            </div>
+                        ) : (
+                            <>
+                            </>
+                        )
+                    }
                 </div>
-            </div>
-        )
+            )
+        }
+        else{
+            return (
+                <div className="flex-column navigationBar-container">
+                    <div className="flex-row">
+                        <div className="flex-row navigationBarLinks-container burgerMenuIcon-container">
+                            <BurgerMenuIcon setBurgerMenuOpen={setBurgerMenuOpen} burgerMenuOpen={burgerMenuOpen}/>
+                        </div>
+                    </div>
+                    {
+                        burgerMenuOpen ? (
+                            <div className="flex-column burgerMenu-container" onClick={() => {
+                                setBurgerMenuOpen(false);
+                            }}>
+                                <NavigationBarItem text="Home" link="/"/>
+                                {
+                                    defaultNavLinks()
+                                }
+                                <NavigationBarItem text="Login" link="/login"/>
+                            </div>
+                        ) : (
+                            <>
+                            </>
+                        )
+
+                    }
+                </div>
+            )
+        }
     }
     else{
-        return (
-            <div className="flex-row" style={{position: "fixed", minWidth: "100vw", zIndex: "99", background: "var(--light-text)"}}>
-                <NavLink to="/" style={{marginRight: "auto",fontWeight: "400", marginLeft: "0 !important", padding: "15px 30px", background:"var(--primary-color)"}}>
-                    <h3 style={{color: "var(--light-text)"}}>Practice With Byron</h3>
-
-                </NavLink>
-                <div className="flex-row" style={{marginRight: "10px"}}>
-                    <NavigationBarItem text="Dashboard" link="/dashboard"/>
-                    <NavigationBarItem text="Catalog" link="/catalog"/>
-                    <NavigationBarItem text="Login" link="/login"/>
+        //If logged in 
+        if(loggedIn){
+            return (
+                <div className="flex-row navigationBar-container">
+                    {
+                        PWBTitle()
+                    }
+                    <div className="flex-row navigationBarLinks-container">
+                        {
+                            defaultNavLinks()
+                        }
+                        <NavLink exact="true" to={"/login"} activeClassName={"activeNavigationItem"} className="navigationItem" onClick={() => {
+                            setLoggedIn(false);
+                            Cookies.remove("jwtToken");
+                        }}>
+                            Logout
+                        </NavLink>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else{
+            return (
+                <div className="flex-row navigationBar-container">
+                    {
+                        PWBTitle()
+                    }
+                    <div className="flex-row navigationBarLinks-container">
+                        {
+                            defaultNavLinks()
+                        }
+                        <NavigationBarItem text="Login" link="/login"/>
+                    </div>
+                </div>
+            )
+        }
     }
+
+
 
 }

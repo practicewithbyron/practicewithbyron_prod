@@ -4,5 +4,44 @@
 }
 
 .navigationItem{
+    text-align: center;
     padding: 15px;
+}
+
+.navigationBar-container{
+    position: fixed;
+    min-width: 100vw;
+    z-index: 99;
+    background: var(--light-text);
+}
+
+.navigationBar-title{
+    margin-right: auto;
+    font-weight: 400;
+    margin-left: 0 !important;
+    padding: 15px 30px;
+    background: var(--primary-color);
+}
+
+.navigationBarLinks-container{
+    margin-right: 10px
+}
+
+.burgerMenu-container{
+    z-index: 99;
+    background: var(--light-text);  
+}
+
+.burgerMenuIcon-container{
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    margin-left: auto;
+    min-height: 55px;
+}
+
+@media screen and (max-width: 699px){
+    .navigationBar-container{
+        background: var(--primary-color);
+    }
 }
