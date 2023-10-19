@@ -16,7 +16,10 @@
 }
 
 .learningPlanGoal-container{
-    
+    overflow-x: scroll;
+    width: 100vw;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .learningPlan-select{

@@ -1,0 +1,14 @@
+.goalWidget-container{
+    min-width: 300px;
+    max-height: 200px;
+    min-height: 200px;
+    background-color: var(--widget-grey);
+}
+
+.goalWidgetTitle-text{
+    font-size: 24px;
+}
+
+.goalWidgetSubtitle-text{
+    font-size: 16px;
+}

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
+import { Button } from './../../components/Button/Button';
+import { GoalWidget } from "./GoalWidget";
 
 import "../../App.css";
 import "./LearningPlanPage.css";
-import { Button } from './../../components/Button/Button';
 
 export const LearningPlanPage = () => {
     const [firstTime, setFirstTime] = useState(true);
@@ -73,8 +74,12 @@ export const LearningPlanPage = () => {
                     </>
 
                 ) : (
-                    <div className="">
-                        
+                    <div className="flex-row learningPlanGoal-container">
+                        <GoalWidget title="Complete first exam" desc="Go ahead and complete your first practice exam!"/>
+                        <GoalWidget title="Complete first exam" desc="Go ahead and complete your first practice exam!"/>
+                        <GoalWidget title="Complete first exam" desc="Go ahead and complete your first practice exam!"/>
+                        <GoalWidget title="Complete first exam" desc="Go ahead and complete your first practice exam!"/>
+                        <GoalWidget title="Complete first exam" desc="Go ahead and complete your first practice exam!"/>
                     </div>
                 )
             }
