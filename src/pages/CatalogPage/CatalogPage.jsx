@@ -43,14 +43,13 @@ export const CatalogPage = () => {
                 ReadUserCatalog(Cookies.get('jwtToken'))
                 .then(res => {
                     setDataUser(res.data.detail);
-                    console.log(dataUser);
                 })
                 .finally(() => {
                     setIsFetchingUser(false)
                 });  
             }
         }
-      }, [isFetching]);
+      }, [isFetching, dataUser, isFetchingUser]);
       
       useEffect(() => {
         // Only filter and update filteredArray if filter or data change
@@ -63,7 +62,7 @@ export const CatalogPage = () => {
     if(error){
         return <Error title="Internal Server Error" message={error.message}/>
     }
-    else if(isFetching){
+    else if(isFetching || isFetchingUser){
         return (
             <Loading/>
         )
@@ -89,7 +88,7 @@ export const CatalogPage = () => {
                                         </Link>
                                     )
                                 }
-
+                                return el;
                             })
                         }
                     </div>
