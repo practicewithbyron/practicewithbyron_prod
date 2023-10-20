@@ -2,7 +2,7 @@ import React from "react";
 
 export const HomeWidget2 = ({subtext, title, paragraph, img}) => {
     return(
-        <div className="widget-container flex-row" style={{textAlign: "left"}}>
+        <div className="widget-container flex-row widget2-container" style={{textAlign: "left"}}>
             <div className="widgetImg-container">
                 <img className="widget-img" src={require(`../../imgs/${img}`)} alt=""></img>
             </div>

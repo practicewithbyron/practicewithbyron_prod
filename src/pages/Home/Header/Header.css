@@ -49,15 +49,29 @@
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .header-page {
-        transform: translateY(-25px);
+        transform: translateY(-10px);
+    }
+
+    .header-title{
+        font-size: 7vw;
+    }
+
+    .header-subtitle{
+        font-size: 3vw;
     }
 }
 
 @media only screen and (max-width: 1000px){
     .header-vid{
         display: none;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .headerText-container{
+        margin-top: 10vw;
     }
 }
 

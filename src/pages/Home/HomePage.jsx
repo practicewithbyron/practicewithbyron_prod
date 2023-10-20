@@ -87,7 +87,7 @@ export const Home = () => {
                 <h1 className="subtitle title-text">
                     Top-Selling Practice Exams
                 </h1>
-                <div className="flex-row ">
+                <div className="homePageCatalog-container">
                     {   
                         error ? (
                             <div className="flex-column center-text ">
