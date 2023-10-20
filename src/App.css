@@ -94,3 +94,22 @@ code {
 .bold{
   font-weight: 600;
 }
+
+@media screen and (max-width: 600px){
+  .subtitle{
+    font-size: 7vw !important;
+  }
+
+  .color-text{
+    font-size: 3vw;
+  }
+
+  .widget-title{
+    font-size: 4vw;
+  }
+
+  .paragraph{
+    font-size: 4vw !important;
+    margin: 0 10px;
+  }
+}
