@@ -13,7 +13,7 @@ export const StatsPage = () => {
 
     useEffect(() => {
         IsLoggedIn(`stats/${exam}`);
-    }, [])
+    }, [exam])
 
     //Look at users previous attempts and give them a nice little graph
 

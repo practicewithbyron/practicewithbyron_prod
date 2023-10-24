@@ -126,10 +126,10 @@ export const PaymentPage = () => {
   const [message, setMessage] = useState('');
 
   const exam = useParams();
-  console.log(exam);
+
   useEffect(() => {
     IsLoggedIn(`payment/${exam.exam}`);
-  }, [])
+  }, [exam.exam])
 
   var clientID = "AZpDtgm8VQsXV03gURgpIkxH5eP4MAxxVCqgWMjuCV1qbsdv4oJYInftxx2y9_rtbtjwSHIClJY-piq4"
 
