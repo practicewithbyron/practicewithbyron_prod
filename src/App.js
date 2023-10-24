@@ -5,7 +5,6 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 import { DashboardPage } from "./pages/DashboardPage/DashboardPage";
 import { CatalogPage } from './pages/CatalogPage/CatalogPage.jsx';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';
-import { AdminPage } from './pages/Admin/AdminPage';
 import { PracticePage } from './pages/PracticePage/PracticePage';
 import { CatalogLandingPage } from './pages/CatalogLandingPage/CatalogLandingPage';
 import { ResetPassword } from './pages/ForgotPassword/ResetPassword';
@@ -16,7 +15,19 @@ import { LearningPlanPage } from './pages/LearningPlan/LearningPlanPage';
 import { TrainingPage } from './pages/TrainingPage/TrainingPage';
 import { Page404 } from './pages/Error/Page404';
 
+import Cookies from 'js-cookie';
+
 class App extends Component {
+  isLoggedIn = () => {
+    const tokenFromCookie = Cookies.get('jwtToken');
+    if(tokenFromCookie){
+        return true;  
+    }
+    else{
+      return false;
+    }
+  }
+
   render() {
     return (
       <Router> {/* Router wraps the entire application */}
@@ -26,17 +37,17 @@ class App extends Component {
             <Routes>
               <Route exact path="/" element={<Home/>}/>
               <Route exact path="/login" element={<LoginPage/>}/>
-              <Route exact path="/dashboard" element={<DashboardPage/>}/>
               <Route exact path="/catalog" element={<CatalogPage/>}/>
               <Route exact path="/catalog/:name" element={<CatalogLandingPage/>}/>
-              <Route exact path="/admin" element={<AdminPage/>}/>
-              <Route exact path="/practice/:name" element={<PracticePage/>}/>
               <Route exact path="/passwordreset/:token" element={<ResetPassword/>}/>
+              <Route exact path="/*" element={<Page404/>}/>
+              {/* Routes requiring a login */}
+              <Route exact path="/dashboard" element={<DashboardPage/>}/>
+              <Route exact path="/practice/:name" element={<PracticePage/>}/>
               <Route exact path="/stats/:exam" element={<StatsPage/>}/>
-              <Route exact path="/payment/:name" element={<PaymentPage/>}/>
+              <Route exact path="/payment/:exam" element={<PaymentPage/>}/>
               <Route exact path="/learningpath" element={<LearningPlanPage/>}/>
               <Route exact path="/training" element={<TrainingPage/>}/>
-              <Route exact path="/*" element={<Page404/>}/>
             </Routes>
           </div>
         </div>

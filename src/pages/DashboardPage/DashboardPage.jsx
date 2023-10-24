@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import "./DashboardPage.css";
 import "../../App.css";
 import "../LoginPage/LoginPage.css";
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 function LearningPathRelocate(){
     window.location.href = "/learningpath"
@@ -34,10 +35,7 @@ export const DashboardPage = () => {
 
 
     if(isFetching){
-        const tokenFromCookie = Cookies.get('jwtToken');
-        if(!tokenFromCookie){
-            window.location.href = "/login";
-        }
+        IsLoggedIn("dashboard");
         ReadUserCatalog(Cookies.get('jwtToken'))
         .then(res => {
             setData(res.data);

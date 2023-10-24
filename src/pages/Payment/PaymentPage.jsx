@@ -112,8 +112,10 @@
 
 // }
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { IsLoggedIn } from '../../IsLoggedIn';
+import { useParams } from 'react-router-dom';
 
 // Renders errors or successfull transactions on the screen.
 function Message({ content }) {
@@ -121,6 +123,14 @@ function Message({ content }) {
 }
 
 export const PaymentPage = () => {
+  const [message, setMessage] = useState('');
+
+  const exam = useParams();
+  console.log(exam);
+  useEffect(() => {
+    IsLoggedIn(`payment/${exam.exam}`);
+  }, [])
+
   var clientID = "AZpDtgm8VQsXV03gURgpIkxH5eP4MAxxVCqgWMjuCV1qbsdv4oJYInftxx2y9_rtbtjwSHIClJY-piq4"
 
   var isLive = false;
@@ -135,8 +145,6 @@ export const PaymentPage = () => {
     'data-sdk-integration-source': 'integrationbuilder_sc',
     'currency': 'USD'
   };
-
-  const [message, setMessage] = useState('');
 
   return (
     <div className="App">

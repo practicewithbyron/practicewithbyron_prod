@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Chart from "react-apexcharts";
 
@@ -6,9 +6,14 @@ import "./StatsPage.css";
 import "../../App.css";
 import StatsTable from './StatsTable';
 import { Button } from "../../components/Button/Button";
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 export const StatsPage = () => {
     const {exam} = useParams();
+
+    useEffect(() => {
+        IsLoggedIn(`stats/${exam}`);
+    }, [])
 
     //Look at users previous attempts and give them a nice little graph
 
