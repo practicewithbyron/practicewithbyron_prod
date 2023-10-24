@@ -17,6 +17,7 @@ import Cookies from "js-cookie";
 
 import "../../App.css";
 import "./PracticePage.css";
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 
 function toHoursAndMinutes(totalMinutes) {
@@ -105,11 +106,8 @@ export const PracticePage = () => {
 
     
     if(isFetching){
+        IsLoggedIn(`practice/${name}`);
         const tokenFromCookie = Cookies.get('jwtToken');
-        if(!tokenFromCookie)
-        {
-            window.location.href = "/login"
-        }
         // If there are cookies from a previous exam and they haven't expired
         ReadAllCatalogQuestions(name, tokenFromCookie)
         .then(res => {

@@ -32,9 +32,18 @@ export const LoginForm = ({setLoggingIn, setResetPassword}) => {
                     else{
                         Login(email, password)
                         .then(res => {
+                            const destination = localStorage.getItem("destination");
+                            localStorage.removeItem("destination");
                             setLoggingIn(true);
                             Cookies.set("jwtToken", res.data.detail.jwt, {expires: 1}); //might be wrong
-                            window.location.href = '/dashboard';
+                            //If a destination after login has been set
+                            if(destination){
+                                window.location.href = `/${destination}`;
+                            }
+                            else{
+                                window.location.href = "/dashboard"
+                            }
+                            
                         })
                         .catch(err => {
                             console.log(err);

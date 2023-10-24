@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import "../../App.css";
 import "./LearningPlanPage.css";
 import { Button } from './../../components/Button/Button';
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 export const LearningPlanPage = () => {
     const [firstTime, setFirstTime] = useState(true);
@@ -10,11 +11,10 @@ export const LearningPlanPage = () => {
     const [technology, setTechnology] = useState(null);
 
     console.log(technology); // Remove eslint errors
-    
-    const introTexts = ["Here we can make you a personal learning plan to help you achieve you accreditation goals",
-                        "What pace would you like to learn at?",
-                        "What languages or technologies are you preparing for?",
-                        "We recommend that you stick to the learning plan since it'll help you to achieve your goals"]
+
+    useEffect(() => {
+        IsLoggedIn("learningpath")
+    }, [])
 
     useEffect(() => {
         if(introTextIndex === 3){
@@ -23,6 +23,13 @@ export const LearningPlanPage = () => {
             // Update user's learning plan
         }
     }, [introTextIndex])
+
+    const introTexts = [
+        "Here we can make you a personal learning plan to help you achieve you accreditation goals",
+        "What pace would you like to learn at?",
+        "What languages or technologies are you preparing for?",
+        "We recommend that you stick to the learning plan since it'll help you to achieve your goals"
+    ]
 
     // Check user for their learning plan
 

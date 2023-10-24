@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Button } from './../../components/Button/Button';
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 import "./TrainingPage.css";
 import "../../App.css";
-import { Button } from './../../components/Button/Button';
 
 export const TrainingPage = () => {
 
@@ -28,6 +29,10 @@ export const TrainingPage = () => {
     //         setIsFetching(false)
     //     });  
     // }
+
+    useEffect(() => {
+        IsLoggedIn("training");
+    }, [])
 
     // Logic to get the questions that we need and then navigate the user to the questions page.
 
