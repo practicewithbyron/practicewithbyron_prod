@@ -15,19 +15,7 @@ import { LearningPlanPage } from './pages/LearningPlan/LearningPlanPage';
 import { TrainingPage } from './pages/TrainingPage/TrainingPage';
 import { Page404 } from './pages/Error/Page404';
 
-import Cookies from 'js-cookie';
-
 class App extends Component {
-  isLoggedIn = () => {
-    const tokenFromCookie = Cookies.get('jwtToken');
-    if(tokenFromCookie){
-        return true;  
-    }
-    else{
-      return false;
-    }
-  }
-
   render() {
     return (
       <Router> {/* Router wraps the entire application */}
