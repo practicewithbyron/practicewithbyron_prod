@@ -4,10 +4,11 @@ import { JWTValidation } from "../../validation/jwtValidation.js";
 import { NavigationBarItem } from "./NavigationBarItem";
 
 import Cookies from "js-cookie";
+import BurgerMenuIcon from "./burgerMenuIcon.jsx";
 
 import "./NavigationBar.css";
 import "../../App.css";
-import BurgerMenuIcon from "./burgerMenuIcon.jsx";
+
 
 const defaultNavLinks = () => {
     return (
