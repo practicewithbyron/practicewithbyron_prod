@@ -60,7 +60,7 @@ export const NavigationBar = () => {
     if(windowWidth < 700){
         if(loggedIn){
             return (
-                <div className="flex-row navigationBar-container navigationBurgerBar-container">
+                <div className="flex-column navigationBar-container navigationBurgerBar-container">
                     <div className="flex-row navigationBarLinks-container burgerMenuIcon-container">
                         <BurgerMenuIcon setBurgerMenuOpen={setBurgerMenuOpen} burgerMenuOpen={burgerMenuOpen}/>
                     </div>
