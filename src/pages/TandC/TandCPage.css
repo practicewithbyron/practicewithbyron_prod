@@ -1,0 +1,12 @@
+.TandCPage-text{
+    text-align: center;
+}
+
+.TandCPage-title{
+    margin: 20px;
+}
+
+.TandCPageButton-container{
+    width: 300px;
+    margin: 25px auto;
+}
