@@ -78,6 +78,10 @@ code {
   height: 100%;
 }
 
+.full-width{
+  width: 100%;
+}
+
 .page-margin {
   margin: 80px auto;
 }
@@ -93,6 +97,11 @@ code {
 
 .bold{
   font-weight: 600;
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 600px){

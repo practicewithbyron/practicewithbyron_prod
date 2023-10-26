@@ -32,6 +32,9 @@
       },
       {
         "route": "/training"
+      },
+      {
+        "route": "/tandc"
       }
     ],
     "navigationFallback": {

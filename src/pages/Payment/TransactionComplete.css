@@ -1,0 +1,75 @@
+.transactionComplete-container
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 5px;
+    background-color: white;
+
+    margin-top: 100px;
+    padding: 50px;
+
+    width: 700px;
+}
+
+.transactionComplete-text{
+    margin: 15px 5px;
+}
+
+.transactionComplete-img{
+    width: 500px;
+}
+
+@media screen and (max-width: 800px){
+    .transactionComplete-container
+    {
+        width: 600px;
+        text-align: center;
+    }
+    .transactionComplete-img
+    {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .transactionComplete-container
+    {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .transactionComplete-container
+    {
+        width: 450px;
+    } 
+    .transactionComplete-img
+    {
+        width: 300px;
+    }
+    .transactionComplete-title
+    {
+        font-size: 24px
+    }
+    .transactionComplete-paragraph
+    {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .transactionComplete-container
+    {
+        width: 400px;
+    } 
+}
+
+@media screen and (max-width: 450px){
+    .transactionComplete-container
+    {
+        width: 340px;
+    } 
+}
