@@ -123,6 +123,8 @@ import { Error } from './../Error/Error';
 import "../../App.css";
 import "./PaymentPage.css";
 import { TransactionCompletePage } from './TransactionCompletePage';
+import Cookies from 'js-cookie';
+import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 
 // Renders errors or successfull transactions on the screen.
 function Message({ content }) {
@@ -311,7 +313,16 @@ export const PaymentPage = () => {
                   } else {
                     // (3) Successful transaction -> Show confirmation or thank you message
                     // Or go to another URL:  actions.redirect('thank_you.html');
-                    setTransactionComplete(true);
+                    UpdateUserCatalog(exam, Cookies.get("jwtToken"))
+                    .then(el => {
+                      //Add to log file or something to keep a track of this working
+                      console.log(el);
+                      setTransactionComplete(true);
+                    })
+                    .catch(() => {
+                      //Same here 
+                    })
+                    
                   }
                 } catch (error) {
                   console.error(error);
