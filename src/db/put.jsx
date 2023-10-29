@@ -18,7 +18,7 @@ export const Put = (url, body) => {
         setData(response.data.detail);
       }).catch(error => {
         setError(error);
-      }).finally(() => {P
+      }).finally(() => {
         setIsFetching(false);
       });
     }, [url, body]);

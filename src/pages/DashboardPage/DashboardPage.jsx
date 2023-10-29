@@ -34,19 +34,21 @@ export const DashboardPage = () => {
     }, [input, data])
 
 
-    if(isFetching){
+    useEffect(() => {
         IsLoggedIn("dashboard");
         ReadUserCatalog(Cookies.get('jwtToken'))
         .then(res => {
             setData(res.data);
+            console.log(res);
         })
         .catch(err => {
             setError(err)
         })
         .finally(() => {
             setIsFetching(false)
-        });  
-    }
+        }); 
+    }, [])
+
         
     if(isFetching){
         return (

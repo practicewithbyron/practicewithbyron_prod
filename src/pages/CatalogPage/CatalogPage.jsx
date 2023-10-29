@@ -40,7 +40,7 @@ export const CatalogPage = () => {
         if(isFetchingUser){
             const tokenFromCookie = Cookies.get('jwtToken');
             if(tokenFromCookie){
-                ReadUserCatalog(Cookies.get('jwtToken'))
+                ReadUserCatalog(tokenFromCookie)
                 .then(res => {
                     setDataUser(res.data.detail);
                 })

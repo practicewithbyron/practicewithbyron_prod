@@ -15,6 +15,7 @@ import { LearningPlanPage } from './pages/LearningPlan/LearningPlanPage';
 import { TrainingPage } from './pages/TrainingPage/TrainingPage';
 import { Page404 } from './pages/Error/Page404';
 import { TAndCPage } from './pages/TandC/TandCPage';
+import { AdminPage } from './pages/Admin/AdminPage';
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route exact path="/catalog/:name" element={<CatalogLandingPage/>}/>
               <Route exact path="/passwordreset/:token" element={<ResetPassword/>}/>
               <Route exact path="/tandc" element={<TAndCPage/>}/>
+              <Route exact path="/admin" element={<AdminPage/>}/>
               <Route exact path="/*" element={<Page404/>}/>
               {/* Routes requiring a login */}
               <Route exact path="/dashboard" element={<DashboardPage/>}/>

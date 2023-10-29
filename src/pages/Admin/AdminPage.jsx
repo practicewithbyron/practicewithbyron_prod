@@ -1,42 +1,35 @@
 import React from "react";
 import { Loading } from "../Loading/loading";
-// import { UpdateUserCatalog } from "../../db/Update/updateUserCatalog";
-// import { UpdateUserPassword } from "../../db/Update/updateUserPassword";
-// import { CreateIncorrectQuestions } from "../../db/Create/createIncorrectQuestions";
-// import { FindIncorrectQuestionsByUser } from "../../db/Read/findIncorrectQuestionsByUser";
-// import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
-import { ReadAllCatalogQuestions } from "../../db/Read/ReadAllCatalogQuestions";
+import { Button } from "../../components/Button/Button";
+import { UpdateUserCatalog } from "../../db/Update/updateUserCatalog";
+import { Login } from './../../db/login';
 
 export const AdminPage = () => {
+    const [loading, setLoading] = useState(false);
 
-    //const {data, isFetching, error} = CreateUser("dada@addad.com", "dawdawa");
-    //const {data, isFetching, error} = UpdateUserCatalog("643278ad2fb059fe23d19872", "PCEP-41-01")
-    //const {data, isFetching, error} = UpdateUserPassword("643278ad2fb059fe23d19872", "TheNewestPasswrord");
-    //const {data, isFetching, error} = CreateIncorrectQuestions("643278ad2fb059fe23d19872", "JSA-41-01", ["642b048d6431c01ffe1fbd8f", "642b048d6431c01ffe1fbd8d"])
-    //const {data, isFetching, error} = FindIncorrectQuestionsByUser("643278ad2fb059fe23d19872");
-    //const {data, isFetching, error} = FindUserCatalog("643278ad2fb059fe23d19872");
-    const {data, isFetching, error} = ReadAllCatalogQuestions("CPA-21-02");
-
-    console.log(data);
-
-    if(error){
-        return <h1>Error</h1>
-    }
-    else if(isFetching){
+    if(loading)
+    {
         return (
             <Loading/>
         )
     }
-    else{
+    else
+    {
         return (
-            <div style={{marginTop: "80px"}}>
-                <h1>
-                    Admin Page
-                </h1>
-                {
-                    <h1>Inserted Id: </h1>
-                }
+            <div className="flex-column">
+                <div className="flex-row">
+                    <input id="username" type="text" placeholder="username"/>
+                    <input id="password" type="text" placeholder="password"/>
+                    <Button text="Login" func={() => {
+                        Login("a2@a.com", "Password1234.")
+                    }}/>
+                </div>
+                <Button text="Update User Catalog" func={() => {
+                    UpdateUserCatalog(Cookies.)
+                }}/>
             </div>
         )
     }
+
+
 }
