@@ -42,6 +42,7 @@ export const CatalogPage = () => {
             if(tokenFromCookie){
                 ReadUserCatalog(Cookies.get('jwtToken'))
                 .then(res => {
+                    console.log(res);
                     setDataUser(res.data.detail);
                 })
                 .finally(() => {
@@ -78,19 +79,19 @@ export const CatalogPage = () => {
                         <CatalogWidget text="Javascript" setFilter={setFilter}/>
                     </div>
                     <div id="catalog-items" className="flex-row flex-wrap" style={{gap: "20px", padding: "20px", height: "fit-content"}}>
-                        {
-                            filteredArray?.map(el => 
-                            {
-                                if(!dataUser.includes(el.name)){
-                                    return(
-                                        <Link to={`/catalog/${el.name}`}>
-                                            <WidgetComponent text={el.name} img={el.name+".png"} desc={el.description}/>
-                                        </Link>
-                                    )
-                                }
-                                return el;
-                            })
-                        }
+                    {
+                        filteredArray?.map((el) => {
+                            if (!dataUser.includes(el.name)) {
+                            return (
+                                <Link to={`/catalog/${el.name}`} key={el.name}>
+                                <WidgetComponent text={el.name} img={el.name + ".png"} desc={el.description} />
+                                </Link>
+                            );
+                            } else {
+                            return null; // Return null for elements you don't want to render
+                            }
+                        })
+                    }
                     </div>
                 </div>
             </div>
