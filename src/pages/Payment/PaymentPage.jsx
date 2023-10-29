@@ -313,14 +313,14 @@ export const PaymentPage = () => {
                   } else {
                     // (3) Successful transaction -> Show confirmation or thank you message
                     // Or go to another URL:  actions.redirect('thank_you.html');
-                    UpdateUserCatalog(exam, Cookies.get("jwtToken"))
-                    .then(el => {
+                    UpdateUserCatalog(exam.exam, Cookies.get("jwtToken"))
+                    .then(() => {
                       //Add to log file or something to keep a track of this working
-                      console.log(el);
                       setTransactionComplete(true);
                     })
-                    .catch(() => {
-                      //Same here 
+                    .catch(err => {
+                      console.log(err);
+                      //Same here, also show some error message
                     })
                     
                   }
