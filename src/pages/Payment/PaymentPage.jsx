@@ -1,117 +1,3 @@
-// import React, { useState } from "react";
-
-// import { useParams } from "react-router-dom";
-// import { PaymentPageSelection } from "./PaymentPageSelection";
-// import { PaymentPageInput } from './PaymentPageInput';
-// import { ReadCatalog } from "../../db/Read/ReadCatalog";
-// import { Error } from "../Error/Error";
-// import { Loading } from "../Loading/loading";
-
-// import "../../App.css";
-// import PayPalLogo from './PayPalLogo';
-// import { CaptureOrder } from "../../db/Paypal/captureOrders";
-// import { CreateOrder } from "../../db/Paypal/createOrder";
-
-
-// export const PaymentPage = () => {
-//     const [paypal, setPaypal] = useState(true);
-//     const [creditcard, setCreditcard] = useState(false);
-//     const [couponDiscount, setCouponDiscount] = useState(0);
-
-    // const [isFetching, setIsFetching] = useState(true);
-    // const [error, setError] = useState(null);
-    // const [data, setData] = useState(null);
-
-//     const [paypalError, setPaypalError] = useState(null);
-//     const [orderID, setOrderID] = useState(null);
-
-
-//     const {name} = useParams(); 
-
-    // if(isFetching){
-    //     ReadCatalog(name)
-    //     .then(res => {
-    //         setData(res.data.detail[0]);
-    //     })
-    //     .catch(err => {
-    //         setError(err)
-    //     })
-    //     .finally(() => {
-    //         setIsFetching(false)
-    //     });  
-    // }
-
-//     const reset = () => {
-//         setPaypal(false);
-//         setCreditcard(false);
-//     }
-
-//     if(isFetching){
-//         return(
-//             <Loading/>
-//         )
-//     }
-//     else if(error){
-//         return(
-//             <Error title={"Internal server error"} message={error.message}/>
-//         )
-//     }
-//     else{
-//         return(
-//             <div className="flex-column center-content" style={{marginTop: "57px"}}>
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Choose a Payment Method</h1>
-//                     <PaymentPageSelection state={paypal} set={setPaypal} reset={reset} text="PayPal"/>
-//                     <PaymentPageSelection state={creditcard} set={setPaypal} reset={reset} text="Credit Card (Not Available)"/>
-//                 </div>
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Provide A Coupon Code</h1>
-//                     <PaymentPageInput setCouponDiscount={setCouponDiscount}/>
-
-//                 </div>
-
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Confirm your order</h1>
-//                     {
-//                         couponDiscount ? (
-//                             <>
-//                                 <div className="flex-row">
-//                                     <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Subtotal: </h2>
-//                                     <h2 className="paymentPagePrice-text">£{data.detail}</h2>
-//                                 </div>
-//                                 <div className="flex-row">
-//                                     <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Coupon Discount: </h2>
-//                                     <h2 className="paymentPagePrice-text">£{couponDiscount}</h2>
-//                                 </div>
-//                             </>
-//                         ) : (
-//                             <></>
-//                         )
-//                     }
-//                     <div className="flex-row">
-//                         <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Total: </h2>
-//                         <h2 className="paymentPagePrice-text">£{data.price - couponDiscount}</h2>
-//                     </div>
-//                     <button className="paymentPagePayPal-button" onClick={() => {
-//                         CreateOrder(`${data.price - couponDiscount}`)
-//                         .then(res => {
-//                             setOrderID(res.data.id)
-//                             window.location.href = res.data.links[1].href;
-//                         })
-//                         .catch(err => {
-//                             console.log(err);
-//                         })
-//                     }}>
-//                         <PayPalLogo/>
-//                     </button>
-//                 </div>
-
-//             </div>
-//         )
-//     }
-
-// }
-
 import React, { useEffect, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { IsLoggedIn } from '../../IsLoggedIn';
@@ -119,21 +5,18 @@ import { Link, useParams } from 'react-router-dom';
 import { ReadCatalog } from "../../db/Read/ReadCatalog.jsx";
 import { Loading } from './../Loading/loading';
 import { Error } from './../Error/Error';
-
-import "../../App.css";
-import "./PaymentPage.css";
 import { TransactionCompletePage } from './TransactionCompletePage';
 import Cookies from 'js-cookie';
 import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 
-// Renders errors or successfull transactions on the screen.
-function Message({ content }) {
-  return <p>{content}</p>;
-}
+import "../../App.css";
+import 'animate.css';
+import "./PaymentPage.css";
+import { Notification } from '../../Notification';
+import { TriggerNotification } from '../../TriggerNotification';
+
 
 export const PaymentPage = () => {
-  const [message, setMessage] = useState('');
-
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -175,6 +58,12 @@ export const PaymentPage = () => {
     'currency': 'USD'
   };
 
+  //Handle unhandled errors
+  window.onerror = function (message, source, lineno, colno, error) {
+    // Handle the script error
+    console.error('Script error:', message);
+    return true; // Prevent default browser error handling
+  };
 
   if(isFetching){
     return (
@@ -185,7 +74,7 @@ export const PaymentPage = () => {
   else if(error)
   {
     return (
-      <Error title={"Sorry"} message={`There was an retrieving data for the ${exam}`}/>
+      <Error title={"Sorry"} message={`There was an error retrieving data for the ${exam}`}/>
     )
   }
   else if(!data) // If the api request was successful but the exam doesn't exist.
@@ -203,6 +92,9 @@ export const PaymentPage = () => {
   else{
     return (
       <div className="flex-column complete-center full-height page-margin full-width paymentPage-container">
+          <div id="errorContainer" className="notShowing animate__animated">
+            <Notification type="error" title="Error" message={error}/>
+          </div>
         <div className='paymentPage-widget' style={{paddingBottom: "10px"}}>
           <h1 className='paymentPage-title'>Checkout 🛒</h1>
           <h2 className='paymentPagePrice-text'>Practice Exam Questions for the {exam.exam} & more</h2>
@@ -270,14 +162,13 @@ export const PaymentPage = () => {
                     throw new Error(errorMessage);
                   }
                 } catch (error) {
-                  console.error(error);
-                  setMessage(
+                  TriggerNotification("errorContainer");
+                  setError(
                     `Could not initiate PayPal Checkout...${error}`,
                   );
                 }
               }}
               onApprove={async (data, actions) => {
-                console.log(data);
                 try {
                   const response = await fetch(
                     `https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/orderscapture`,
@@ -325,17 +216,15 @@ export const PaymentPage = () => {
                     
                   }
                 } catch (error) {
-                  console.error(error);
-                  setMessage(
+                  setError(
                     `Sorry, your transaction could not be processed...${error}`,
                   );
+                  TriggerNotification("errorContainer");
                 }
               }}
             />
           </PayPalScriptProvider>
-          <Message content={message} />
         </div>
-        
       </div>
     );
   }
