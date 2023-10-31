@@ -8,12 +8,12 @@ import { Error } from './../Error/Error';
 import { TransactionCompletePage } from './TransactionCompletePage';
 import Cookies from 'js-cookie';
 import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
+import { Notification } from '../../Notification';
+import { TriggerNotification } from '../../TriggerNotification';
 
 import "../../App.css";
 import 'animate.css';
 import "./PaymentPage.css";
-import { Notification } from '../../Notification';
-import { TriggerNotification } from '../../TriggerNotification';
 
 
 export const PaymentPage = () => {
@@ -58,13 +58,6 @@ export const PaymentPage = () => {
     'currency': 'USD'
   };
 
-  //Handle unhandled errors
-  window.onerror = function (message, source, lineno, colno, error) {
-    // Handle the script error
-    console.error('Script error:', message);
-    return true; // Prevent default browser error handling
-  };
-
   if(isFetching){
     return (
       <Loading/>
@@ -74,7 +67,7 @@ export const PaymentPage = () => {
   else if(error)
   {
     return (
-      <Error title={"Sorry"} message={`There was an error retrieving data for the ${exam}`}/>
+      <Error title={"Sorry"} message={`There was an error retrieving data for the ${exam.exam}`}/>
     )
   }
   else if(!data) // If the api request was successful but the exam doesn't exist.
@@ -120,6 +113,7 @@ export const PaymentPage = () => {
   
         <div className="flex-row paymentPageTandC-container">
           <input type="checkbox" className='paymentPageTandC-checkbox' onChange={() => {
+            // This can be overriden via inspect html
             const buttonContainer = document.getElementById("paymentPagePaypalButtonContainer");
             buttonContainer.classList.toggle("disabled");
           }}/>
@@ -162,10 +156,10 @@ export const PaymentPage = () => {
                     throw new Error(errorMessage);
                   }
                 } catch (error) {
-                  TriggerNotification("errorContainer");
                   setError(
                     `Could not initiate PayPal Checkout...${error}`,
                   );
+                  TriggerNotification("errorContainer");
                 }
               }}
               onApprove={async (data, actions) => {
@@ -198,9 +192,8 @@ export const PaymentPage = () => {
                     return actions.restart();
                   } else if (errorDetail) {
                     // (2) Other non-recoverable errors -> Show a failure message
-                    throw new Error(
-                      `${errorDetail.description} (${orderData.debug_id})`,
-                    );
+                    setError("Payment failed, please try again");
+                    TriggerNotification("errorContainer");
                   } else {
                     // (3) Successful transaction -> Show confirmation or thank you message
                     // Or go to another URL:  actions.redirect('thank_you.html');
