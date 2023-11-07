@@ -6,10 +6,11 @@ import { ReadCatalog } from "../../db/Read/ReadCatalog.jsx";
 import { Loading } from './../Loading/loading';
 import { Error } from './../Error/Error';
 import { TransactionCompletePage } from './TransactionCompletePage';
-import Cookies from 'js-cookie';
 import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 import { Notification } from '../../Notification';
 import { TriggerNotification } from '../../TriggerNotification';
+
+import Cookies from 'js-cookie';
 
 import "../../App.css";
 import 'animate.css';
@@ -197,16 +198,17 @@ export const PaymentPage = () => {
                   } else {
                     // (3) Successful transaction -> Show confirmation or thank you message
                     // Or go to another URL:  actions.redirect('thank_you.html');
-                    UpdateUserCatalog(exam.exam, Cookies.get("jwtToken"))
+                    UpdateUserCatalog(exam.exam, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0")
                     .then(() => {
                       //Add to log file or something to keep a track of this working
                       setTransactionComplete(true);
                     })
-                    .catch(err => {
-                      console.log(err);
-                      //Same here, also show some error message
+                    .catch(error => {
+                      setError(
+                        `Sorry, your transaction could not be processed...${error}`,
+                      );
+                      TriggerNotification("errorContainer");
                     })
-                    
                   }
                 } catch (error) {
                   setError(
