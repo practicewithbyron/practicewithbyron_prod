@@ -6,9 +6,22 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 import "./DisabledInput.css";
 
-export const DisabledInput = ({answer, isCorrect, selected, language}) => {
+export const DisabledInput = ({answer, selectedIncorrect, selectedCorrect, selected, language}) => {
+    var backgroundColor = ""; // None
+    if(selected)
+    {
+        if(selectedIncorrect)
+        {
+            backgroundColor = "rgb(255, 99, 132)"; //Red
+        }
+        else if(selectedCorrect)
+        {
+            backgroundColor = "rgb(78 255 58)"; //Green
+        }
+    }
+    
     return(
-        <div className="flex-row fit-content disabledInput-container" style={{backgroundColor: isCorrect ? "rgb(78 255 58)" : (isCorrect !== selected ? "rgba(255, 99, 132, 1)" : "")}}>
+        <div className="flex-row fit-content disabledInput-container" style={{backgroundColor: backgroundColor}}>
             <SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
                 {answer}
             </SyntaxHighlighter>
