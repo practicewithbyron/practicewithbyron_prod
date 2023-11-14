@@ -64,7 +64,7 @@ export const CatalogLandingPage = () => {
                         <Button text="🛒 Enroll in Course" func={() => {window.location.href = `/payment/${name}`}}/>
                     </div>
                     <div className="catalogLandingContent-container textAlign-left flex-column">
-                        <CourseOvervisiew difficulty={data.difficulty} noOfQuestions={140}/>
+                        <CourseOverview difficulty={data.difficulty} noOfQuestions={140}/>
                     </div>
                 </div>
                 <div className="flex-column catalogLandingPageDescription-container">
