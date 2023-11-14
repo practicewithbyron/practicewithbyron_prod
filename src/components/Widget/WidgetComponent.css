@@ -46,28 +46,3 @@
     margin: 2px;
     text-align: left;
 }
-
-.widgetComponent-difficulty{
-    font-size: 13px;
-    font-weight: 500;
-    padding: 2px 5px;
-    width: fit-content;
-    border-radius: 5px;
-    margin: 10px 0;
-}
-
-.widgetComponentDifficulty-beginner{
-    color: #38a169;
-    background-color: rgba(56,161,105,.1);
-}
-
-.widgetComponentDifficulty-intermediate{
-    color: #0ea5e9;
-    background-color: rgba(14,165,233,.1);
-}
-
-.widgetComponentDifficulty-advance{
-    color: #dc2626;
-    background-color: rgba(220,38,38,.1);
-}
-
