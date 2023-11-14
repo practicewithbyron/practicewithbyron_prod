@@ -24,7 +24,7 @@ export const StarRating = ({num}) => {
     }, [num])
 
     return(
-        <div className="starRating-container">
+        <div>
             {Array.from({ length: starRating?.num }, (_, i) => (
                 <StarFull key={i} />
             ))}
