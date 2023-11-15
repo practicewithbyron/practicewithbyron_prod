@@ -92,9 +92,7 @@
 }
 
 .catalogLandingPageDescription-video{
-    width: 1000px;
     padding: 40px;
-    margin: auto;
 }
 
 @media screen and (max-width: 1000px){
