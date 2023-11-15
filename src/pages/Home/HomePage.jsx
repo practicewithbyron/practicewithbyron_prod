@@ -109,7 +109,7 @@ export const Home = () => {
                                     return(
                                         <div style={{margin: "10px 10px"}}>
                                             <Link to={`/catalog/${el.name}`}>
-                                                <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription}/>
+                                                <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
                                             </Link>
                                         </div>
                                     )  

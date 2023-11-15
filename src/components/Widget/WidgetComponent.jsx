@@ -16,7 +16,7 @@ export const WidgetComponent = ({img, text, desc, price, difficulty, starRating}
                 <p className="widgetComponent-desc center-text">{ desc }</p>
                 <div className="flex-row" style={{marginTop: "15px"}}>
                     <h1 className="widgetComponent-header">
-                        £14.99
+                        {price}
                     </h1>
                     <div className="widgetComponentStarRating-container">
                         <StarRating num={starRating}/>
