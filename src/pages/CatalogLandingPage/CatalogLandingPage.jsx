@@ -56,7 +56,7 @@ export const CatalogLandingPage = () => {
                             {data.name}
                         </h1>
                         <h2 className="catalogLanding-subtitle">
-                            {data.shortDescription}
+                            Everything you need to pass the {data.name} exam!
                         </h2>
                         <div className="catalogLandingPageStarRating-container">
                             <StarRating num={data.starRating}/>
