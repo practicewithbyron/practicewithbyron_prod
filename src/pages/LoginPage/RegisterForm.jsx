@@ -8,9 +8,9 @@ import { IsEmailValid } from './../../validation/emailValidation';
 import { CheckInputIsntEmpty } from './../../validation/inputValidation';
 import { Button } from '../../components/Button/Button';
 
-export const RegisterForm = () => {
+export const RegisterForm = ({setRegister}) => {
     return (
-        <div id="register-entry" className="center-content" style={{marginTop: "50px"}}>
+        <div id="register-entry" className="center-content" style={{margin: "50px auto 0 auto"}}>
             <div id="registerForm-content" className="login-form register-form">
                 <h1 className="loginInput-title">Register</h1>
                 <h2 className="loginInput-subtitle">Email</h2>
@@ -62,6 +62,9 @@ export const RegisterForm = () => {
                         const errorMessage = "Please make sure password match."
                         ErrorMessage("registerForm-content", errorMessage);
                     }
+                }}/>
+                <Button text="Back" func={() => {
+                    setRegister(false);
                 }}/>
             </div>
         </div>

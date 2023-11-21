@@ -11,11 +11,11 @@ import "./LoginPage.css";
 
 
 
-export const LoginForm = ({setLoggingIn, setResetPassword}) => {
+export const LoginForm = ({setLoggingIn, setResetPassword, setRegister}) => {
     return(
-        <div id="loginpage-entry" className="center-content" style={{marginTop: "50px"}}>
+        <div id="loginpage-entry" className="center-content" style={{margin: "50px auto 0 auto"}}>
             <div id="loginform-content" className="login-form loginForm-container">
-                <h1 className="loginInput-title">Login</h1>
+                <h1 className="loginInput-title">Welcome back!</h1>
                 <h2 className="loginInput-subtitle">Email</h2>
                 <input id="loginEmailInput" className="login-input" type="text"></input>
                 <h2 className="loginInput-subtitle">Password</h2>
@@ -57,6 +57,11 @@ export const LoginForm = ({setLoggingIn, setResetPassword}) => {
                 <Button text="Forgot password" func={() => {
                     setResetPassword(true);
                 }}/>
+                <h1 style={{color: "var(--primary-color)", fontSize: "1rem", marginTop: "5px", cursor: "pointer"}} onClick={() => {
+                    setRegister(true);
+                }}>
+                    Create an account
+                </h1>
             </div>
         </div>
     )

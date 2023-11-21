@@ -9,48 +9,36 @@ import "../../App.css";
 import "./LoginPage.css";
 
 export const LoginPage = () => {
-    const [login, setLogin] = useState(false);
     const [register, setRegister] = useState(false);
     const [resetPassword, setResetPassword] = useState(false);
     const [loggingIn, setLoggingIn] = useState(false);
 
-    if(login){
-        if(resetPassword){
-            return (
-                <ForgotPasswordForm/>
-            )
-        }
-        if(loggingIn){
-            return(
-                <Loading />
-            )
-        }
-        else{
-            return(
-                <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword}/>
-            )
-        }
+    if(resetPassword){
+        return (
+            <div className="flex-row">
+                <ForgotPasswordForm setResetPassword={setResetPassword}/>
+                <img style={{backgroundColor: "var(--primary-color"}} width="60%" src={require("../../imgs/homeImg2.png")} alt="" />            </div>
+        )
+    }
+    else if(loggingIn){
+        return(
+            <Loading/>
+        )
     }
     else if(register){
         return(
-            <RegisterForm/>
+            <div className="flex-row">
+                <RegisterForm setRegister={setRegister}/>
+                <img style={{backgroundColor: "var(--primary-color"}} width="60%" src={require("../../imgs/homeImg2.png")} alt="" />
+            </div>
         )
     }
     else{
         return (
-            <>
-                <div id="loginpage-entry" className="center-content" style={{marginTop: "50px"}}>
-                    <div id="loginform-content" className="login-form login-container">
-                        <h1 className="loginTitle-text">Log in</h1>
-                        <Button text="Login" func={() => {
-                           setLogin(true); 
-                        }}/>
-                        <Button text="Register" func={() => {
-                           setRegister(true);
-                        }}/>
-                    </div>
-                </div>
-            </>
+            <div className="flex-row" style={{justifyContent: "right"}}>
+                <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword} setRegister={setRegister}/>
+                <img style={{backgroundColor: "var(--primary-color"}} width="60%" src={require("../../imgs/homeImg2.png")} alt="" />
+            </div>
         )
     }
 }
