@@ -1,13 +1,14 @@
 :root {
-  --primary-color: #4285F4;
+  --primary-color: #009DBF;
   --secondary-color: #A0C3FF;
   --light-text: white;
   --dark-text: #2E3532;
   --error-text: #de0700;
   --pass-color: #95ed95;
   --fail-color: #f76464;
+  --highlight-color: #fca739;
   --widget-grey: rgb(251, 251, 251);
-  --font-family: "'Poppins', sans-serif"
+  --font-family: "'Poppins', sans-serif";
 }
 
 input[type="radio"] {
@@ -16,7 +17,7 @@ input[type="radio"] {
 
 body {
   margin: 0;
-  background-color: whitesmoke;
+  font-size: 150%
 }
 
 p, a, h1, h2, h3, h4, h5, pre, ul, button, table{
@@ -104,8 +105,26 @@ code {
   opacity: 0.7;
 }
 
+.horizontal-align{
+  display: flex;
+  align-items: center;
+}
+
 .textAlign-left{
   text-align: left;
+}
+
+.white-text{
+  color: #FFFFFF;
+}
+
+.primary-background{
+  background-color: #009DBF;
+}
+
+.paragraph{
+  font-size: 20px;
+  line-height: 30px;
 }
 
 .widgetComponent-difficulty{

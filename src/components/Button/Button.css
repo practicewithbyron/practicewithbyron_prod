@@ -7,7 +7,7 @@
     min-width: stretch;
     margin: 10px 0;
 
-    background-color: #4285F4;
+    background-color: var(--primary-color);
     padding: 15px 0;
     border-radius: 5px;
 

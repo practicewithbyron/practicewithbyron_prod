@@ -88,11 +88,19 @@
 }
 
 .catalogLandingPageDescription-text{
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .catalogLandingPageDescription-video{
     padding: 40px;
+}
+
+.catalogLandingPageCatalog-img{
+    width: 400px;
+}
+
+.catalogLandingPageRating-text{
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1000px){
@@ -101,4 +109,12 @@
         flex-direction: column !important;
         justify-content: center;
     }
+}
+
+/* Revamp */
+
+.catalogLanding-image{
+    background-image: url(../../imgs/CatalogLandingPageBackground.svg);
+    min-width: -webkit-fill-available;
+    min-height: 887px;
 }

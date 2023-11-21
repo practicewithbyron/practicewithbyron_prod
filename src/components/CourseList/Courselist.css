@@ -1,0 +1,8 @@
+.courseListErrorMessage-container{
+    margin: 25px;
+}
+
+.courseListCatalog-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
