@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
 
 import "../../App.css";
-
+import "./CourseList.css";
 
 export const CourseList = ({error, isFetching, data}) => {
     return (
@@ -44,13 +44,6 @@ export const CourseList = ({error, isFetching, data}) => {
                         }
                     </div>
                 )
-            }
-            {
-                !error ? (
-                    <Button text="See more" func={() => {
-                        window.location.href = "/catalog";
-                    }}/>
-                ) : (<></>)
             }
         </>
     )
