@@ -2,10 +2,11 @@ import React from "react";
 import ErrorFace from "../../pages/Error/ErrorFace";
 import { WidgetComponent } from "../Widget/WidgetComponent";
 import { Loading } from "../../pages/Loading/loading";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button } from "../Button/Button";
 
 import "../../App.css";
-import { Button } from "../Button/Button";
+
 
 export const CourseList = ({error, isFetching, data}) => {
     return (

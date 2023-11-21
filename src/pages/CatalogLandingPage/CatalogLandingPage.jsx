@@ -7,15 +7,12 @@ import { CourseOverview } from './CourseOverview';
 import { StarRating } from "../../components/StarRating/StarRating";
 import { Button } from './../../components/Button/Button';
 import { CatalogLandingPageQandA } from "./CatalogLandingPageQandA";
-import { difficultyClassName } from "../../components/Widget/difficultyClassName";
 import { CourseList } from "../../components/CourseList/CourseList";
 
 import video from "../../vids/testvid.mp4";
 
 import "./CatalogLandingPage.css";
 import "../../App.css";
-
-
 
 
 export const CatalogLandingPage = () => {
@@ -39,58 +36,57 @@ export const CatalogLandingPage = () => {
     }
 
     return (
-        <div style={{paddingTop: "100px"}} className="flex-column horizontal-align full-height primary-background">
-            <div style={{}}>
-                <h1 style={{fontSize: "4rem", letterSpacing: "2px"}} className="white-text">
-                    CPA-21-02
-                </h1>
+        <div class="full-height flex-column horizontal-align primary-background padding-top-100">
+            <h1 class="color-white font-size-4rem letter-spacing-2px">
+                CPA-21-02
+            </h1>
+            <div class="margin-top-10px">
+                <img class="width-30rem" src={require("../../imgs/CPA-21-02.png")} alt="CPA-21-01" />
             </div>
-            <div style={{marginTop: "10px"}}>
-                <img style={{width: "30rem"}} src={require("../../imgs/CPA-21-02.png")} alt="CPA-21-01" />
-            </div>
-            <div className="flex-row" style={{alignItems: "center", marginTop: "15px"}}>
-                <div style={{backgroundColor: "#EE9D00", padding: "10px 15px", borderRadius: "20px", marginRight: "7px"}}>
-                    <h2 style={{color: "white", fontSize: "1.75rem"}}>
-                        Everything
-                    </h2>
+            <div class="flex-row horizontal-align align-items-center margin-top-15px">
+                <div class="background-orange padding-10-15px border-radius-20 margin-right-7">
+                <h2 class="white-text font-size-175">
+                    Everything
+                </h2>
                 </div>
-                <h2 style={{fontSize: "1.9rem", color: "white"}}>
-                    you need to pass the CPA-21-01 exam!
+                <h2 class="font-size-19 white-text">
+                    you need to pass the CPA-21-01!
                 </h2>
             </div>
-            <div className="catalogLanding-image flex-column" style={{display: "flex", alignItems: "center"}}>
-                <div className="flex-column" style={{marginTop: "150px", alignItems: "center"}}>
-                    <button className="primary-background" style={{border: 0, padding: "10px", color: "white", fontSize: "1.5rem", borderRadius: "25px"}}>🛒 Enroll Now - $14.99</button>
-                    <h2 style={{fontSize: "1.5rem", margin: "10px 0 15px 0"}}>or</h2>
-                    <h2 style={{fontSize: "1.5rem", color: "#009DBF"}}>Try a few questions first</h2>
+            <div class="catalogLanding-image flex-column align-items-center">
+                <div class="flex-column margin-top-150px align-items-center">
+                    <Button text="🛒 Enroll Now - $14.99" func={() => {
+                        window.location.href = `catalog/${name}`;
+                    }}/>
+                    <h2 class="font-size-15 margin-10px-0-15px">or</h2>
+                    <h2 class="font-size-15 color-009DBF">Try a few questions first</h2>
                 </div>
-                <div className="flex-row" style={{marginTop: "25px", alignItems: "center"}}>
-                    <div className="flex-column" style={{maxWidth: "50%", padding: "50px"}}>
-                        <div className="flex-column" style={{maxWidth: "700px"}}>
-                            <h1 style={{fontSize: "3rem", textAlign: "center"}}>Accurate, Original and Extensive</h1>
-                            <div style={{backgroundColor: "#EE9D00", height: "3px", marginTop: "3px", textAlign: "center"}}/>
+                <div class="flex-row margin-top-25px align-items-center">
+                    <div class="flex-column max-width-50 padding-50">
+                        <div class="flex-column max-width-700">
+                            <h1 class="font-size-3rem text-align-center">Accurate, Original and Extensive</h1>
+                            <div class="background-orange height-3px margin-top-3px text-align-center" />
                         </div>
-                        <p style={{marginTop: "30px", fontSize: "1.5rem", textAlign: "center"}}>Tired of having to cobble together various practice questions from spureous website which can't be trusted? I have produced this course as a bite-size way to make sure you have the resources to ace your exam.</p>
+                        <p class="margin-top-30px font-size-15 text-align-center">Tired of having to cobble together various practice questions from spurious websites that can't be trusted? I have produced this course as a bite-size way to make sure you have the resources to ace your exam.</p>
                     </div>
-                    <video src={video} width="50%" style={{padding: "50px"}}></video>
-                </div>           
-            </div>
-            <div style={{marginTop: "50px"}}>
-                <div className="flex-row">
-                    <CatalogLandingPageQandA title={"What you'll recieve"} tip={"Extensive"} array={["✅ 140 original questions that accurately reflect the exam", "✅ Personalised training plan to make help you practice at your own pace"]} icon={"check"} color={"#61FF67"}/>
-                </div>
-                <div className="flex-row">
-                    <CatalogLandingPageQandA title={"Who is this for?"} tip={"Target Student"} array={[`- Anyone wishing to pass the CPA-21-02 exam`, " - Those wishing to boost their career", "- Developers who want to take control of their personal development"]} icon={"user"} color={"#edfe00"}/>
-                </div>
-                <div className="flex-row">
-                    <CatalogLandingPageQandA title={"Prerequisites"} tip={"What you should know"} array={["Since this is an associate exam we advise that you have completed the fundamental exam, if it's not a requierment already.", "A basic understanding of the language and it's syntax is important for the exam"] } icon={"question-sign"} color={"#ff4545"}/>            
+                <video src={video} width="50%" class="padding-50"></video>
                 </div>
             </div>
-            <div className="catalogLanding-image flex-column horizontal-align">
-                <h1 style={{fontSize: "3rem", marginTop: "150px", borderBottom: "3px solid var(--highlight-color)", maxWidth: "fit-content"}}>See our other courses...</h1>
-                <CourseList error={{}} isFetching={true} data={{}}/>
-            </div>    
-            
+            <div class="margin-top-50px">
+                <div class="flex-row">
+                <CatalogLandingPageQandA class="font-size-15" title={"What you'll receive"} tip={"Extensive"} array={["✅ 140 original questions that accurately reflect the exam", "✅ Personalized training plan to help you practice at your own pace"]} icon={"check"} color={"#61FF67"} />
+                </div>
+                <div class="flex-row">
+                <CatalogLandingPageQandA class="font-size-15" title={"Who is this for?"} tip={"Target Student"} array={["- Anyone wishing to pass the CPA-21-02 exam", "- Those wishing to boost their career", "- Developers who want to take control of their personal development"]} icon={"user"} color={"#edfe00"} />
+                </div>
+                <div class="flex-row">
+                <CatalogLandingPageQandA class="font-size-15" title={"Prerequisites"} tip={"What you should know"} array={["Since this is an associate exam, we advise that you have completed the fundamental exam, if it's not a requirement already.", "A basic understanding of the language and its syntax is important for the exam"]} icon={"question-sign"} color={"#ff4545"} />
+                </div>
+            </div>
+            <div class="catalogLanding-image flex-column horizontal-align">
+                <h1 class="font-size-3rem margin-top-150px border-bottom-3px-solid-highlight-color max-width-fit-content">See our other courses...</h1>
+                <CourseList error={{}} isFetching={true} data={data} />
+            </div>
         </div>
     )
 
