@@ -227,6 +227,14 @@ code {
   padding: 50px;
 }
 
+.margin-left-5px{
+  margin-left: 5px;
+}
+
+.margin-bottom-10px{
+  margin-bottom: 10px;
+}
+
 .max-width-700 {
   max-width: 700px;
 }
@@ -253,6 +261,10 @@ code {
 
 .margin-top-50px {
   margin-top: 50px;
+}
+
+.margin-right-10px {
+  margin-right: 10px
 }
 
 .border-bottom-3px-solid-highlight-color {
