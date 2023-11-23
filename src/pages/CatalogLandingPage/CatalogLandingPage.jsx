@@ -59,7 +59,7 @@ export const CatalogLandingPage = () => {
                         window.location.href = `catalog/${name}`;
                     }}/>
                     <h2 class="font-size-15 margin-10px-0-15px">or</h2>
-                    <h2 class="font-size-15 color-009DBF">Try a few questions first</h2>
+                    <h2 class="font-size-15 color-primary">Try a few questions first</h2>
                 </div>
                 <div class="flex-row margin-top-25px align-items-center">
                     <div class="flex-column max-width-50 padding-50">

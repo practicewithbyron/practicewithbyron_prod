@@ -57,7 +57,7 @@ export const LoginForm = ({setLoggingIn, setResetPassword, setRegister}) => {
                 <Button text="Forgot password" func={() => {
                     setResetPassword(true);
                 }}/>
-                <h1 style={{color: "var(--primary-color)", fontSize: "1rem", marginTop: "5px", cursor: "pointer"}} onClick={() => {
+                <h1 className="font-size-15rem margin-top-5px color-primary cursor-pointer" onClick={() => {
                     setRegister(true);
                 }}>
                     Create an account
