@@ -18,6 +18,7 @@
 
 .catalogLanding-video{
     width: 50%;
+    max-width: 820px; /* For larger screens 50% overlaps */
     padding: 0 50px 0 0;
 }
 
@@ -45,7 +46,7 @@
     }
 }
 
-@media screen and (max-width: 510px){
+@media screen and (max-width: 780px){
     .catalogLanding-video{
         display: none;
     }
