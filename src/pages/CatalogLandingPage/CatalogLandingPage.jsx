@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { ReadCatalog } from "../../db/Read/ReadCatalog";
 import { useParams } from "react-router-dom";
 import { Loading } from "../Loading/loading";
@@ -16,6 +17,7 @@ import "../../App.css";
 
 
 export const CatalogLandingPage = () => {
+    const navigate = useNavigate();
     const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -28,10 +30,10 @@ export const CatalogLandingPage = () => {
             setData(res.data.detail[0]);
         })
         .catch(err => {
-            setError(err)
+            setError(err);
         })
         .finally(() => {
-            setIsFetching(false)
+            setIsFetching(false);
         });  
     }
 
@@ -44,16 +46,16 @@ export const CatalogLandingPage = () => {
         setCatalogs(res.data);
     })
     .catch(err => {
-        setErrorCatalogs(err)
+        setErrorCatalogs(err);
     })
     .finally(() => {
-        setIsFetchingCatalogs(false)
+        setIsFetchingCatalogs(false);
     });
 
     if(isFetching)
     {
         return (
-            <div className="complete-center">
+            <div className="center-content height-100vh">
                 <Loading/>            
             </div>
         )
@@ -61,7 +63,9 @@ export const CatalogLandingPage = () => {
     else if(error)
     {
         return (
-            <Error title={`Error retrieving ${name}`} message={"Please check you network connection and try again."}/>
+            <div className="center-content center-text height-100vh">
+               <Error title={`Error retrieving ${name}`} message={"Please check you network connection and try again."}/>
+            </div>
         )
     }
     else
@@ -91,10 +95,14 @@ export const CatalogLandingPage = () => {
                 <div class="catalogLanding-image flex-column align-items-center">
                 <div class="flex-column margin-top-150px align-items-center">
                         <Button text={`🛒 Enroll Now - ${data.price}`} func={() => {
-                            window.location.href = `catalog/${name}`;
+                            navigate(`/0payment/${name}`)
                         }}/>
                         <h2 class="font-size-15 margin-10px-0-15px">or</h2>
-                        <h2 class="font-size-15 color-009DBF">Try a few questions first</h2>
+                        <h2 class="font-size-15 color-009DBF onHover-pointer" onClick={() => {
+                                navigate(`/tryafew/${name}`)
+                            }}>
+                            Try a few questions first
+                        </h2>
                     </div>
                     <div class="catalogLanding-section2 margin-top-25px align-items-center">
                         <div class="flex-column padding-50">
@@ -102,14 +110,14 @@ export const CatalogLandingPage = () => {
                                 <h1 class="font-size-3rem text-align-center">Accurate, Original and Extensive</h1>
                                 <div class="background-orange height-3px margin-top-3px text-align-center" />
                             </div>
-                            <p class="margin-top-30px font-size-15 text-align-center">Tired of having to cobble together various practice questions from spurious websites that can't be trusted? I have produced this course as a bite-size way to make sure you have the resources to ace your exam.</p>
+                            <p class="margin-top-30px font-size-15 text-align-center">Hi there, I'm Byron and I was in the exact same position you are now. Searching the web and trying to find up to date and accurate question set for the {name}. Not knowing whether you could trust the answers or even if they'd relate to the exam. We have you covered here at PracticeWithByron. We constantly update our questions to reflect the most current version of the exam and have them thoroughly checked to make sure they're correct.</p>
                         </div>
                     <video className="catalogLanding-video" src={video}></video>
                     </div>
                 </div>
                 <div class="margin-top-50px">
                     <div class="flex-row">
-                    <CatalogLandingPageQandA title={"What you'll receive"} tip={"Extensive"} array={["✅ 140 original questions that accurately reflect the exam", "✅ Personalized training plan to help you practice at your own pace"]} icon={"check"} color={"#61FF67"} />
+                    <CatalogLandingPageQandA title={"What you'll receive"} tip={"Extensive"} array={["✅ 140 original questions that accurately reflect the exam", "✅ Personalized training plan to help you practice at your own pace", "✅ 100% Money back gurantee if you don't pass your exam!*", "✅ Statistics on previous practice attempts through visuals and recommendations."]} icon={"check"} color={"#61FF67"} />
                     </div>
                     <div class="flex-row">
                     <CatalogLandingPageQandA title={"Who is this for?"} tip={"Target Student"} array={["- Anyone wishing to pass the CPA-21-02 exam", "- Those wishing to boost their career", "- Developers who want to take control of their personal development"]} icon={"user"} color={"#edfe00"} />
