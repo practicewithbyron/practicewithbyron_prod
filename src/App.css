@@ -79,6 +79,10 @@ code {
   height: 100%;
 }
 
+.height-100vh{
+  height: 100vh;
+}
+
 .full-width{
   width: 100%;
 }
@@ -108,6 +112,10 @@ code {
 .horizontal-align{
   display: flex;
   align-items: center;
+}
+
+.onHover-pointer{
+  cursor: pointer;
 }
 
 .textAlign-left{
