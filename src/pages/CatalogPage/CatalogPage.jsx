@@ -11,7 +11,6 @@ import { Error } from "../Error/Error";
 import Cookies from "js-cookie";
 
 import "../../App.css"
-import "./CatalogPage.css";
 
 export const CatalogPage = () => {
     const [isFetching, setIsFetching] = useState(true);
@@ -71,8 +70,8 @@ export const CatalogPage = () => {
         return (
             <div className="flex-column complete-center full-height page-margin" style={{marginLeft:"60px"}}>
                 <h1 style={{padding: "15px"}}>Catalog</h1>
-                <div id="catalogpage-entry" className="flex-row catalog-page">
-                    <div id="catalog" className="catalogMenu flex-column">
+                <div id="catalogpage-entry" className="flex-row height-100vh">
+                    <div id="catalog" className="flex-column">
                         <CatalogWidget text="Java" setFilter={setFilter}/>
                         <CatalogWidget text="C++" setFilter={setFilter}/>
                         <CatalogWidget text="Javascript" setFilter={setFilter}/>
