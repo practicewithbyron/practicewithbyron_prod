@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Post } from "../post";
 import { getURL } from "../getURL";
 
 export const UpdateUserCatalog = (catalogToAdd, jwt) => {

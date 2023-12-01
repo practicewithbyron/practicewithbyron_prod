@@ -63,6 +63,7 @@ export const DashboardPage = () => {
             .catch(err => {
                 setError(err);
             })
+            return el
         }) 
         setCatalogsFetching(false);
     }
