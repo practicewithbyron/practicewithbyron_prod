@@ -1,5 +1,5 @@
 import { getURL } from "../getURL";
-import axios from "axios";
+import { Post } from "../post";
 
 export const ReadCatalog = (catalogName, jwt) => {
     return (

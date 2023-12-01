@@ -1,4 +1,3 @@
-import axios from "axios";
 import { getURL } from "../getURL";
 import { Post } from "../post";
 
