@@ -3,7 +3,6 @@ import ErrorFace from "../../pages/Error/ErrorFace";
 import { WidgetComponent } from "../Widget/WidgetComponent";
 import { Loading } from "../../pages/Loading/loading";
 import { Link } from "react-router-dom";
-import { Button } from "../Button/Button";
 
 import "../../App.css";
 import "./CourseList.css";
