@@ -1,18 +1,11 @@
 import axios from "axios";
 import { getURL } from "../getURL";
+import { Post } from "../post";
 
 export const ReadAllCatalogQuestions = (catalogName, jwt) => {
     return (
-        axios.post(getURL() + "readAllCatalogQuestions", {
+        Post(getURL() + "readAllCatalogQuestions", {
             catalogName: catalogName
-        }, 
-        {
-            headers: {
-                "Authorization": jwt,
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*",
-                "Ocp-Apim-Subscription-Key": "ff1ce5d1c42047a3b1f01aeea1e5cfd7"
-            },
-        })
+        }, jwt)
     )
 }
