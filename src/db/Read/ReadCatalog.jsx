@@ -1,10 +1,10 @@
-import { Post } from '../post';
 import { getURL } from "../getURL";
+import { Post } from "../post";
 
-export const ReadCatalog = (catalogName) => {
-    return(
+export const ReadCatalog = (catalogName, jwt) => {
+    return (
         Post(getURL() + "readCatalog", {
-            catalogName: catalogName
-        })
+            "catalogName": catalogName
+        }, jwt)
     )
 }
