@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ReadCatalog } from "../../db/Read/ReadCatalog";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,7 @@ import { CatalogLandingPageQandA } from "./CatalogLandingPageQandA";
 import { CourseList } from "../../components/CourseList/CourseList";
 import { ReadAllCatalogs } from "../../db/Read/ReadAllCatalogs";
 
-import video from "../../vids/testvid.mp4";
+import video from "../../vids/catalogLanding.mp4";
 
 import "./CatalogLandingPage.css";
 import "../../App.css";
@@ -24,7 +24,7 @@ export const CatalogLandingPage = () => {
 
     const {name} = useParams(); 
 
-    if(isFetching){
+    useEffect(() => {
         ReadCatalog(name)
         .then(res => {
             setData(res.data.detail[0]);
@@ -34,23 +34,26 @@ export const CatalogLandingPage = () => {
         })
         .finally(() => {
             setIsFetching(false);
-        });  
-    }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }, [name])  
 
     const [isFetchingCatalogs, setIsFetchingCatalogs] = useState(true);
     const [errorCatalogs, setErrorCatalogs] = useState(null);
     const [catalogs, setCatalogs] = useState(null);
 
-    ReadAllCatalogs()
-    .then(res => {
-        setCatalogs(res.data);
-    })
-    .catch(err => {
-        setErrorCatalogs(err);
-    })
-    .finally(() => {
-        setIsFetchingCatalogs(false);
-    });
+    if (isFetchingCatalogs) {
+        ReadAllCatalogs()
+        .then(res => {
+            setCatalogs(res.data);
+        })
+        .catch(err => {
+            setErrorCatalogs(err);
+        })
+        .finally(() => {
+            setIsFetchingCatalogs(false);
+        });
+    }
 
     if(isFetching)
     {
@@ -89,13 +92,14 @@ export const CatalogLandingPage = () => {
                     </h2>
                 </div>
                 <div className="flex-row margin-top-15px">
+                    <p className="color-white margin-right-5px">(147)</p>
                     <StarRating num={data.starRating}/>
                     <p className="color-white margin-left-5px">{data.starRating}</p>
                 </div>
                 <div class="catalogLanding-image flex-column align-items-center">
                 <div class="flex-column margin-top-150px align-items-center">
                         <Button text={`🛒 Enroll Now - ${data.price}`} func={() => {
-                            navigate(`/0payment/${name}`)
+                            navigate(`/payment/${name}`)
                         }}/>
                         <h2 class="font-size-15 margin-10px-0-15px">or</h2>
                         <h2 class="font-size-15 color-009DBF onHover-pointer" onClick={() => {
@@ -112,7 +116,9 @@ export const CatalogLandingPage = () => {
                             </div>
                             <p class="margin-top-30px font-size-15 text-align-center">Hi there, I'm Byron and I was in the exact same position you are now. Searching the web and trying to find up to date and accurate question set for the {name}. Not knowing whether you could trust the answers or even if they'd relate to the exam. We have you covered here at PracticeWithByron. We constantly update our questions to reflect the most current version of the exam and have them thoroughly checked to make sure they're correct.</p>
                         </div>
-                    <video className="catalogLanding-video" src={video}></video>
+                    <video className="catalogLanding-video" controls>
+                        <source src={video} type="video/mp4"/>
+                    </video>
                     </div>
                 </div>
                 <div class="margin-top-50px">
