@@ -26,27 +26,6 @@
     margin-top: 20px;
 }
 
-.login-button{
-    min-width: 375px;
-    margin: 10px 0;
-
-    background-color: #4285F4;
-    padding: 15px 0;
-    border-radius: 5px;
-
-    transition: all 0.5s linear;
-}
-
-.loginButton-text{
-    text-align: center;
-    font-weight: 400;
-    color: white;
-    vertical-align: middle;
-    margin: auto;
-
-    white-space: nowrap;
-}
-
 .loginInput-title{
     font-size: 30px;
     margin-bottom: 25px;

@@ -12,6 +12,7 @@ import "./DashboardPage.css";
 import "../../App.css";
 import "../LoginPage/LoginPage.css";
 import { IsLoggedIn } from "../../IsLoggedIn";
+import { ReadCatalog } from "../../db/Read/ReadCatalog";
 
 function LearningPathRelocate(){
     window.location.href = "/learningpath"
@@ -24,6 +25,9 @@ export const DashboardPage = () => {
     
     const [filteredList, setFilteredList] = useState([]);
     const [input, setInput] = useState("");
+
+    const [catalogs, setCatalogs] = useState([]);
+    const [catalogsFetching, setCatalogsFetching] = useState(false);
 
     useEffect(() => {
         setFilteredList(data?.detail?.filter(el => {
@@ -38,16 +42,33 @@ export const DashboardPage = () => {
         IsLoggedIn("dashboard");
         ReadUserCatalog(Cookies.get('jwtToken'))
         .then(res => {
-            setData(res.data);
+            setData(res.data.detail);       
         })
         .catch(err => {
             setError(err)
-        })
+        }) 
         .finally(() => {
-            setIsFetching(false)
-        });  
+            setIsFetching(false);
+            setCatalogsFetching(true);
+        })
+    }
+
+    if(catalogsFetching)
+    {
+        data.forEach(el => {
+            ReadCatalog(el, Cookies.get('jwtToken'))
+              .then(cat => {
+                setCatalogs(catalogs => [...catalogs, cat]);
+              })
+              .catch(err => {
+                setError(err);
+              });
+          });
+        setCatalogsFetching(false);
     }
         
+    console.log(catalogs);
+
     if(isFetching){
         return (
             <Loading/>
@@ -55,16 +76,11 @@ export const DashboardPage = () => {
     }
     else if(error){
         // Unauthorized (jwt expires) or jwt missing (not logged in)
-        if(error.request.status === 401 || error.request.status === 422){
-            window.location.href = "/login"
-        }
-        else{
-            return(
-                <Error title="Internal Server Error" message={error.message}/>
-            )
-        }
+        return(
+            <Error title="Internal Server Error" message={error.message}/>
+        )
     }
-    else if(data.detail.length === 0){
+    else if(data.length === 0){
         return (
             <div id="dashboardpage-entry" className="flex-column center-content full-height">
                 <div id="dashboard-form" className="dashboard-form center-content">
@@ -94,17 +110,17 @@ export const DashboardPage = () => {
                         {
                             input === "" ?
                             (
-                                data.detail.map(el => {
+                                catalogs.map(el => {
                                     return(
-                                        <Link to={`/practice/${el}`}>
-                                            <WidgetComponent img={`${el}.png`} text={el} desc="Some desc"/>
+                                        <Link to={`/practice/${el.name}`}>
+                                            <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
                                         </Link>
                                     )
                             })) : (
                                 filteredList?.map(el => {
                                     return(
-                                        <Link to={`/practice/${el}`}>
-                                            <WidgetComponent img={`${el}.png`} text={el} desc="Some desc"/>
+                                        <Link to={`/practice/${el.name}`}>
+                                            <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
                                         </Link>
                                     )
                                 })

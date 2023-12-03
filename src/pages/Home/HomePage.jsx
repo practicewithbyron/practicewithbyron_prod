@@ -87,40 +87,40 @@ export const Home = () => {
                 <h1 className="subtitle title-text">
                     Top-Selling Practice Exams
                 </h1>
-                <div className="homePageCatalog-container">
-                    {   
-                        error ? (
-                            <div className="flex-column center-text ">
-                                <ErrorFace/>
-                                <div className="homePageErrorMessage-container">
-                                    <h2 className="paragraph">
-                                        Sorry, there seems to be a problem.
-                                    </h2>
-                                    <h2 className="paragraph">
-                                        Please check your internet connection
-                                    </h2>
-                                </div>
-
+                {   
+                    error ? (
+                        <div className="flex-column center-text ">
+                            <ErrorFace/>
+                            <div className="homePageErrorMessage-container">
+                                <h2 className="paragraph">
+                                    Sorry, there seems to be a problem.
+                                </h2>
+                                <h2 className="paragraph">
+                                    Please check your internet connection
+                                </h2>
                             </div>
-                        ) : (
+
+                        </div>
+                    ) : (                
+                        <div className="homePageCatalog-container">
+                            {
                             !isFetching ? (
                                 data?.detail.map(el => {
                                     return(
                                         <div style={{margin: "10px 10px"}}>
                                             <Link to={`/catalog/${el.name}`}>
-                                                <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription}/>
+                                                <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
                                             </Link>
                                         </div>
                                     )  
                                 })
-                            ) : (
-                                <Loading/>
-                            )
-                        )
-
-
-                    }
-                </div>
+                                ) : (
+                                    <Loading/>
+                                )
+                            }
+                        </div>
+                    )
+                }
                 {
                     !error ? (
                         <NavLink to="/catalog">

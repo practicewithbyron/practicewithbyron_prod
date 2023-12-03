@@ -1,0 +1,27 @@
+.catalogLandingPageQandA-container{
+    width: 70vw;
+    margin: auto auto 100px auto;
+}
+
+.catalogLandingPageQandA-icon{
+    font-size: 2rem;
+}
+
+.catalogLandingPageQandA-tip{
+    font-size: 1.25rem;
+}
+
+.catalogLandingPageQandATip-container{
+    margin: 5px 0;
+}
+
+.catalogLandingPageQandA-title{
+    font-size: 3rem;
+    max-width: fit-content;
+    border-bottom: 3px solid var(--highlight-color);
+    margin-bottom: 20px;
+}
+
+.catalogLandingPageQandATitle-container{
+    margin-bottom: 7px;
+}

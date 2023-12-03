@@ -5,7 +5,7 @@ import ErrorFace from "./ErrorFace";
 
 export const Error = ({title, message}) => {
     return (
-        <div className="center-content full-height flex-column" style={{width: "fit-content", margin: "auto"}}>
+        <div className="center-content full-height flex-column text-center" style={{width: "fit-content", margin: "auto"}}>
             <ErrorFace/>
             <h1 style={{width: "fit-content", margin: "5px auto"}}>{title}</h1>
             <h2 style={{width: "fit-content", margin: "0 auto"}}>{message}</h2>
