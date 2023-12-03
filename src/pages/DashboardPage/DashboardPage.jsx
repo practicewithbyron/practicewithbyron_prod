@@ -55,15 +55,15 @@ export const DashboardPage = () => {
 
     if(catalogsFetching)
     {
-        data.map(el => {
+        data.forEach(el => {
             ReadCatalog(el, Cookies.get('jwtToken'))
-            .then(cat => {
-                setCatalogs(catalogs => [...catalogs, cat])
-            })
-            .catch(err => {
+              .then(cat => {
+                setCatalogs(catalogs => [...catalogs, cat]);
+              })
+              .catch(err => {
                 setError(err);
-            })
-        }) 
+              });
+          });
         setCatalogsFetching(false);
     }
         
