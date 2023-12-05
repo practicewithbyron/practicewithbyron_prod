@@ -14,6 +14,7 @@
 
 .loginForm-container{
     height: 560px;
+    width: 30vw;
 }
 
 .loginTitle-text{
@@ -40,9 +41,9 @@
 
     font-size: 17px;
 
-    margin: 10px;
+    margin: 10px 0;
 
-    min-width: 400px;
+    min-width: -webkit-fill-available;
 }
 
 .forgotPassword-form{
@@ -84,5 +85,21 @@
     }
     to{
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 950px){
+    .loginPageImage-container{
+        display: none;
+    }
+
+    .loginForm-container{
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .loginForm-container{
+        width: 80vw;
     }
 }

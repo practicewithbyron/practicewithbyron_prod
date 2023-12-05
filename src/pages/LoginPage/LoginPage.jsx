@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Loading } from "../Loading/loading.jsx";
-import { LoginForm } from './LoginForm.jsx';
-import { RegisterForm } from './RegisterForm.jsx';
-import { ForgotPasswordForm } from './ForgotPasswordForm.jsx';
+import { LoginForm } from './Forms/LoginForm.jsx';
+import { RegisterForm } from './Forms/RegisterForm.jsx';
+import { ForgotPasswordForm } from './Forms/ForgotPasswordForm.jsx';
 
 import "../../App.css";
 import "./LoginPage.css";
 
 const Image = () => {
     return (
-        <div style={{width: "60%"}} className='primary-background min-height-fill-available'>
+        <div className='primary-background min-height-fill-available width-60 loginPageImage-container'>
             <img className='width-fill-available' src={require("../../imgs/homeImg2.png")} alt="" />
         </div>
     )
@@ -24,7 +24,8 @@ export const LoginPage = () => {
         return (
             <div className="flex-row">
                 <ForgotPasswordForm setResetPassword={setResetPassword}/>
-                <img style={{backgroundColor: "var(--primary-color"}} width="60%" src={require("../../imgs/homeImg2.png")} alt="" />            </div>
+                <Image/>        
+            </div>
         )
     }
     else if(loggingIn){
@@ -42,7 +43,7 @@ export const LoginPage = () => {
     }
     else{
         return (
-            <div className="flex-row" style={{justifyContent: "right", height: "100vh"}}>
+            <div className="flex-row">
                 <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword} setRegister={setRegister}/>
                 <Image/>
             </div>

@@ -109,6 +109,10 @@ code {
   opacity: 0.7;
 }
 
+.width-60{
+  width: 60%;
+}
+
 .horizontal-align{
   display: flex;
   align-items: center;
