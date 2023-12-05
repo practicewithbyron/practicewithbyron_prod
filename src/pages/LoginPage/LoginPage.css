@@ -3,11 +3,6 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 50px 40px;
-
-    margin: auto;
-    margin-top: 80px;
-
     background-color: white;
 
     border-radius: 3px;
@@ -29,6 +24,7 @@
 .loginInput-title{
     font-size: 30px;
     margin-bottom: 25px;
+    border-bottom: 2px solid #EE9D00;
 }
 
 .loginInput-subtitle{

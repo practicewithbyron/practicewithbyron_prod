@@ -127,7 +127,7 @@ code {
 }
 
 .primary-background{
-  background-color: #009DBF;
+  background-color: var(--primary-color);
 }
 
 .paragraph{
@@ -137,10 +137,6 @@ code {
 
 .horizontal-align {
   align-items: center; /* Center items horizontally */
-}
-
-.primary-background {
-  background-color: var(--primary-color); /* Replace with your actual color code */
 }
 
 .font-size-4rem {
@@ -223,7 +219,7 @@ code {
   margin: 10px 0 15px;
 }
 
-.color-009DBF {
+.color-primary {
   color: var(--primary-color); /* Replace with your actual color code */
 }
 
@@ -251,6 +247,10 @@ code {
   max-width: 700px;
 }
 
+.font-size-15rem{
+  font-size: 1.5rem;
+}
+
 .font-size-3rem {
   font-size: 3rem;
 }
@@ -267,6 +267,14 @@ code {
   margin-top: 3px;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.margin-top-5px {
+  margin-top: 5px
+}
+
 .margin-top-30px {
   margin-top: 30px;
 }
@@ -281,6 +289,14 @@ code {
 
 .border-bottom-3px-solid-highlight-color {
   border-bottom: 3px solid var(--highlight-color); /* Replace with your actual color code */
+}
+
+.width-fill-available{
+  width: -webkit-fill-available;
+}
+
+.min-height-fill-available{
+  min-height: -webkit-fill-available;
 }
 
 .max-width-fit-content {
