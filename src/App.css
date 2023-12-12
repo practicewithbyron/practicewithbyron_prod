@@ -71,6 +71,10 @@ code {
   text-align: center;
 }
 
+.min-height-90vh{
+  min-height: 90vh;
+}
+
 .flex-wrap{
   flex-wrap: wrap;
 }
