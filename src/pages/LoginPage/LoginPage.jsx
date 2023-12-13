@@ -9,7 +9,7 @@ import "./LoginPage.css";
 
 const Image = () => {
     return (
-        <div className='primary-background min-height-fill-available width-60 center-content loginPageImage-container'>
+        <div className='primary-background min-height-100vh width-60 center-content loginPageImage-container'>
             <img className='width-fill-available' src={require("../../imgs/homeImg2.png")} alt="" />
         </div>
     )
