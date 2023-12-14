@@ -1,21 +1,22 @@
 import React from "react";
+import { PasswordResetRequest } from '../../../db/passwordResetRequest';
+import { NotificationMessage } from "../NotifcationMessage";
+import { ErrorMessage } from '../ErrorMessage';
+import { CheckInputIsntEmpty } from "../../../validation/inputValidation";
+import { IsEmailValid } from "../../../validation/emailValidation";
+import { Button } from '../../../components/Button/Button';
+import { TemplateForm } from "./TemplateForm";
 
-import "../../App.css";
-import "../LoginPage/LoginPage.css";
-import { PasswordResetRequest } from '../../db/passwordResetRequest';
-import { NotificationMessage } from "./NotifcationMessage";
-import { ErrorMessage } from './ErrorMessage';
-import { CheckInputIsntEmpty } from "../../validation/inputValidation";
-import { IsEmailValid } from "../../validation/emailValidation";
-import { Button } from './../../components/Button/Button';
+import "../../../App.css";
+import "../LoginPage.css";
+
 
 //This is the form we enter our email into
 
-export const ForgotPasswordForm = () => {
+const Form = ({setResetPassword}) => {
     return (
-        <div id="forgotPassword-entry" className="center-content" style={{marginTop: "50px"}}>
-            <div id="forgotPassword-content" className="login-form forgotPassword-form">
-                <h2 className="form-title">Password Reset Request</h2>
+        <>
+            <h2 className="loginInput-title">Password Reset Request</h2>
                 <h3 className="forgotPassword-subtitle">Email</h3>
                 <input id="forgotPasswordInput" className="login-input" type="text"></input>
                 <Button text="Send Email" func={() => {
@@ -37,7 +38,15 @@ export const ForgotPasswordForm = () => {
                         })
                     }   
                 }}/>
-            </div>
-        </div>
+            <Button text="Back" func={() => {
+                setResetPassword(false);
+            }}/>
+        </>
+    )
+}
+
+export const ForgotPasswordForm = ({setResetPassword}) => {
+    return (
+        <TemplateForm FormContent={<Form setResetPassword={setResetPassword}/>}/>
     )
 }

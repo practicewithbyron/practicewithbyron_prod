@@ -68,6 +68,7 @@ export const PracticePage = () => {
     const [correct, setCorrect] = useState([]);
     const [incorrect, setIncorrect] = useState([]);
     const [skipped, setSkipped] = useState([]);
+    const [selected, setSelected] = useState([]);
 
     const {name} = useParams(); 
 
@@ -97,6 +98,8 @@ export const PracticePage = () => {
             else{
                 setIncorrect(incorrect => [...incorrect, el]);
             }
+
+            setSelected(answers);
             //Clear local storage so the answers no longer get stored.
             localStorage.clear();
             return el.answer
@@ -148,7 +151,7 @@ export const PracticePage = () => {
             if(!finished){
                 return(
                     <>
-                        <div id="catalogpage-entry" className="flex-column page-margin fit-content" style={{marginLeft: "25px"}}>
+                        <div id="catalogpage-entry" className="flex-column page-margin fit-content">
                             <div className="flex-column">
                                 <div className="flex-row">
                                     <QuestionNavigator noOfQuestions={data.detail.length} setQuestionNo={setQuestionNo} questionNo={questionNo}/>
@@ -218,7 +221,7 @@ export const PracticePage = () => {
                 if(!reviewQuestions)
                 {
                     return(
-                        <div id="catalogpage-entry" className="flex-column center-content page-margin center-content" style={{marginLeft: "50px"}}>
+                        <div id="catalogpage-entry" className="flex-column center-content page-margin center-content">
                             <h1 className="practicePage-title">{name} Results</h1>
                             <MyChart correct={correct.length} incorrect={incorrect.length} skipped={skipped.length} 
                                 passPercentage={data2.detail[0].passPercentage} setReviewQuestions={setReviewQuestions}/>
@@ -248,35 +251,64 @@ export const PracticePage = () => {
                 }
                 else{
                     return(
-                        <div id="catalogpage-entry" className="flex-column center-content page-margin center-content" style={{marginLeft: "50px"}}>
-                            <h1 style={{marginBottom: "20px"}}>{name} Results</h1>
+                        <div id="catalogpage-entry" className="flex-column center-content page-margin center-content">
+                            <div className="practicePageReviewTitle-container">
+                                <h1 className="practicePageReview-title">{name} Results</h1>
+                                <div className="practicePageReviewButton-container">
+                                    <Button text="Back" func={() => {
+                                        setReviewQuestions(false)
+                                    }}/>
+                                </div>
+                            </div>  
                             {
                                 data.detail.map((el, index) => {
                                    return(
-                                    <div style={{margin: "10px 0"}}>
-                                        <h3>Question {index + 1}</h3>
-                                        <h3>{el.question}</h3>
-                                        <DisabledInput answer={el.answerOne} selected={el.answerOne === el.answer} isCorrect={el.answerOne === el.correctAnswer} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerTwo} selected={el.answerTwo === el.answer} isCorrect={el.answerTwo === el.correctAnswer} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerThree} selected={el.answerThree === el.answer} isCorrect={el.answerThree === el.correctAnswer} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerFour} selected={el.answerFour === el.answer} isCorrect={el.answerFour === el.correctAnswer} language={data.detail.language}/>
-                                        <h3>
+                                    <div className="practicePageReview-page">
+                                        <div className="flex-row">
+                                            <h3 className="practicePage-subtitle">Question {index + 1}: </h3>
+                                            {
+                                                correct.includes(el) ? (
+                                                    <h3 className="practicePage-subtitle practicePage-correct practicePage-userResponse">
+                                                        Correct
+                                                    </h3>
+                                                ) : (
+                                                    <></>
+                                                )
+                                            }
+                                            {
+                                                incorrect.includes(el) ? (
+                                                    <h3 className="practicePage-subtitle practicePage-incorrect practicePage-userResponse">
+                                                        Incorrect
+                                                    </h3>
+                                                ) : (
+                                                    <></>
+                                                )
+                                            }
+                                            {
+                                                skipped.includes(el) ? (
+                                                    <h3 className="practicePage-subtitle practicePage-skipped practicePage-userResponse">
+                                                        Skipped
+                                                    </h3>
+                                                ) : (
+                                                    <></>
+                                                )
+                                            }
+                                        </div>
+                                        <PracticePageQuestion question={el.question} language={data.detail.catagory}/>
+                                        <DisabledInput answer={el.answerOne} selectedIncorrect={incorrect.includes(el)} selectedCorrect={correct.includes} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerOne)} language={data.detail.language}/>
+                                        <DisabledInput answer={el.answerTwo} selectedIncorrect={el.answerTwo !== el.correctAnswer} selectedCorrect={el.answerTwo === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerTwo)} language={data.detail.language}/>
+                                        <DisabledInput answer={el.answerThree} selectedIncorrect={el.answerThree !== el.correctAnswer} selectedCorrect={el.answerThree === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerThree)} language={data.detail.language}/>
+                                        <DisabledInput answer={el.answerFour} selectedIncorrect={el.answerFour !== el.correctAnswer} selectedCorrect={el.answerFour === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerFour)} language={data.detail.language}/>
+                                        <h3 className="practicePageExplanation-title">
                                             Explanation
                                         </h3>
-                                        <h4>
+                                        <p className="practicePageExplanation-desc">
                                             {el.explanation}
-                                        </h4>
+                                        </p>
                                     </div>
                                    )
                                 })
-                            }  
-                            {/* <button style={{maxWidth: "250px", margin: "10px 0"}} className="startButton" onClick={() => {
-                                setReviewQuestions(false);
-                            }}>Review knowledge areas</button>  */}
-
-                            <Button text="Review knowledge areas" func={() => {
-                                setReviewQuestions(false)
-                            }}/>
+                            }     
                         </div>
                     )
                 }

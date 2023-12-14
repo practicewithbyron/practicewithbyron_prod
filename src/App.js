@@ -22,7 +22,6 @@ class App extends Component {
       <Router> {/* Router wraps the entire application */}
         <div className="flex-column">
           <NavigationBar/>
-          <div style={{height: "100vh"}}>
             <Routes>
               <Route exact path="/" element={<Home/>}/>
               <Route exact path="/login" element={<LoginPage/>}/>
@@ -39,7 +38,6 @@ class App extends Component {
               <Route exact path="/learningpath" element={<LearningPlanPage/>}/>
               <Route exact path="/training" element={<TrainingPage/>}/>
             </Routes>
-          </div>
         </div>
       </Router>
     );

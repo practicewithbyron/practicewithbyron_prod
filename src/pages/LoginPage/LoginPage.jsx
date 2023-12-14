@@ -1,56 +1,52 @@
 import React, { useState } from 'react';
 import { Loading } from "../Loading/loading.jsx";
-import { LoginForm } from './LoginForm.jsx';
-import { RegisterForm } from './RegisterForm.jsx';
-import { ForgotPasswordForm } from './ForgotPasswordForm.jsx';
-import { Button } from '../../components/Button/Button.jsx';
+import { LoginForm } from './Forms/LoginForm.jsx';
+import { RegisterForm } from './Forms/RegisterForm.jsx';
+import { ForgotPasswordForm } from './Forms/ForgotPasswordForm.jsx';
 
 import "../../App.css";
 import "./LoginPage.css";
 
+const Image = () => {
+    return (
+        <div className='primary-background min-height-100vh width-60 center-content loginPageImage-container'>
+            <img className='width-fill-available' src={require("../../imgs/homeImg2.png")} alt="" />
+        </div>
+    )
+}
+
 export const LoginPage = () => {
-    const [login, setLogin] = useState(false);
     const [register, setRegister] = useState(false);
     const [resetPassword, setResetPassword] = useState(false);
     const [loggingIn, setLoggingIn] = useState(false);
 
-    if(login){
-        if(resetPassword){
-            return (
-                <ForgotPasswordForm/>
-            )
-        }
-        if(loggingIn){
-            return(
-                <Loading />
-            )
-        }
-        else{
-            return(
-                <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword}/>
-            )
-        }
+    if(resetPassword){
+        return (
+            <div className="flex-row">
+                <ForgotPasswordForm setResetPassword={setResetPassword}/>
+                <Image/>        
+            </div>
+        )
+    }
+    else if(loggingIn){
+        return(
+            <Loading/>
+        )
     }
     else if(register){
         return(
-            <RegisterForm/>
+            <div className="flex-row">
+                <RegisterForm setRegister={setRegister}/>
+                <Image/>
+            </div>
         )
     }
     else{
         return (
-            <>
-                <div id="loginpage-entry" className="center-content" style={{marginTop: "50px"}}>
-                    <div id="loginform-content" className="login-form login-container">
-                        <h1 className="loginTitle-text">Log in</h1>
-                        <Button text="Login" func={() => {
-                           setLogin(true); 
-                        }}/>
-                        <Button text="Register" func={() => {
-                           setRegister(true);
-                        }}/>
-                    </div>
-                </div>
-            </>
+            <div className="flex-row">
+                <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword} setRegister={setRegister}/>
+                <Image/>
+            </div>
         )
     }
 }

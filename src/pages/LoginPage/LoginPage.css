@@ -3,11 +3,6 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 50px 40px;
-
-    margin: auto;
-    margin-top: 80px;
-
     background-color: white;
 
     border-radius: 3px;
@@ -19,6 +14,7 @@
 
 .loginForm-container{
     height: 560px;
+    width: 30vw;
 }
 
 .loginTitle-text{
@@ -26,30 +22,10 @@
     margin-top: 20px;
 }
 
-.login-button{
-    min-width: 375px;
-    margin: 10px 0;
-
-    background-color: #4285F4;
-    padding: 15px 0;
-    border-radius: 5px;
-
-    transition: all 0.5s linear;
-}
-
-.loginButton-text{
-    text-align: center;
-    font-weight: 400;
-    color: white;
-    vertical-align: middle;
-    margin: auto;
-
-    white-space: nowrap;
-}
-
 .loginInput-title{
     font-size: 30px;
     margin-bottom: 25px;
+    border-bottom: 2px solid #EE9D00;
 }
 
 .loginInput-subtitle{
@@ -65,9 +41,9 @@
 
     font-size: 17px;
 
-    margin: 10px;
+    margin: 10px 0;
 
-    min-width: 400px;
+    min-width: -webkit-fill-available;
 }
 
 .forgotPassword-form{
@@ -109,5 +85,21 @@
     }
     to{
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 950px){
+    .loginPageImage-container{
+        display: none;
+    }
+
+    .loginForm-container{
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .loginForm-container{
+        width: 80vw;
     }
 }

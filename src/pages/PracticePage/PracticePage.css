@@ -67,7 +67,11 @@
 
 .practiceQuestion-container{
     margin-bottom: 30px;
-    width: 800px;
+    min-width: fit-content;
+}
+
+.practicePage-userResponse{
+    margin-left: 10px !important;
 }
 
 .timer-container{
@@ -86,4 +90,79 @@
 .practicePage-title{
     margin-bottom: 20px;
     font-weight: 400;
+}
+
+.practicePage-subtitle{
+    margin: 10px 0;
+    font-weight: 400;   
+}
+
+.practicePageReview-title{
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+
+.practicePage-correct{
+    color: rgb(78, 255, 58);
+}
+
+.practicePage-incorrect{
+    color: rgb(255, 0, 0);
+}
+
+.practicePage-skipped{
+    color: rgb(152, 152, 152);
+}
+
+.practicePageReview-page{
+    margin: 10px 0;
+    max-width: 800px;
+}
+
+.practicePageReviewTitle-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.practicePageExplanation-title{
+    font-size: 20px;
+    font-weight: 400;
+
+    margin: 20px 0 5px 0;
+}
+
+.practicePageExplanation-desc{
+    font-size: 16px;
+}
+
+.practicePageReviewButton-container{
+    width: 200px;
+}
+
+@media screen and (max-width: 900px){
+    .practicePageReview-page{
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .practicePageReview-page{
+        max-width: 400px;
+    }
+
+    .practicePageReviewTitle-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .practicePageReview-title{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .practicePageReview-page{
+        max-width: 275px;
+    }
 }
