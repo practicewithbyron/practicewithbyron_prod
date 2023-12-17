@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <Router> {/* Router wraps the entire application */}
-        <div className="flex-column">
+        <div className="flex-column min-height-100vh">
           <ReactNotifications />
           <NavigationBar/>
             <Routes>
