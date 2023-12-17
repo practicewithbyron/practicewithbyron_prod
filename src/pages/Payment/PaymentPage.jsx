@@ -1,117 +1,3 @@
-// import React, { useState } from "react";
-
-// import { useParams } from "react-router-dom";
-// import { PaymentPageSelection } from "./PaymentPageSelection";
-// import { PaymentPageInput } from './PaymentPageInput';
-// import { ReadCatalog } from "../../db/Read/ReadCatalog";
-// import { Error } from "../Error/Error";
-// import { Loading } from "../Loading/loading";
-
-// import "../../App.css";
-// import PayPalLogo from './PayPalLogo';
-// import { CaptureOrder } from "../../db/Paypal/captureOrders";
-// import { CreateOrder } from "../../db/Paypal/createOrder";
-
-
-// export const PaymentPage = () => {
-//     const [paypal, setPaypal] = useState(true);
-//     const [creditcard, setCreditcard] = useState(false);
-//     const [couponDiscount, setCouponDiscount] = useState(0);
-
-    // const [isFetching, setIsFetching] = useState(true);
-    // const [error, setError] = useState(null);
-    // const [data, setData] = useState(null);
-
-//     const [paypalError, setPaypalError] = useState(null);
-//     const [orderID, setOrderID] = useState(null);
-
-
-//     const {name} = useParams(); 
-
-    // if(isFetching){
-    //     ReadCatalog(name)
-    //     .then(res => {
-    //         setData(res.data.detail[0]);
-    //     })
-    //     .catch(err => {
-    //         setError(err)
-    //     })
-    //     .finally(() => {
-    //         setIsFetching(false)
-    //     });  
-    // }
-
-//     const reset = () => {
-//         setPaypal(false);
-//         setCreditcard(false);
-//     }
-
-//     if(isFetching){
-//         return(
-//             <Loading/>
-//         )
-//     }
-//     else if(error){
-//         return(
-//             <Error title={"Internal server error"} message={error.message}/>
-//         )
-//     }
-//     else{
-//         return(
-//             <div className="flex-column center-content" style={{marginTop: "57px"}}>
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Choose a Payment Method</h1>
-//                     <PaymentPageSelection state={paypal} set={setPaypal} reset={reset} text="PayPal"/>
-//                     <PaymentPageSelection state={creditcard} set={setPaypal} reset={reset} text="Credit Card (Not Available)"/>
-//                 </div>
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Provide A Coupon Code</h1>
-//                     <PaymentPageInput setCouponDiscount={setCouponDiscount}/>
-
-//                 </div>
-
-//                 <div className="paymentPage-partition">
-//                     <h1 className="paymentPage-title">Confirm your order</h1>
-//                     {
-//                         couponDiscount ? (
-//                             <>
-//                                 <div className="flex-row">
-//                                     <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Subtotal: </h2>
-//                                     <h2 className="paymentPagePrice-text">£{data.detail}</h2>
-//                                 </div>
-//                                 <div className="flex-row">
-//                                     <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Coupon Discount: </h2>
-//                                     <h2 className="paymentPagePrice-text">£{couponDiscount}</h2>
-//                                 </div>
-//                             </>
-//                         ) : (
-//                             <></>
-//                         )
-//                     }
-//                     <div className="flex-row">
-//                         <h2 className="paymentPagePrice-text" style={{"marginRight": "auto"}}>Total: </h2>
-//                         <h2 className="paymentPagePrice-text">£{data.price - couponDiscount}</h2>
-//                     </div>
-//                     <button className="paymentPagePayPal-button" onClick={() => {
-//                         CreateOrder(`${data.price - couponDiscount}`)
-//                         .then(res => {
-//                             setOrderID(res.data.id)
-//                             window.location.href = res.data.links[1].href;
-//                         })
-//                         .catch(err => {
-//                             console.log(err);
-//                         })
-//                     }}>
-//                         <PayPalLogo/>
-//                     </button>
-//                 </div>
-
-//             </div>
-//         )
-//     }
-
-// }
-
 import React, { useEffect, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { IsLoggedIn } from '../../IsLoggedIn';
@@ -119,21 +5,19 @@ import { Link, useParams } from 'react-router-dom';
 import { ReadCatalog } from "../../db/Read/ReadCatalog.jsx";
 import { Loading } from './../Loading/loading';
 import { Error } from './../Error/Error';
+import { TransactionCompletePage } from './TransactionCompletePage';
+import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
+import { Notification } from '../../Notification';
+import { JWTValidation } from '../../validation/jwtValidation.js';
+
+import Cookies from 'js-cookie';
 
 import "../../App.css";
+import 'animate.css';
 import "./PaymentPage.css";
-import { TransactionCompletePage } from './TransactionCompletePage';
-import Cookies from 'js-cookie';
-import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 
-// Renders errors or successfull transactions on the screen.
-function Message({ content }) {
-  return <p>{content}</p>;
-}
 
 export const PaymentPage = () => {
-  const [message, setMessage] = useState('');
-
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -145,7 +29,6 @@ export const PaymentPage = () => {
   if(isFetching){
     ReadCatalog(exam.exam)
     .then(res => {
-      console.log(res);
       setData(res.data.detail[0]);
     })
     .catch(err => {
@@ -175,7 +58,6 @@ export const PaymentPage = () => {
     'currency': 'USD'
   };
 
-
   if(isFetching){
     return (
       <Loading/>
@@ -185,7 +67,7 @@ export const PaymentPage = () => {
   else if(error)
   {
     return (
-      <Error title={"Sorry"} message={`There was an retrieving data for the ${exam}`}/>
+      <Error title={"Sorry"} message={"An error has occurred. Please refresh the page and try again."}/>
     )
   }
   else if(!data) // If the api request was successful but the exam doesn't exist.
@@ -228,6 +110,7 @@ export const PaymentPage = () => {
   
         <div className="flex-row paymentPageTandC-container">
           <input type="checkbox" className='paymentPageTandC-checkbox' onChange={() => {
+            // This can be overriden via inspect html
             const buttonContainer = document.getElementById("paymentPagePaypalButtonContainer");
             buttonContainer.classList.toggle("disabled");
           }}/>
@@ -244,16 +127,17 @@ export const PaymentPage = () => {
               }}
               createOrder={async () => {
                 try {
-                  const response = await fetch('https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/orders', {
+                  const response = await fetch('https://practicewithbyron-python.azurewebsites.net/orders', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
-                      'Ocp-Apim-Subscription-Key': 'ff1ce5d1c42047a3b1f01aeea1e5cfd7'
-                    },
+                      "Access-Control-Allow-Origin": "*",
+                      "Subscription": "aef2e9fb-1f86-423a-99bd-f44f67316387"
+                  },
                     // use the "body" param to optionally pass additional order information
                     // like product ids and quantities
                     body: JSON.stringify({
-                        value: "10.99"
+                        value: "14.99"
                     }),
                   });
     
@@ -270,72 +154,74 @@ export const PaymentPage = () => {
                     throw new Error(errorMessage);
                   }
                 } catch (error) {
-                  console.error(error);
-                  setMessage(
-                    `Could not initiate PayPal Checkout...${error}`,
-                  );
+                  Notification("error", "Could not initiate PayPal checkout. Please try again!")
                 }
               }}
               onApprove={async (data, actions) => {
-                console.log(data);
+                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0"
                 try {
-                  const response = await fetch(
-                    `https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/orderscapture`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'Ocp-Apim-Subscription-Key': 'ff1ce5d1c42047a3b1f01aeea1e5cfd7'
-                      },
-                      body: JSON.stringify({
-                        orderID: data.orderID
-                      })
-                    },
-                  );
-    
-                  const orderData = await response.json();
-                  // Three cases to handle:
-                  //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                  //   (2) Other non-recoverable errors -> Show a failure message
-                  //   (3) Successful transaction -> Show confirmation or thank you message
-    
-                  const errorDetail = orderData?.details?.[0];
-    
-                  if (errorDetail?.issue === 'INSTRUMENT_DECLINED') {
-                    // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                    // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-                    return actions.restart();
-                  } else if (errorDetail) {
-                    // (2) Other non-recoverable errors -> Show a failure message
-                    throw new Error(
-                      `${errorDetail.description} (${orderData.debug_id})`,
-                    );
-                  } else {
-                    // (3) Successful transaction -> Show confirmation or thank you message
-                    // Or go to another URL:  actions.redirect('thank_you.html');
-                    UpdateUserCatalog(exam.exam, Cookies.get("jwtToken"))
-                    .then(() => {
-                      //Add to log file or something to keep a track of this working
-                      setTransactionComplete(true);
-                    })
-                    .catch(err => {
-                      console.log(err);
-                      //Same here, also show some error message
-                    })
-                    
+                  if (!JWTValidation(Cookies.get('jwtToken')))
+                  {
+                    Notification("error", "Login Timeout", "Login has timed out. Taking you to the login page...")
+                    await new Promise(resolve => setTimeout(resolve, 3500)); 
+                    window.location.href = "/login";
                   }
+                  else{
+                    const response = await fetch(
+                      `https://practicewithbyron-python.azurewebsites.net/orderscapture`,
+                      {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          "Access-Control-Allow-Origin": "*",
+                          "Subscription": "aef2e9fb-1f86-423a-99bd-f44f67316387"
+                        },
+                        body: JSON.stringify({
+                          orderID: data.orderID
+                        })
+                      },
+                    );
+      
+                    const orderData = await response.json();
+                    // Three cases to handle:
+                    //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                    //   (2) Other non-recoverable errors -> Show a failure message
+                    //   (3) Successful transaction -> Show confirmation or thank you message
+      
+                    const errorDetail = orderData?.details?.[0];
+  
+                    // We want to be able to check whether the jwt has expired just before they pay 
+                    // (clicked the button but the money hasn't gone through)
+      
+                    if (errorDetail?.issue === 'INSTRUMENT_DECLINED') {
+                      // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                      // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+                      return actions.restart();
+                    } else if (errorDetail) {
+                      // (2) Other non-recoverable errors -> Show a failure message
+                      Notification("error", "Payment Failed", "Please try again");
+                      
+                    } else {
+                      // (3) Successful transaction -> Show confirmation or thank you message
+                      // Or go to another URL:  actions.redirect('thank_you.html');
+                      UpdateUserCatalog(exam.exam, Cookies.get('jwtToken'))
+                      .then(() => {
+                        //Add to log file or something to keep a track of this working
+                        setTransactionComplete(true);
+                      })
+                      .catch(error => {
+                        Notification("error", "Transaction Failure", "Your transaction could not be processed. Don't worry it will be processed in a moment...")
+                      })
+                    }
+                  }
+
                 } catch (error) {
-                  console.error(error);
-                  setMessage(
-                    `Sorry, your transaction could not be processed...${error}`,
-                  );
+                  Notification("error", "Error", "Oops an error has occured. Please try again!");
                 }
               }}
             />
           </PayPalScriptProvider>
-          <Message content={message} />
         </div>
-        
       </div>
     );
   }
