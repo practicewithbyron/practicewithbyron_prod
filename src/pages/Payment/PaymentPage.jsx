@@ -13,6 +13,7 @@ import { JWTValidation } from '../../validation/jwtValidation.js';
 import "../../App.css";
 import 'animate.css';
 import "./PaymentPage.css";
+import Cookies from 'js-cookie';
 
 
 export const PaymentPage = () => {
@@ -163,7 +164,7 @@ export const PaymentPage = () => {
               onApprove={async (data, actions) => {
                 // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0"
                 try {
-                  if (!JWTValidation("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0"))
+                  if (!JWTValidation(Cookies.get('jwtToken')))
                   {
                     Notification("error", "Login Timeout", "Login has timed out. Taking you to the login page...")
                     await new Promise(resolve => setTimeout(resolve, 3500)); 
@@ -207,7 +208,7 @@ export const PaymentPage = () => {
                     } else {
                       // (3) Successful transaction -> Show confirmation or thank you message
                       // Or go to another URL:  actions.redirect('thank_you.html');
-                      UpdateUserCatalog(exam.exam, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0")
+                      UpdateUserCatalog(exam.exam, Cookies.get('jwtToken'))
                       .then(() => {
                         //Add to log file or something to keep a track of this working
                         setTransactionComplete(true);
