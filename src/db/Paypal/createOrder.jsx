@@ -3,8 +3,8 @@ import { Post } from "../post";
 
 export const CreateOrder = (value) => {
     return(
-        Post(getURL() + "orders", {
-            value: value,
-        })
+        Post(getURL() + "orders", JSON.stringify({
+            value: value
+        }))
     )
 }

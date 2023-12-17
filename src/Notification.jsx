@@ -1,26 +1,61 @@
-import React from "react"
-import { ErrorAlert } from './components/Alert/ErrorAlert';
-import { SuccessAlert } from "./components/Alert/SuccessAlert";
-import { InfoAlert } from "./components/Alert/InfoAlert";
+import { Store } from 'react-notifications-component'
+
+import 'react-notifications-component/dist/theme.css'
 
 // Renders errors or successfull transactions on the screen.
-export function Notification(type, title, message){
+export const Notification = (type, title, message) => {
     if(type === "error")
     {
       return (
-        <ErrorAlert errorTitle={title} errorMessage={message}/>
+        Store.addNotification({
+          title: title,
+          message: message,
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3000,
+            onScreen: true
+          }
+        })
       )
     }
     else if(type === "success")
     {
       return (
-        <SuccessAlert successTitle={title} successMessage={message}/>
+        Store.addNotification({
+          title: title,
+          message: message,
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3000,
+            onScreen: true
+          }
+        })
       )
     }
     else if(type === "info")
     {
       return (
-        <InfoAlert infoTitle={title} infoMessage={message}/>
+        Store.addNotification({
+          title: title,
+          message: message,
+          type: "info",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3000,
+            onScreen: true
+          }
+        })
       )
     }
   }

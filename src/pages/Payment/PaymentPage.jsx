@@ -8,9 +8,7 @@ import { Error } from './../Error/Error';
 import { TransactionCompletePage } from './TransactionCompletePage';
 import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 import { Notification } from '../../Notification';
-import { TriggerNotification } from '../../TriggerNotification';
-
-import Cookies from 'js-cookie';
+import { JWTValidation } from '../../validation/jwtValidation.js';
 
 import "../../App.css";
 import 'animate.css';
@@ -44,6 +42,10 @@ export const PaymentPage = () => {
     IsLoggedIn(`payment/${exam.exam}`);
   }, [exam.exam])
 
+  useEffect(() => {
+    IsLoggedIn(`payment/${exam.exam}`);
+  }, [])
+
   var clientID = "AZpDtgm8VQsXV03gURgpIkxH5eP4MAxxVCqgWMjuCV1qbsdv4oJYInftxx2y9_rtbtjwSHIClJY-piq4"
 
   var isLive = false;
@@ -68,7 +70,7 @@ export const PaymentPage = () => {
   else if(error)
   {
     return (
-      <Error title={"Sorry"} message={`There was an error retrieving data for the ${exam.exam}`}/>
+      <Error title={"Sorry"} message={"An error has occurred. Please refresh the page and try again."}/>
     )
   }
   else if(!data) // If the api request was successful but the exam doesn't exist.
@@ -86,9 +88,6 @@ export const PaymentPage = () => {
   else{
     return (
       <div className="flex-column complete-center full-height page-margin full-width paymentPage-container">
-          <div id="errorContainer" className="notShowing animate__animated">
-            <Notification type="error" title="Error" message={error}/>
-          </div>
         <div className='paymentPage-widget' style={{paddingBottom: "10px"}}>
           <h1 className='paymentPage-title'>Checkout 🛒</h1>
           <h2 className='paymentPagePrice-text'>Practice Exam Questions for the {exam.exam} & more</h2>
@@ -131,16 +130,17 @@ export const PaymentPage = () => {
               }}
               createOrder={async () => {
                 try {
-                  const response = await fetch('https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/orders', {
+                  const response = await fetch('https://practicewithbyron-python.azurewebsites.net/orders', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
-                      'Ocp-Apim-Subscription-Key': 'ff1ce5d1c42047a3b1f01aeea1e5cfd7'
-                    },
+                      "Access-Control-Allow-Origin": "*",
+                      "Subscription": "aef2e9fb-1f86-423a-99bd-f44f67316387"
+                  },
                     // use the "body" param to optionally pass additional order information
                     // like product ids and quantities
                     body: JSON.stringify({
-                        value: "10.99"
+                        value: "14.99"
                     }),
                   });
     
@@ -157,64 +157,69 @@ export const PaymentPage = () => {
                     throw new Error(errorMessage);
                   }
                 } catch (error) {
-                  setError(
-                    `Could not initiate PayPal Checkout...${error}`,
-                  );
-                  TriggerNotification("errorContainer");
+                  Notification("error", "Could not initiate PayPal checkout. Please try again!")
                 }
               }}
               onApprove={async (data, actions) => {
+                // "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0"
                 try {
-                  const response = await fetch(
-                    `https://practicewithbyronpython-api.azure-api.net/PracticeWithByron-python/v1.0.0/orderscapture`,
-                    {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                        'Ocp-Apim-Subscription-Key': 'ff1ce5d1c42047a3b1f01aeea1e5cfd7'
-                      },
-                      body: JSON.stringify({
-                        orderID: data.orderID
-                      })
-                    },
-                  );
-    
-                  const orderData = await response.json();
-                  // Three cases to handle:
-                  //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                  //   (2) Other non-recoverable errors -> Show a failure message
-                  //   (3) Successful transaction -> Show confirmation or thank you message
-    
-                  const errorDetail = orderData?.details?.[0];
-    
-                  if (errorDetail?.issue === 'INSTRUMENT_DECLINED') {
-                    // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
-                    // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-                    return actions.restart();
-                  } else if (errorDetail) {
-                    // (2) Other non-recoverable errors -> Show a failure message
-                    setError("Payment failed, please try again");
-                    TriggerNotification("errorContainer");
-                  } else {
-                    // (3) Successful transaction -> Show confirmation or thank you message
-                    // Or go to another URL:  actions.redirect('thank_you.html');
-                    UpdateUserCatalog(exam.exam, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0")
-                    .then(() => {
-                      //Add to log file or something to keep a track of this working
-                      setTransactionComplete(true);
-                    })
-                    .catch(error => {
-                      setError(
-                        `Sorry, your transaction could not be processed...${error}`,
-                      );
-                      TriggerNotification("errorContainer");
-                    })
+                  if (!JWTValidation("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0"))
+                  {
+                    Notification("error", "Login Timeout", "Login has timed out. Taking you to the login page...")
+                    await new Promise(resolve => setTimeout(resolve, 3500)); 
+                    window.location.reload();
                   }
+                  else{
+                    const response = await fetch(
+                      `https://practicewithbyron-python.azurewebsites.net/orderscapture`,
+                      {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          "Access-Control-Allow-Origin": "*",
+                          "Subscription": "aef2e9fb-1f86-423a-99bd-f44f67316387"
+                        },
+                        body: JSON.stringify({
+                          orderID: data.orderID
+                        })
+                      },
+                    );
+      
+                    const orderData = await response.json();
+                    // Three cases to handle:
+                    //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                    //   (2) Other non-recoverable errors -> Show a failure message
+                    //   (3) Successful transaction -> Show confirmation or thank you message
+      
+                    const errorDetail = orderData?.details?.[0];
+  
+                    // We want to be able to check whether the jwt has expired just before they pay 
+                    // (clicked the button but the money hasn't gone through)
+      
+                    if (errorDetail?.issue === 'INSTRUMENT_DECLINED') {
+                      // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
+                      // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
+                      return actions.restart();
+                    } else if (errorDetail) {
+                      // (2) Other non-recoverable errors -> Show a failure message
+                      Notification("error", "Payment Failed", "Please try again");
+                      
+                    } else {
+                      // (3) Successful transaction -> Show confirmation or thank you message
+                      // Or go to another URL:  actions.redirect('thank_you.html');
+                      UpdateUserCatalog(exam.exam, "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MjRmYTAxY2YxZDNkOTg4YmQ4MmM2MCIsImVtYWlsIjoiYTJAYS5jb20iLCJjYXRhbG9nIjpbIlBDRVAtNDEtMDEiXSwiZXhwIjoxNjk4NjgzMDkyLCJhZG1pbiI6IkZhbHNlIn0.caHXn-F-E3IqRZECTy_mrl8YR5ErWsU61HHkprRUJH0")
+                      .then(() => {
+                        //Add to log file or something to keep a track of this working
+                        setTransactionComplete(true);
+                      })
+                      .catch(error => {
+                        Notification("error", "Transaction Failure", "Your transaction could not be processed. Don't worry it will be processed in a moment...")
+                      })
+                    }
+                  }
+
                 } catch (error) {
-                  setError(
-                    `Sorry, your transaction could not be processed...${error}`,
-                  );
-                  TriggerNotification("errorContainer");
+                  Notification("error", "Error", "Oops an error has occured. Please try again!");
                 }
               }}
             />

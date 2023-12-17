@@ -15,12 +15,14 @@ import { LearningPlanPage } from './pages/LearningPlan/LearningPlanPage';
 import { TrainingPage } from './pages/TrainingPage/TrainingPage';
 import { Page404 } from './pages/Error/Page404';
 import { TAndCPage } from './pages/TandC/TandCPage';
+import { ReactNotifications } from 'react-notifications-component';
 
 class App extends Component {
   render() {
     return (
       <Router> {/* Router wraps the entire application */}
         <div className="flex-column">
+          <ReactNotifications />
           <NavigationBar/>
             <Routes>
               <Route exact path="/" element={<Home/>}/>
