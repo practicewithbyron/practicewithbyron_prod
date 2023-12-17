@@ -10,10 +10,11 @@ import { UpdateUserCatalog } from '../../db/Update/updateUserCatalog';
 import { Notification } from '../../Notification';
 import { JWTValidation } from '../../validation/jwtValidation.js';
 
+import Cookies from 'js-cookie';
+
 import "../../App.css";
 import 'animate.css';
 import "./PaymentPage.css";
-import Cookies from 'js-cookie';
 
 
 export const PaymentPage = () => {
@@ -28,7 +29,6 @@ export const PaymentPage = () => {
   if(isFetching){
     ReadCatalog(exam.exam)
     .then(res => {
-      console.log(res);
       setData(res.data.detail[0]);
     })
     .catch(err => {
@@ -42,10 +42,6 @@ export const PaymentPage = () => {
   useEffect(() => {
     IsLoggedIn(`payment/${exam.exam}`);
   }, [exam.exam])
-
-  useEffect(() => {
-    IsLoggedIn(`payment/${exam.exam}`);
-  }, [])
 
   var clientID = "AZpDtgm8VQsXV03gURgpIkxH5eP4MAxxVCqgWMjuCV1qbsdv4oJYInftxx2y9_rtbtjwSHIClJY-piq4"
 
@@ -168,7 +164,7 @@ export const PaymentPage = () => {
                   {
                     Notification("error", "Login Timeout", "Login has timed out. Taking you to the login page...")
                     await new Promise(resolve => setTimeout(resolve, 3500)); 
-                    window.location.reload();
+                    window.location.href = "/login";
                   }
                   else{
                     const response = await fetch(
