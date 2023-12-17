@@ -41,7 +41,6 @@ export const CatalogPage = () => {
             if(tokenFromCookie){
                 ReadUserCatalog(Cookies.get('jwtToken'))
                 .then(res => {
-                    console.log(res);
                     setDataUser(res.data.detail);
                 })
                 .finally(() => {
