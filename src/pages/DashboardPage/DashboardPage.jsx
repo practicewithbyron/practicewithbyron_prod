@@ -30,9 +30,9 @@ export const DashboardPage = () => {
     const [catalogsFetching, setCatalogsFetching] = useState(false);
 
     useEffect(() => {
-        setFilteredList(data?.detail?.filter(el => {
+        setFilteredList(catalogs.filter(el => {
             return(
-                el.toLowerCase().startsWith(input.toLowerCase())
+                el.name.toLowerCase().startsWith(input.toLowerCase())
             )
         }))
     }, [input, data])
@@ -49,26 +49,25 @@ export const DashboardPage = () => {
             }) 
             .finally(() => {
                 setIsFetching(false);
-                setCatalogsFetching(true);
             })
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
-        if(catalogsFetching)
-        {
+        setCatalogsFetching(true);
+        if(data){
             data.forEach((el) => {
                 ReadCatalog(el, Cookies.get('jwtToken'))
-                  .then(cat => {
+                    .then(cat => {
                     setCatalogs(catalogs => [...catalogs, cat.data.detail[0]]);
-                  })
-                  .catch(err => {
+                    })
+                    .catch(err => {
                     setError(err);
-                  });
-              });
+                    });
+                });
             setCatalogsFetching(false);
         }
-    }, [])
+    }, [isFetching])
 
     if(isFetching){
         return (
