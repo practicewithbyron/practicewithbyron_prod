@@ -1,16 +1,14 @@
 import React from 'react';
-
-import { ErrorMessage } from "../ErrorMessage.js";
 import { Register } from "../../../db/register.jsx";
 import { PasswordValidation } from '../../../validation/passwordValidation.js';
 import { IsEmailValid } from '../../../validation/emailValidation.js';
 import { CheckInputIsntEmpty } from '../../../validation/inputValidation.js';
 import { Button } from '../../../components/Button/Button.jsx';
 import { TemplateForm } from './TemplateForm.jsx';
+import { Notification } from '../../../Notification.js';
 
 import "../../../App.css";
 import "../LoginPage.css";
-import { Notification } from '../../../Notification.js';
 
 const Form = ({setRegister}) => {
     return (
@@ -50,7 +48,7 @@ const Form = ({setRegister}) => {
                 {
                     Register(email.value, pass1.value)
                     .then(async res => {
-                        if(res.status == 200)
+                        if(res.status === 200)
                         {
                             Notification("success", "Registration Successful", "Account has been successfully registered");
                             await new Promise(resolve => setTimeout(resolve, 3500)); 
