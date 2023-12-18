@@ -37,37 +37,38 @@ export const DashboardPage = () => {
         }))
     }, [input, data])
 
+    useEffect(() => {
+        if(isFetching){
+            IsLoggedIn("dashboard");
+            ReadUserCatalog(Cookies.get('jwtToken'))
+            .then(res => {
+                setData(res.data.detail);       
+            })
+            .catch(err => {
+                setError(err)
+            }) 
+            .finally(() => {
+                setIsFetching(false);
+                setCatalogsFetching(true);
+            })
+        }
+    }, [])
 
-    if(isFetching){
-        IsLoggedIn("dashboard");
-        ReadUserCatalog(Cookies.get('jwtToken'))
-        .then(res => {
-            setData(res.data.detail);       
-        })
-        .catch(err => {
-            setError(err)
-        }) 
-        .finally(() => {
-            setIsFetching(false);
-            setCatalogsFetching(true);
-        })
-    }
-
-    if(catalogsFetching)
-    {
-        data.forEach(el => {
-            ReadCatalog(el, Cookies.get('jwtToken'))
-              .then(cat => {
-                setCatalogs(catalogs => [...catalogs, cat]);
-              })
-              .catch(err => {
-                setError(err);
+    useEffect(() => {
+        if(catalogsFetching)
+        {
+            data.forEach((el) => {
+                ReadCatalog(el, Cookies.get('jwtToken'))
+                  .then(cat => {
+                    setCatalogs(catalogs => [...catalogs, cat.data.detail[0]]);
+                  })
+                  .catch(err => {
+                    setError(err);
+                  });
               });
-          });
-        setCatalogsFetching(false);
-    }
-        
-    console.log(catalogs);
+            setCatalogsFetching(false);
+        }
+    }, [])
 
     if(isFetching){
         return (
@@ -108,9 +109,16 @@ export const DashboardPage = () => {
     
                     <div className="flex-row flex-wrap dashboardWidget-container">
                         {
+                            catalogsFetching ? (
+                                <Loading/>
+                            ) : (
+                                <></>
+                            )
+                        }
+                        {
                             input === "" ?
                             (
-                                catalogs.map(el => {
+                                catalogs.map((el) => {
                                     return(
                                         <Link to={`/practice/${el.name}`}>
                                             <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
