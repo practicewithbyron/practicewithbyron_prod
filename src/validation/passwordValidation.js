@@ -21,7 +21,9 @@ export const PasswordValidation = (password) => {
 
     const errors = schema.validate(password, { list: true });
 
-    errors.map((error) => customMessages[error]);
+    errors.forEach((err, index) => {
+        errors[index] = customMessages[err];
+    })
 
     return errors;
 }
