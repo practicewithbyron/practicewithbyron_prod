@@ -7,7 +7,7 @@ import { CatalogPage } from './pages/CatalogPage/CatalogPage.jsx';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';
 import { PracticePage } from './pages/PracticePage/PracticePage';
 import { CatalogLandingPage } from './pages/CatalogLandingPage/CatalogLandingPage';
-import { ResetPassword } from './pages/ForgotPassword/ResetPassword';
+import { ResetPassword } from './pages/LoginPage/Forms/ResetPasswordForm.jsx';
 import { StatsPage } from './pages/Stats/StatsPage';
 import { PaymentPage } from './pages/Payment/PaymentPage';
 import { Home } from './pages/Home/HomePage';

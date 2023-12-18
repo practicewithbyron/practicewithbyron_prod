@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
-import { Loading } from "../Loading/loading";
-import { Error } from "../Error/Error";
-import { FindPasswordResetRequest } from "../../db/Read/findPasswordResetRequest";
-import { ChangePassword } from '../../db/Update/changePassword';
-import { NotificationMessage } from '../LoginPage/NotifcationMessage';
+import { Button } from '../../../components/Button/Button';
+import { Loading } from '../../Loading/loading';
+import { Error } from '../../Error/Error';
+import { FindPasswordResetRequest } from '../../../db/Read/findPasswordResetRequest';
+import { ChangePassword } from '../../../db/Update/changePassword';
+import { Notification } from '../../../Notification';
 
-import "../../App.css";
-import "../LoginPage/LoginPage.css";
-import { Button } from '../../components/Button/Button';
+import "../../../App.css"
+import "../LoginPage.css";
 
 // This is where we actually change our password once we go on the email link
 
@@ -53,10 +53,15 @@ export const ResetPassword = () => {
                         const newPassword = document.getElementById("resetPassword");
                         ChangePassword(data.detail.email, newPassword.value)
                         .then(res => {
-                            NotificationMessage("resetPassword-content", "Password changed!");
+                            if (res.data.detail.modifiedCount === 1){
+                                Notification("success", "Success", "Password changed successfully")
+                            }
+                            else {
+                                Notification("danger", "Error", "Something went wrong, please refresh the page and try again")
+                            }
                         })
                         .catch(err => {
-                            NotificationMessage("resetPassword-content", err);
+                            Notification("danger", "Error", `Something went wrong ${err}`)
                         })
                     }}/>
                 </div>

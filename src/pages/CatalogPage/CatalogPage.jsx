@@ -35,12 +35,15 @@ export const CatalogPage = () => {
               setIsFetching(false);
             });
         }
+    }, [isFetching]);
 
+    useEffect(() => {
         if(isFetchingUser){
             const tokenFromCookie = Cookies.get('jwtToken');
             if(tokenFromCookie){
                 ReadUserCatalog(Cookies.get('jwtToken'))
                 .then(res => {
+                    console.log(res);
                     setDataUser(res.data.detail);
                 })
                 .finally(() => {
@@ -48,20 +51,21 @@ export const CatalogPage = () => {
                 });  
             }
         }
-      }, [isFetching, dataUser, isFetchingUser]);
+    }, [dataUser, isFetchingUser])
       
-      useEffect(() => {
-        // Only filter and update filteredArray if filter or data change
-        if (filter && data) {
-          const temp = data.detail.filter((el) => el.catagory === filter);
-          setFilteredArray(temp);
-        }
-      }, [filter, data]);
+    useEffect(() => {
+    // Only filter and update filteredArray if filter or data change
+    if (filter && data) {
+        const temp = data.detail.filter((el) => el.catagory === filter);
+        setFilteredArray(temp);
+    }
+    }, [filter, data]);
 
     if(error){
         return <Error title="Internal Server Error" message={error.message}/>
     }
     else if(isFetching || isFetchingUser){
+        console.log(dataUser);
         return (
             <Loading/>
         )

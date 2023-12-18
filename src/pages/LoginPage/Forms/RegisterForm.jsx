@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { ErrorMessage } from "../ErrorMessage.js";
 import { Register } from "../../../db/register.jsx";
 import { PasswordValidation } from '../../../validation/passwordValidation.js';
 import { IsEmailValid } from '../../../validation/emailValidation.js';
 import { CheckInputIsntEmpty } from '../../../validation/inputValidation.js';
 import { Button } from '../../../components/Button/Button.jsx';
 import { TemplateForm } from './TemplateForm.jsx';
+import { Notification } from '../../../Notification.js';
 
 import "../../../App.css";
 import "../LoginPage.css";
@@ -27,42 +26,42 @@ const Form = ({setRegister}) => {
                 const pass1 = document.getElementById("registerPasswordInput");
                 const pass2 = document.getElementById("registerPasswordConfirmInput");
 
+                const passwordValidation = PasswordValidation(pass1.value)
+
                 //Input validation
                 if(CheckInputIsntEmpty(email.value) || CheckInputIsntEmpty(pass1.value) || CheckInputIsntEmpty(pass2.value))
                 {
-                    ErrorMessage("registerForm-content", "Please fill in missing inputs")
+                    Notification("warning", "Input Error", "Please fill in the missing inputs");
                 }
                 //Email validation
                 else if(!IsEmailValid(email.value)){
-                    ErrorMessage("registerForm-content", "Please enter a valid email")
+                    Notification("warning", "Invalid Email", "Please enter a valid email")
                 }
                 //Password validation
-                else if (PasswordValidation(pass1.value).length !== 0)
+                else if (passwordValidation.length !== 0)
                 {
-                    const errorMessage = "Invalid Password";
-                    ErrorMessage("registerForm-content", errorMessage);
+                    passwordValidation.forEach(el => {
+                        Notification("warning", "Invalid Password", el)
+                    })
                 }
                 else if(pass1.value === pass2.value)
                 {
                     Register(email.value, pass1.value)
-                    .then(res => {
-                        //Check if user already exists
-                        if(res.data.detail.Error !== undefined)
+                    .then(async res => {
+                        if(res.status === 200)
                         {
-                            ErrorMessage("registerForm-content", "Account already exists with that email");
-                        }
-                        else{
-                            window.location.reload();
+                            Notification("success", "Registration Successful", "Account has been successfully registered");
+                            await new Promise(resolve => setTimeout(resolve, 3500)); 
+                            window.location.href = "/catalog";
                         }
                     })
                     .catch(err => {
-                        console.log(err);
+                        Notification("warning", "Registration Error", err.response.data.detail);
                     })
                 }
                 else
                 {
-                    const errorMessage = "Please make sure password match."
-                    ErrorMessage("registerForm-content", errorMessage);
+                    Notification("warning", "Invalid Password", "Make sure passwords match");
                 }
             }}/>
             <Button text="Back" func={() => {
