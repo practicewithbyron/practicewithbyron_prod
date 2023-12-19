@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { WidgetComponent } from "../../components/Widget/WidgetComponent";
 import { Loading } from "../Loading/loading";
 import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
@@ -35,7 +35,7 @@ export const DashboardPage = () => {
                 el.name.toLowerCase().startsWith(input.toLowerCase())
             )
         }))
-    }, [input, data])
+    }, [input, data, catalogs])
 
     useEffect(() => {
         if(isFetching){
@@ -51,23 +51,32 @@ export const DashboardPage = () => {
                 setIsFetching(false);
             })
         }
-    }, []);
+    }, [isFetching]);
 
     useEffect(() => {
-        setCatalogsFetching(true);
-        if(data){
-            data.forEach((el) => {
-                ReadCatalog(el, Cookies.get('jwtToken'))
-                    .then(cat => {
-                    setCatalogs(catalogs => [...catalogs, cat.data.detail[0]]);
-                    })
-                    .catch(err => {
-                    setError(err);
-                    });
-                });
-            setCatalogsFetching(false);
-        }
-    }, [isFetching])
+        const fetchData = async () => {
+          setCatalogsFetching(true);
+    
+          if (data) {
+            try {
+              const promises = data.map(async (el) => {
+                const cat = await ReadCatalog(el, Cookies.get('jwtToken'));
+                return cat.data.detail[0];
+              });
+    
+              const results = await Promise.all(promises);
+    
+              setCatalogs([...results]);
+            } catch (err) {
+              setError(err);
+            } finally {
+              setCatalogsFetching(false);
+            }
+          }
+        };
+        fetchData();
+      }, [data]);
+        
 
     if(isFetching){
         return (
