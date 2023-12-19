@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { WidgetComponent } from "../../components/Widget/WidgetComponent";
 import { Loading } from "../Loading/loading";
 import { ReadUserCatalog } from "../../db/Read/ReadUserCatalog";
