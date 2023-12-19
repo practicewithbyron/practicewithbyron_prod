@@ -30,44 +30,53 @@ export const DashboardPage = () => {
     const [catalogsFetching, setCatalogsFetching] = useState(false);
 
     useEffect(() => {
-        setFilteredList(data?.detail?.filter(el => {
+        setFilteredList(catalogs.filter(el => {
             return(
-                el.toLowerCase().startsWith(input.toLowerCase())
+                el.name.toLowerCase().startsWith(input.toLowerCase())
             )
         }))
-    }, [input, data])
+    }, [input, data, catalogs])
 
+    useEffect(() => {
+        if(isFetching){
+            IsLoggedIn("dashboard");
+            ReadUserCatalog(Cookies.get('jwtToken'))
+            .then(res => {
+                setData(res.data.detail);       
+            })
+            .catch(err => {
+                setError(err)
+            }) 
+            .finally(() => {
+                setIsFetching(false);
+            })
+        }
+    }, [isFetching]);
 
-    if(isFetching){
-        IsLoggedIn("dashboard");
-        ReadUserCatalog(Cookies.get('jwtToken'))
-        .then(res => {
-            setData(res.data.detail);       
-        })
-        .catch(err => {
-            setError(err)
-        }) 
-        .finally(() => {
-            setIsFetching(false);
-            setCatalogsFetching(true);
-        })
-    }
-
-    if(catalogsFetching)
-    {
-        data.forEach(el => {
-            ReadCatalog(el, Cookies.get('jwtToken'))
-              .then(cat => {
-                setCatalogs(catalogs => [...catalogs, cat]);
-              })
-              .catch(err => {
-                setError(err);
+    useEffect(() => {
+        const fetchData = async () => {
+          setCatalogsFetching(true);
+    
+          if (data) {
+            try {
+              const promises = data.map(async (el) => {
+                const cat = await ReadCatalog(el, Cookies.get('jwtToken'));
+                return cat.data.detail[0];
               });
-          });
-        setCatalogsFetching(false);
-    }
+    
+              const results = await Promise.all(promises);
+    
+              setCatalogs([...results]);
+            } catch (err) {
+              setError(err);
+            } finally {
+              setCatalogsFetching(false);
+            }
+          }
+        };
+        fetchData();
+      }, [data]);
         
-    console.log(catalogs);
 
     if(isFetching){
         return (
@@ -108,9 +117,16 @@ export const DashboardPage = () => {
     
                     <div className="flex-row flex-wrap dashboardWidget-container">
                         {
+                            catalogsFetching ? (
+                                <Loading/>
+                            ) : (
+                                <></>
+                            )
+                        }
+                        {
                             input === "" ?
                             (
-                                catalogs.map(el => {
+                                catalogs.map((el) => {
                                     return(
                                         <Link to={`/practice/${el.name}`}>
                                             <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
