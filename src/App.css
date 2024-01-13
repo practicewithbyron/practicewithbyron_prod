@@ -15,6 +15,19 @@ input[type="radio"] {
   transform: scale(1.25) translateY(-1px);
 }
 
+input[type="text"]{
+  border: 0;
+
+  color: lightslategray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+
+  padding: 5px 18px;
+  height: 43px;
+
+  border-radius: 5px;
+}
+
 body {
   margin: 0;
   font-size: 150%
@@ -167,6 +180,10 @@ code {
   margin-right: 5px;
 }
 
+.margin-bottom-5px{
+  margin-bottom: 5px;
+}
+
 .width-30rem {
   width: 30rem;
 }
@@ -201,6 +218,10 @@ code {
 
 .font-size-19 {
   font-size: 1.9rem;
+}
+
+.font-size-21{
+  font-size: 2.1rem;
 }
 
 .margin-top-15px {
@@ -253,6 +274,14 @@ code {
 
 .margin-bottom-10px{
   margin-bottom: 10px;
+}
+
+.margin-bottom-20px{
+  margin-bottom: 20px;
+}
+
+.margin-bottom-30px{
+  margin-bottom: 30px;
 }
 
 .max-width-700 {
