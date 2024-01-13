@@ -32,7 +32,7 @@ export const CourseList = ({error, isFetching, data}) => {
                                 return(
                                     <div style={{margin: "10px 10px"}}>
                                         <Link to={`/catalog/${el.name}`}>
-                                            <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
+                                            <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating} purchased={el.purchased}/>
                                         </Link>
                                     </div>
                                 )  
