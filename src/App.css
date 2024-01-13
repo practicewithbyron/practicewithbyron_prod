@@ -368,6 +368,11 @@ code {
   background-color: rgba(220,38,38,.1);
 }
 
+.widgetComponentDifficulty-purchased{
+  color: #545454;
+  background-color: rgba(161, 161, 161, 0.1);
+}
+
 .widgetComponentStarRating-container{
   margin: auto 0 auto auto;
 }
