@@ -4,8 +4,12 @@ import { Error } from "../Error/Error";
 import { Loading } from "../Loading/loading";
 import { CourseList } from "../../components/CourseList/CourseList";
 
+import Cookies from "js-cookie";
+
 import "../../App.css";
 import "./CatalogPage.css";
+import { ReadUserCatalog } from './../../db/Read/ReadUserCatalog';
+import { IsLoggedIn } from "../../IsLoggedIn";
 
 export const CatalogPage = () => {
     const [isFetching, setIsFetching] = useState(true);
@@ -14,8 +18,8 @@ export const CatalogPage = () => {
     // const [filter, setFilter] = useState("Java");
     // const [filteredArray, setFilteredArray] = useState([]);
 
-    // const [isFetchingUser, setIsFetchingUser] = useState(true);
-    // const [dataUser, setDataUser] = useState(null);
+    const [isFetchingUser, setIsFetchingUser] = useState(true);
+    const [dataUser, setDataUser] = useState(null);
 
     useEffect(() => {
         if (isFetching) {
@@ -31,17 +35,47 @@ export const CatalogPage = () => {
             });
         }
     }, [isFetching]);
+
+    useEffect(() => {
+        const tokenFromCookie = Cookies.get('jwtToken');
+        if(IsLoggedIn(`catalog`)){
+            ReadUserCatalog(tokenFromCookie)
+            .then(res => {
+                setDataUser(res.data.detail);
+            })
+            .finally(() => {
+                setIsFetchingUser(false)
+            });  
+        }
+    }, [data])
+
+
+    const getPurchasedList = () => {
+        const temp = [];
+        console.log(data);
+        data?.detail.map(el => {
+            if(dataUser.includes(el.name))
+            {
+                temp.push(true);
+            }
+            else{
+                temp.push(false);
+            }
+        })
+
+        return temp;
+    }
     
 
     if(error){
         return <Error title="Internal Server Error" message={error.message}/>
     }
-    else if(isFetching){
+    else if(isFetching || isFetchingUser){
         return (
             <Loading/>
         )
     }else{
-        console.log(data)
+        console.log(dataUser)
         return (
             <div class="full-height primary-background padding-top-100">
                 <div className="catalogPage-section1 horizontal-align flex-column">
@@ -58,7 +92,7 @@ export const CatalogPage = () => {
                 </div>
 
                 <div className="catalogPage-section2 greyBackground-image">
-                    <CourseList data={data} error={error} isFetching={isFetching}/>
+                    <CourseList data={data} error={error} isFetching={isFetching} purchasedList={getPurchasedList()}/>
                 </div>
             </div>
         )
