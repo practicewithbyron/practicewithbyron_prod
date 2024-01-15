@@ -7,7 +7,10 @@ import { Link } from "react-router-dom";
 import "../../App.css";
 import "./CourseList.css";
 
-export const CourseList = ({error, isFetching, data}) => {
+export const CourseList = ({error, isFetching, data, purchasedList}) => {
+    if(!purchasedList){
+        purchasedList = Array.from({ length: data?.length }, () => false)
+    }
     return (
         <>
             {   
@@ -28,12 +31,19 @@ export const CourseList = ({error, isFetching, data}) => {
                     <div className="courseListCatalog-container">
                         {
                         !isFetching ? (
-                            data?.detail.map(el => {
+                            data?.detail.map((el, index) => {
                                 return(
                                     <div style={{margin: "10px 10px"}}>
-                                        <Link to={`/catalog/${el.name}`}>
-                                            <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating}/>
-                                        </Link>
+                                        {
+                                            purchasedList[index] ? (
+                                                <Link to={`/practice/${el.name}`}>
+                                                    <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating} purchased={purchasedList[index]}/>
+                                                </Link>                                            ) : (
+                                                <Link to={`/catalog/${el.name}`}>
+                                                    <WidgetComponent img={`${el.name}.png`} text={el.name} desc={el.shortDescription} price={el.price} difficulty={el.difficulty} starRating={el.starRating} purchased={purchasedList[index]}/>
+                                                </Link>
+                                            )
+                                        }
                                     </div>
                                 )  
                             })

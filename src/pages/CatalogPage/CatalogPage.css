@@ -1,0 +1,41 @@
+.greyBackground-image{
+    background-image: url(../../imgs/CatalogPageBackground.svg);
+    min-width: -webkit-fill-available;
+    min-height: 884px;
+    max-height: 884px;
+}
+
+.catalogPage-input{
+    min-width: 557px;
+}
+
+.catalogPage-section1{
+    margin-bottom: 50px;
+}
+
+.catalogPage-section2{
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+
+    padding-top: 150px;
+}
+
+@media screen and (max-width: 1000px){
+    .catalogPage-section2{
+        padding-top: 100px;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .catalogPage-section2{
+        padding-top: 70px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .catalogPage-input{
+        min-width: -webkit-fill-available;
+        margin: 0 50px;
+    }
+}

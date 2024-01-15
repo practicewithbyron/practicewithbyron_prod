@@ -5,5 +5,9 @@ export const IsLoggedIn = (destination) => {
     if(!tokenFromCookie){
         localStorage.setItem("destination", destination);
         window.location.href = `/login`;
+        return false;
+    }
+    else{
+        return true;
     }
 }
