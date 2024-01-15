@@ -52,8 +52,7 @@ export const CatalogPage = () => {
 
     const getPurchasedList = () => {
         const temp = [];
-        console.log(data);
-        data?.detail.map(el => {
+        data?.detail.forEach(el => {
             if(dataUser.includes(el.name))
             {
                 temp.push(true);
@@ -75,7 +74,6 @@ export const CatalogPage = () => {
             <Loading/>
         )
     }else{
-        console.log(dataUser)
         return (
             <div class="full-height primary-background padding-top-100">
                 <div className="catalogPage-section1 horizontal-align flex-column">
