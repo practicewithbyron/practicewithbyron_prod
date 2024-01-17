@@ -16,7 +16,7 @@ export const WidgetComponent = ({img, text, desc, price, difficulty, starRating,
                     <p className={`widgetComponent-difficulty ${difficultyClassName(difficulty)}`}>{difficulty}</p>
                     {
                         purchased ? (
-                            <p className={`widgetComponent-difficulty margin-left-5px widgetComponentDifficulty-purchased`}>Already Bought</p>
+                            <p className={`widgetComponent-difficulty margin-left-5px widgetComponentDifficulty-purchased`}>Purchased</p>
                         ) : (
                             <></>
                         )
