@@ -4,13 +4,6 @@
     flex-direction: row;
 }
 
-.catalogLanding-image{
-    background-image: url(../../imgs/CatalogLandingPageBackground.svg);
-    min-width: -webkit-fill-available;
-    min-height: 884px;
-    max-height: 884px;
-}
-
 .catalogLanding-section2{
     display: flex;
     flex-direction: row;
