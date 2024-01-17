@@ -84,7 +84,9 @@ export const DashboardPage = () => {
                         Welcome to your dashboard, get started by heading to the
                     </h2>
                     <div class="dashboard-subtitle horizontal-align align-items-center margin-top-15px">
-                        <div class="background-orange padding-10-15px border-radius-20 margin-right-7 cursor-pointer dashboardOrangeButton-container">
+                        <div class="background-orange padding-10-15px border-radius-20 margin-right-7 cursor-pointer dashboardOrangeButton-container" onClick={() => {
+                            window.location.href = "/catalog";
+                        }}>
                             <h2 class="white-text font-size-175 textwrap-nowrap">
                                 Catalog Page
                             </h2>
