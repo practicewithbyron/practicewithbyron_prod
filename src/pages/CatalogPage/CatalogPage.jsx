@@ -25,7 +25,7 @@ export const CatalogPage = () => {
         if (isFetching) {
           ReadAllCatalogs()
             .then((res) => {
-              setData(res.data);
+              setData(res.data.detail);
             })
             .catch((err) => {
               setError(err);
@@ -52,7 +52,7 @@ export const CatalogPage = () => {
 
     const getPurchasedList = () => {
         const temp = [];
-        data?.detail.forEach(el => {
+        data?.forEach(el => {
             if(dataUser.includes(el.name))
             {
                 temp.push(true);
@@ -75,7 +75,7 @@ export const CatalogPage = () => {
         )
     }else{
         return (
-            <div class="full-height primary-background padding-top-100">
+            <div class="min-height-inherit primary-background padding-top-100">
                 <div className="catalogPage-section1 horizontal-align flex-column">
                     <h1 class="color-white font-size-4rem letter-spacing-2px margin-bottom-20px">
                         Catalog
