@@ -31,7 +31,7 @@ export const CourseList = ({error, isFetching, data, purchasedList}) => {
                     <div className="courseListCatalog-container">
                         {
                         !isFetching ? (
-                            data?.detail.map((el, index) => {
+                            data?.map((el, index) => {
                                 return(
                                     <div style={{margin: "10px 10px"}}>
                                         {
