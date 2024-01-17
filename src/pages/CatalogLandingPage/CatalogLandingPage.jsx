@@ -45,7 +45,7 @@ export const CatalogLandingPage = () => {
     if (isFetchingCatalogs) {
         ReadAllCatalogs()
         .then(res => {
-            setCatalogs(res.data);
+            setCatalogs(res.data.detail);
         })
         .catch(err => {
             setErrorCatalogs(err);
@@ -96,7 +96,7 @@ export const CatalogLandingPage = () => {
                     <StarRating num={data.starRating}/>
                     <p className="color-white margin-left-5px">{data.starRating}</p>
                 </div>
-                <div class="catalogLanding-image flex-column align-items-center">
+                <div class="greyBackground2-image flex-column align-items-center">
                 <div class="flex-column margin-top-150px align-items-center">
                         <Button text={`🛒 Enroll Now - ${data.price}`} func={() => {
                             navigate(`/payment/${name}`)
