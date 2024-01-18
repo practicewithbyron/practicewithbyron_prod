@@ -318,7 +318,53 @@ export const PracticePage = () => {
         else{
             return(
                 <>
-                    <div id="catalogpage-entry" className="flex-column center-content page-margin fit-content practiceIntro-container">
+                    <div id="catalogpage-entry" className="full-height primary-background padding-top-100">
+                        <div className="horizontal-align flex-column">
+                            <h2 className="color-white font-size-4rem">
+                                {name}
+                            </h2>
+                            <div className="practiceImage-container">
+                                <img src={require(`../../imgs/${name}.png`)} class="practiceIntro-image"/>
+                            </div>
+                            <div className="flex-row practiceStat-container">
+                                <h3 className="fit-content white-text practiceIntro-stat">{data.detail.length} questions</h3>
+                                <h3 className="fit-content white-text practiceIntro-bar" style={{margin: "0 2vw"}}>|</h3>
+                                <h3 className="fit-content white-text practiceIntro-stat">{toHoursAndMinutes(data2.detail[0].time)}</h3>
+                                <h3 className="fit-content white-text practiceIntro-bar" style={{margin: "0 2vw"}}>|</h3>
+                                <h3 className="fit-content white-text practiceIntro-stat">{data2.detail[0].passPercentage}% correct required to pass</h3>
+                            </div>
+                            <div className="practiceDescription-container">
+                                <p className="description white-text text-align-center">
+                                    {data2.detail[0].description}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="greyBackground2-image practiceIntroButton-container">
+                            <div className="button-container">
+                                {
+                                    localStorage.getItem("currentExam") ? (
+                                        <Button text={"Continue Exam"} func={() => {setStarted(true)}}/>
+                                    ) : (
+                                        <Button text={"Start exam"} func={() => {setStarted(true)}}/>
+                                    )
+                                }
+                            </div>
+                            <div className="button-container">
+                                {/* <Link to={"/stats/" + name}>
+                                    <Button text={"View Stats"} func={() => {}}/>
+                                </Link> */}
+                                <Button text={"View Stats 🔒"} func={() => {}}/>
+                            </div>
+                            <div className="button-container">
+                                {/* <Link to={"/training"}>
+                                    <Button text={"Practice for Exam"} func={() => {}}/>
+                                </Link> */}
+                                <Button text={"Practice for Exam 🔒"} func={() => {}}/>
+
+                            </div>
+                        </div>
+                    </div>
+                    {/* <div id="catalogpage-entry" className="flex-column center-content page-margin fit-content practiceIntro-container">
                         <h2 className="fit-content title">{name}</h2>
                         <div className="flex-row practiceStat-container">
                             <h3 className="fit-content">{data.detail.length} questions</h3>
@@ -351,7 +397,7 @@ export const PracticePage = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </>
             )
         }
