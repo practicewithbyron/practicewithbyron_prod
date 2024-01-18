@@ -153,6 +153,10 @@
     justify-content: center;
 }
 
+.practiceIntro-container{
+    height: 100vh;
+}
+
 @media screen and (max-width: 400px){
     .practiceIntro-image{
         width: 100%;
@@ -182,6 +186,10 @@
 }
 
 @media screen and (max-width: 700px){
+    .practiceIntro-container{
+        height: 120vh;
+    }
+
     .practicePageReview-page{
         max-width: 400px;
     }

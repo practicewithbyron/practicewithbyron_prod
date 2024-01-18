@@ -318,7 +318,7 @@ export const PracticePage = () => {
         else{
             return(
                 <>
-                    <div id="catalogpage-entry" className="full-height primary-background padding-top-100">
+                    <div className="practiceIntro-container primary-background padding-top-100 overflow-hidden">
                         <div className="horizontal-align flex-column">
                             <h2 className="color-white font-size-4rem">
                                 {name}
