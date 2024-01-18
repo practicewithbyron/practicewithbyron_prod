@@ -20,7 +20,7 @@
 
 .button-container{
     margin: 0 10px;
-    min-width: 150px;
+    width: 220px;
 }
 
 .start-button {
@@ -44,12 +44,6 @@
 .practiceInputContainer-selected{
     background-color: var(--primary-color);
     color: white !important;
-}
-
-.practiceIntro-container{
-    background-color: white;
-    padding: 0 70px 50px 70px;
-    border-radius: 5px;
 }
 
 .practiceDescription-container{
@@ -136,19 +130,80 @@
     font-size: 16px;
 }
 
+.practiceIntro-bar{
+
+}
+
 .practicePageReviewButton-container{
     width: 200px;
 }
 
-@media screen and (max-width: 900px){
+.practiceIntro-image{
+    width: 400px;
+}
+
+.practiceImage-container{
+    margin: 15px 0;
+}
+
+.practiceIntroButton-container{
+    display: flex;
+    flex-direction: row;
+    padding: 150px 0;
+    justify-content: center;
+}
+
+.practiceIntro-container{
+    height: 100vh;
+}
+
+@media screen and (max-height: 700px){
+    .practiceIntro-container{
+        height: 160vh !important;
+    }   
+}
+
+@media screen and (max-width: 400px){
+    .practiceIntro-image{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px){
     .practicePageReview-page{
-        max-width: 600px;
+        max-width: 275px;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .practiceStat-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .practiceIntro-bar{
+        display: none;
+    }
+
+    .practiceIntro-stat{
+        margin: 5px 0;
     }
 }
 
 @media screen and (max-width: 700px){
+    .practiceIntro-container{
+        height: 125vh;
+    }
+
     .practicePageReview-page{
         max-width: 400px;
+    }
+    
+    .practiceIntroButton-container{
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
     }
 
     .practicePageReviewTitle-container{
@@ -161,8 +216,8 @@
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 900px){
     .practicePageReview-page{
-        max-width: 275px;
+        max-width: 600px;
     }
 }

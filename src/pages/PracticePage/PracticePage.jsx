@@ -4,7 +4,6 @@ import { Loading } from "../Loading/loading";
 import { ReadAllCatalogQuestions } from "../../db/Read/ReadAllCatalogQuestions";
 import { PracticeInput } from "./PracticeInput";
 import { ReadCatalog } from "../../db/Read/ReadCatalog";
-import { Link } from "react-router-dom";
 import { MyChart} from "./PracticeChart";
 import { PracticePercentageBar } from "./PracticePercentageBar";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
@@ -12,12 +11,12 @@ import { DisabledInput } from "./DisabledInput";
 import { QuestionNavigator } from "./QuestionNavigator";
 import { Button } from './../../components/Button/Button';
 import { PracticePageQuestion } from "./PracticePageQuestion";
-
+import { IsLoggedIn } from "../../IsLoggedIn";
 import Cookies from "js-cookie";
 
 import "../../App.css";
 import "./PracticePage.css";
-import { IsLoggedIn } from "../../IsLoggedIn";
+
 
 
 function toHoursAndMinutes(totalMinutes) {
@@ -318,19 +317,28 @@ export const PracticePage = () => {
         else{
             return(
                 <>
-                    <div id="catalogpage-entry" className="flex-column center-content page-margin fit-content practiceIntro-container">
-                        <h2 className="fit-content title">{name}</h2>
-                        <div className="flex-row practiceStat-container">
-                            <h3 className="fit-content">{data.detail.length} questions</h3>
-                            <h3 className="fit-content" style={{margin: "0 2vw"}}>|</h3>
-                            <h3 className="fit-content">{toHoursAndMinutes(data2.detail[0].time)}</h3>
-                            <h3 className="fit-content" style={{margin: "0 2vw"}}>|</h3>
-                            <h3 className="fit-content">{data2.detail[0].passPercentage}% correct required to pass</h3>
+                    <div className="practiceIntro-container primary-background padding-top-100 overflow-hidden">
+                        <div className="horizontal-align flex-column">
+                            <h2 className="color-white font-size-4rem">
+                                {name}
+                            </h2>
+                            <div className="practiceImage-container">
+                                <img src={require(`../../imgs/${name}.png`)} class="practiceIntro-image" alt={name}/>
+                            </div>
+                            <div className="flex-row practiceStat-container">
+                                <h3 className="fit-content white-text practiceIntro-stat">{data.detail.length} questions</h3>
+                                <h3 className="fit-content white-text practiceIntro-bar" style={{margin: "0 2vw"}}>|</h3>
+                                <h3 className="fit-content white-text practiceIntro-stat">{toHoursAndMinutes(data2.detail[0].time)}</h3>
+                                <h3 className="fit-content white-text practiceIntro-bar" style={{margin: "0 2vw"}}>|</h3>
+                                <h3 className="fit-content white-text practiceIntro-stat">{data2.detail[0].passPercentage}% correct required to pass</h3>
+                            </div>
+                            <div className="practiceDescription-container">
+                                <p className="description white-text text-align-center">
+                                    {data2.detail[0].description}
+                                </p>
+                            </div>
                         </div>
-                        <p className="description practiceDescription-container">
-                            {data2.detail[0].description}
-                        </p>
-                        <div className="flex-row">
+                        <div className="greyBackground2-image practiceIntroButton-container">
                             <div className="button-container">
                                 {
                                     localStorage.getItem("currentExam") ? (
@@ -341,14 +349,17 @@ export const PracticePage = () => {
                                 }
                             </div>
                             <div className="button-container">
-                                <Link to={"/stats/" + name}>
+                                {/* <Link to={"/stats/" + name}>
                                     <Button text={"View Stats"} func={() => {}}/>
-                                </Link>
+                                </Link> */}
+                                <Button text={"View Stats 🔒"} func={() => {}}/>
                             </div>
                             <div className="button-container">
-                                <Link to={"/training"}>
+                                {/* <Link to={"/training"}>
                                     <Button text={"Practice for Exam"} func={() => {}}/>
-                                </Link>
+                                </Link> */}
+                                <Button text={"Practice for Exam 🔒"} func={() => {}}/>
+
                             </div>
                         </div>
                     </div>

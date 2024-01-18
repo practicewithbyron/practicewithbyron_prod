@@ -164,10 +164,6 @@ code {
   line-height: 30px;
 }
 
-.horizontal-align {
-  align-items: center; /* Center items horizontally */
-}
-
 .font-size-4rem {
   font-size: 4rem;
 }
