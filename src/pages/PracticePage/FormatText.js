@@ -19,7 +19,7 @@ export const formatText = (inputString, language) => {
                 }
                 isCode ^= true;
             }
-            else if (char == "*"){
+            else if (char == "£"){
                 formattedLine += "\t";
             }
             else {
