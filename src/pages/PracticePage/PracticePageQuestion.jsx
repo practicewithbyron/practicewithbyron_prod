@@ -1,17 +1,17 @@
 import React from "react";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { formatText } from "./FormatText";
 
 import "./PracticePage.css";
 
 export const PracticePageQuestion = ({question, language}) => {
+    const formattedQuestion = formatText(question, language);
     return (
-        <div className="practiceQuestion-container">
-            <SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
-                {question}
-            </SyntaxHighlighter>
-        </div>
+        formattedQuestion.map((component, index) => (
+            <React.Fragment key={index}>
+                { component }
+            </React.Fragment>
+        ))
+    )
 
-    );
 }
 
