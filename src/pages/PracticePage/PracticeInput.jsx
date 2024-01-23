@@ -1,11 +1,11 @@
 import React from "react";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { formatText } from "./FormatText";
 
 import "./PracticePage.css";
 
-export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo, answerX, language}) => {
+export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo, answerX, language}) => {   
+    const formattedAnswer = formatText(answerX);
+
     const currentExamJSON = localStorage.getItem("currentExam");
     var selectedClassString = "";
     // Parse the existing data from Local Storage
@@ -40,9 +40,13 @@ export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo,
                 localStorage.setItem("currentExam", JSON.stringify(initialData));
             }
         }}>
-            <SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
-                {answerX}
-            </SyntaxHighlighter>
+            {
+                formattedAnswer.map((component, index) => (
+                    <React.Fragment key={index}>
+                        { component }
+                    </React.Fragment>
+                ))
+            }
         </div>
     )
 }
