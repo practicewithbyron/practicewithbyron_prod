@@ -1,10 +1,7 @@
 import React from "react";
-import SyntaxHighlighter from 'react-syntax-highlighter';
-
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { formatText } from "./FormatText";
 
 import "./PracticePage.css";
-import { formatText } from "./FormatText";
 
 export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo, answerX, language}) => {   
     const formattedAnswer = formatText(answerX);
