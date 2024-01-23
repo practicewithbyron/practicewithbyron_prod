@@ -5,10 +5,7 @@ export const formatText = (inputString, language) => {
     const elements = [];
 
     // Split the input string into lines
-    const lines = inputString.split('\n');
-
-    // Initialize an array to store formatted lines
-    const formattedLines = [];
+    const lines = inputString.split('\\n');
 
     var isCode = false;
     var isCodeEnd = false;
@@ -31,7 +28,6 @@ export const formatText = (inputString, language) => {
             // Remove the initial '*' and replace it with a tab space
         }
         if (isCode || isCodeEnd){
-            console.log(`isCode: ${isCode}, isCodeEnd: ${isCodeEnd}`)
             elements.push(<SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
                 {formattedLine}
             </SyntaxHighlighter>)
