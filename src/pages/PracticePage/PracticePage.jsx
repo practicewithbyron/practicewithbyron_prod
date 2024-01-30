@@ -16,7 +16,6 @@ import Cookies from "js-cookie";
 
 import "../../App.css";
 import "./PracticePage.css";
-import { formatText } from "./FormatText";
 
 
 
