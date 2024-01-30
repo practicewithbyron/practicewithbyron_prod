@@ -4,7 +4,7 @@ import { formatText } from "./FormatText";
 import "./PracticePage.css";
 
 export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo, answerX, language}) => {   
-    const formattedAnswer = formatText(answerX);
+    const formattedAnswer = formatText(answerX, language);
 
     const currentExamJSON = localStorage.getItem("currentExam");
     var selectedClassString = "";
@@ -40,13 +40,7 @@ export const PracticeInput = ({reset, questionHook, setQuestionHook, questionNo,
                 localStorage.setItem("currentExam", JSON.stringify(initialData));
             }
         }}>
-            {
-                formattedAnswer.map((component, index) => (
-                    <React.Fragment key={index}>
-                        { component }
-                    </React.Fragment>
-                ))
-            }
+            { formattedAnswer }
         </div>
     )
 }

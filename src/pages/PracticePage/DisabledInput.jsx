@@ -1,9 +1,5 @@
 import React from "react";
-
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-
-import SyntaxHighlighter from 'react-syntax-highlighter';
-
+import { formatText } from './FormatText';
 import "./DisabledInput.css";
 
 export const DisabledInput = ({answer, selectedIncorrect, selectedCorrect, selected, language}) => {
@@ -12,19 +8,17 @@ export const DisabledInput = ({answer, selectedIncorrect, selectedCorrect, selec
     {
         if(selectedIncorrect)
         {
-            backgroundColor = "rgb(255, 99, 132)"; //Red
+            backgroundColor = "rgb(255, 99, 132, 0.2)"; //Red
         }
         else if(selectedCorrect)
         {
-            backgroundColor = "rgb(78 255 58)"; //Green
+            backgroundColor = "rgb(78, 255, 58, 0.2)"; //Green
         }
     }
     
     return(
         <div className="flex-row fit-content disabledInput-container" style={{backgroundColor: backgroundColor}}>
-            <SyntaxHighlighter language={language} style={docco} wrapLongLines={true}>
-                {answer}
-            </SyntaxHighlighter>
+            {formatText(answer, language)}
         </div>
     )
 }

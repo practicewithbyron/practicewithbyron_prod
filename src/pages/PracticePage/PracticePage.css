@@ -110,8 +110,9 @@
 }
 
 .practicePageReview-page{
-    margin: 10px 0;
+    margin: 20px 0;
     max-width: 800px;
+    min-width: 800px;
 }
 
 .practicePageReviewTitle-container{
