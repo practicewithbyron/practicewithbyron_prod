@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 
 import "../../App.css";
 import "./PracticePage.css";
+import { formatText } from "./FormatText";
 
 
 
@@ -261,50 +262,50 @@ export const PracticePage = () => {
                             </div>  
                             {
                                 data.detail.map((el, index) => {
-                                   return(
-                                    <div className="practicePageReview-page">
-                                        <div className="flex-row">
-                                            <h3 className="practicePage-subtitle">Question {index + 1}: </h3>
-                                            {
-                                                correct.includes(el) ? (
-                                                    <h3 className="practicePage-subtitle practicePage-correct practicePage-userResponse">
-                                                        Correct
-                                                    </h3>
-                                                ) : (
-                                                    <></>
-                                                )
-                                            }
-                                            {
-                                                incorrect.includes(el) ? (
-                                                    <h3 className="practicePage-subtitle practicePage-incorrect practicePage-userResponse">
-                                                        Incorrect
-                                                    </h3>
-                                                ) : (
-                                                    <></>
-                                                )
-                                            }
-                                            {
-                                                skipped.includes(el) ? (
-                                                    <h3 className="practicePage-subtitle practicePage-skipped practicePage-userResponse">
-                                                        Skipped
-                                                    </h3>
-                                                ) : (
-                                                    <></>
-                                                )
-                                            }
+                                    return(
+                                        <div className="practicePageReview-page">
+                                            <div className="flex-row">
+                                                <h3 className="practicePage-subtitle">Question {index + 1}: </h3>
+                                                {
+                                                    correct.includes(el) ? (
+                                                        <h3 className="practicePage-subtitle practicePage-correct practicePage-userResponse">
+                                                            Correct
+                                                        </h3>
+                                                    ) : (
+                                                        <></>
+                                                    )
+                                                }
+                                                {
+                                                    incorrect.includes(el) ? (
+                                                        <h3 className="practicePage-subtitle practicePage-incorrect practicePage-userResponse">
+                                                            Incorrect
+                                                        </h3>
+                                                    ) : (
+                                                        <></>
+                                                    )
+                                                }
+                                                {
+                                                    skipped.includes(el) ? (
+                                                        <h3 className="practicePage-subtitle practicePage-skipped practicePage-userResponse">
+                                                            Skipped
+                                                        </h3>
+                                                    ) : (
+                                                        <></>
+                                                    )
+                                                }
+                                            </div>
+                                            <PracticePageQuestion question={el.question} language={data.detail.catagory}/>
+                                            <DisabledInput answer={el.answerOne} selectedIncorrect={incorrect.includes(el)} selectedCorrect={correct.includes} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerOne)} language={data.detail.language}/>
+                                            <DisabledInput answer={el.answerTwo} selectedIncorrect={el.answerTwo !== el.correctAnswer} selectedCorrect={el.answerTwo === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerTwo)} language={data.detail.language}/>
+                                            <DisabledInput answer={el.answerThree} selectedIncorrect={el.answerThree !== el.correctAnswer} selectedCorrect={el.answerThree === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerThree)} language={data.detail.language}/>
+                                            <DisabledInput answer={el.answerFour} selectedIncorrect={el.answerFour !== el.correctAnswer} selectedCorrect={el.answerFour === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerFour)} language={data.detail.language}/>
+                                            <h3 className="practicePageExplanation-title">
+                                                Explanation
+                                            </h3>
+                                            <p className="practicePageExplanation-desc">
+                                                {formatText(el.explanation, data.detail.catagory)}
+                                            </p>
                                         </div>
-                                        <PracticePageQuestion question={el.question} language={data.detail.catagory}/>
-                                        <DisabledInput answer={el.answerOne} selectedIncorrect={incorrect.includes(el)} selectedCorrect={correct.includes} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerOne)} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerTwo} selectedIncorrect={el.answerTwo !== el.correctAnswer} selectedCorrect={el.answerTwo === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerTwo)} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerThree} selectedIncorrect={el.answerThree !== el.correctAnswer} selectedCorrect={el.answerThree === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerThree)} language={data.detail.language}/>
-                                        <DisabledInput answer={el.answerFour} selectedIncorrect={el.answerFour !== el.correctAnswer} selectedCorrect={el.answerFour === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerFour)} language={data.detail.language}/>
-                                        <h3 className="practicePageExplanation-title">
-                                            Explanation
-                                        </h3>
-                                        <p className="practicePageExplanation-desc">
-                                            {el.explanation}
-                                        </p>
-                                    </div>
                                    )
                                 })
                             }     
