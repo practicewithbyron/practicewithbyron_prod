@@ -297,10 +297,10 @@ export const PracticePage = () => {
                                             }
                                         </div>
                                         <PracticePageQuestion question={el.question} language={data.catagory}/>
-                                        <DisabledInput answer={el.answerOne} selectedIncorrect={incorrect.includes(el)} selectedCorrect={correct.includes} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerOne)} language={data.language}/>
-                                        <DisabledInput answer={el.answerTwo} selectedIncorrect={el.answerTwo !== el.correctAnswer} selectedCorrect={el.answerTwo === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerTwo)} language={data.language}/>
-                                        <DisabledInput answer={el.answerThree} selectedIncorrect={el.answerThree !== el.correctAnswer} selectedCorrect={el.answerThree === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerThree)} language={data.language}/>
-                                        <DisabledInput answer={el.answerFour} selectedIncorrect={el.answerFour !== el.correctAnswer} selectedCorrect={el.answerFour === el.correctAnswer} selected={selected.some(item => item.questionNo === index + 1 && item.answerX === el.answerFour)} language={data.language}/>
+                                        <DisabledInput answer={el.answerOne} selectedIncorrect={incorrect.includes(el)} selectedCorrect={correct.includes} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerOne)} language={data.language}/>
+                                        <DisabledInput answer={el.answerTwo} selectedIncorrect={el.answerTwo !== el.correctAnswer} selectedCorrect={el.answerTwo === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerTwo)} language={data.language}/>
+                                        <DisabledInput answer={el.answerThree} selectedIncorrect={el.answerThree !== el.correctAnswer} selectedCorrect={el.answerThree === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerThree)} language={data.language}/>
+                                        <DisabledInput answer={el.answerFour} selectedIncorrect={el.answerFour !== el.correctAnswer} selectedCorrect={el.answerFour === el.correctAnswer} selected={selected?.some(item => item.questionNo === index + 1 && item.answerX === el.answerFour)} language={data.language}/>
                                         <h3 className="practicePageExplanation-title">
                                             Explanation
                                         </h3>
