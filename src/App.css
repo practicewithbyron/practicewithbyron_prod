@@ -28,6 +28,16 @@ input[type="text"]{
   border-radius: 5px;
 }
 
+textarea[type="text"] {
+  border: 0;
+  color: lightslategray;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  padding: 5px 18px;
+  height: 43px;
+  border-radius: 5px;
+}
+
 body {
   margin: 0;
   font-size: 150%
@@ -136,6 +146,14 @@ code {
 
 .width-60{
   width: 60%;
+}
+
+.min-width-60{
+  min-width: 60%;
+}
+
+.min-width-40{
+  min-width: 40%;
 }
 
 .horizontal-align{
@@ -288,6 +306,10 @@ code {
   max-width: 700px;
 }
 
+.max-width-200 {
+  max-width: 200px;
+}
+
 .font-size-15rem{
   font-size: 1.5rem;
 }
@@ -350,6 +372,10 @@ code {
 
 .textwrap-nowrap{
   text-wrap: nowrap;
+}
+
+.resize-none{
+  resize: none;
 }
 
 .widgetComponent-difficulty{
