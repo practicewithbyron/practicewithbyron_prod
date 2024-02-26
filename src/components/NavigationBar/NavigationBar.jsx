@@ -15,6 +15,7 @@ const defaultNavLinks = () => {
         <>
             <NavigationBarItem text="Dashboard" link="/dashboard"/>
             <NavigationBarItem text="Catalog" link="/catalog"/>
+            <NavigationBarItem text="Contact" link="/contact"/>
         </>
     )
 }
