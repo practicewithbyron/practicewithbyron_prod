@@ -352,6 +352,10 @@ code {
   text-wrap: nowrap;
 }
 
+.greyout{
+  filter: blur(1px) grayscale(50%);
+}
+
 .widgetComponent-difficulty{
   font-size: 13px;
   font-weight: 500;
