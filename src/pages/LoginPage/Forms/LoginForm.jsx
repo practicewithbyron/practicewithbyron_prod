@@ -5,7 +5,6 @@ import { Button } from '../../../components/Button/Button.jsx';
 import { TemplateForm } from "./TemplateForm.jsx";
 import { Notification } from './../../../Notification';
 
-
 import Cookies from "js-cookie";
 
 import "../../../App.css";
@@ -32,7 +31,6 @@ const Form = ({setLoggingIn, setResetPassword, setRegister}) =>
                     .then(async res => {
                         Notification("success", "Login Successful!", "Taking you to your dashboard...");                    
                         await new Promise(resolve => setTimeout(resolve, 3500)); 
-                        
                         const destination = localStorage.getItem("destination");
                         localStorage.removeItem("destination");
                         setLoggingIn(true);
