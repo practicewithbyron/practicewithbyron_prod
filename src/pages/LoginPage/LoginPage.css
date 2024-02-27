@@ -1,3 +1,21 @@
+.a1 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 100;
+    background: red;
+  }
+  
+  .b1 {
+    position: absolute;
+    width: 80px;
+    height: 180px;
+    z-index: 110;
+    left: 10px;
+    background: blue;
+    top: 10px;
+  }
+
 .login-form{
     display: flex;
     flex-direction: column;
