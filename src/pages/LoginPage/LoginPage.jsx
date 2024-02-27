@@ -3,6 +3,7 @@ import { Loading } from "../Loading/loading.jsx";
 import { LoginForm } from './Forms/LoginForm.jsx';
 import { RegisterForm } from './Forms/RegisterForm.jsx';
 import { ForgotPasswordForm } from './Forms/ForgotPasswordForm.jsx';
+import { LoginMessage } from './LoginMessage.jsx';
 
 import "../../App.css";
 import "./LoginPage.css";
@@ -44,6 +45,7 @@ export const LoginPage = () => {
     else{
         return (
             <div className="flex-row">
+                <LoginMessage/>
                 <LoginForm setLoggingIn={setLoggingIn} setResetPassword={setResetPassword} setRegister={setRegister}/>
                 <Image/>
             </div>
