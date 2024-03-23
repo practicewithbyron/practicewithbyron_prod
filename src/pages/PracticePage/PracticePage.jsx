@@ -12,6 +12,8 @@ import { QuestionNavigator } from "./QuestionNavigator";
 import { Button } from './../../components/Button/Button';
 import { PracticePageQuestion } from "./PracticePageQuestion";
 import { IsLoggedIn } from "../../IsLoggedIn";
+import { PracticeQuestionImage } from "./PracticeQuestionImage";
+
 import Cookies from "js-cookie";
 
 import "../../App.css";
@@ -159,6 +161,7 @@ export const PracticePage = () => {
                                     <QuestionNavigator noOfQuestions={data.length} setQuestionNo={setQuestionNo} questionNo={questionNo}/>
                                     <div className="question-container">
                                         <PracticePageQuestion question={data[questionNo - 1].question} language={data.catagory}/>
+                                        { data[questionNo - 1]?.image && <PracticeQuestionImage imageUrl={data[questionNo - 1]?.image} /> }
                                         <PracticeInput reset={resetCheckboxes} questionHook={questionOne} setQuestionHook={setQuestionOne} questionNo={questionNo} answerX={data[questionNo - 1].answerOne} language={data.language}/>
                                         <PracticeInput reset={resetCheckboxes} questionHook={questionTwo} setQuestionHook={setQuestionTwo} questionNo={questionNo} answerX={data[questionNo - 1].answerTwo} language={data.language}/>
                                         <PracticeInput reset={resetCheckboxes} questionHook={questionThree} setQuestionHook={setQuestionThree} questionNo={questionNo} answerX={data[questionNo - 1].answerThree} language={data.language}/>
